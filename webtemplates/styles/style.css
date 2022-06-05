@@ -1,0 +1,118 @@
+:root {
+    --colorpal-dark: #222831;
+    --colorpal-mid-dark: #30475E;
+    --colorpal-mid-light: #F05454;
+    --colorpal-ligt: #DDDDDD;
+    --font-color-nav: black;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: var(--colorpal-mid-dark);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.1vh;
+}
+
+.logo {
+    font-size: 22px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    color: var(--font-color-nav);
+}
+
+
+.nav-links li {
+    list-style: None;
+}
+
+.nav-links a {
+    color: var(--font-color-nav);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.burger {
+    display: none;
+}
+
+.burger div {
+    width: 3.5vh;
+    height: 2px;
+    background-color: var(--font-color-nav);
+    margin: 6px;
+    transition: all 0.3s ease;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 13.5vh;
+        background-color: var(--colorpal-mid-dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 33%;
+        padding-bottom: 3%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+    .burger {
+        display: block;
+    }
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}

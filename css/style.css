@@ -1,25 +1,40 @@
 :root {
-    --colorpal-dark: #c3ba85;
-    --colorpal-mid-dark: #DAD5AB;
-    --colorpal-mid-light: #F0F0CB;
-    --colorpal-ligt: #FEFFE2;
-    --font-color-nav: black;
+    --colorpal-dark-grey: #222831;
+    --colorpal-dark: #17212e;
+    --colorpal-mid-dark: #354d64;
+    --colorpal-mid-light: #F05454;
+    --colorpal-ligt: #DDDDDD;
+    --font-color-nav: var(--colorpal-ligt);
+    --font-color-foot: #445c80;
+    --fontfamily-nav: 'Roboto', sans-serif;
+
 }
 
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    color: var(--colorpal-ligt);
+    font-family: var(--fontfamily-nav);
+}
+
+body {
+    background-image: url("/assets/earth-1272884.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--colorpal-dark-grey);
 }
 
 nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    min-height: 8vh;
-    background-color: var(--colorpal-mid-dark);
-    font-family: 'Playfair Display', serif;
-    letter-spacing: 0.1vh;
+    min-height: 7vh;
+    background-color: var(--colorpal-dark);
+    font-family: var(--fontfamily-nav);
+    letter-spacing: 0.0vh;
 }
 
 .logo {
@@ -41,8 +56,8 @@ nav {
 .nav-links a {
     color: var(--font-color-nav);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 18px;
 
 }
 
@@ -59,6 +74,69 @@ nav {
 }
 
 
+.footer {
+    width: 100%;
+    background-color: var(--colorpal-dark-grey);
+    bottom: 0px;
+    min-height: 5vh;
+    position: fixed;
+    color: var(--font-color-foot);
+}
+
+
+.footer_list {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    list-style: none;
+    list-style-type: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    color: var(--font-color-foot);
+}
+
+
+.footer li {
+    display: inline;
+}
+
+.footer #info {
+    padding-bottom: 20px;
+}
+
+.footer p {
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 60%;
+}
+
+.footer .footer_social_icon>a {
+
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    color: inherit;
+    opacity: 0.75;
+    text-decoration: none;
+}
+
+.footer .footer_social_icon>a:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
     body {
         overflow: hidden;
@@ -68,7 +146,7 @@ nav {
         position: absolute;
         right: 0px;
         height: 92vh;
-        top: 13.5vh;
+        top: 8vh;
         background-color: var(--colorpal-mid-dark);
         display: flex;
         flex-direction: column;

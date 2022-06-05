@@ -5,8 +5,10 @@
 		}
 	],
 	"settings": {
-		"emmet.includeLanguages": {"django-html":"html"},
-		//"liveServer.settings.root": "/ownwebsite",
-		"editor.formatOnSave": true,		
+		"emmet.includeLanguages": {
+			"django-html": "html"
+		},
+		//"liveServer.settings.root": "webtemplates",
+		"editor.formatOnSave": true,
 	},
 }
