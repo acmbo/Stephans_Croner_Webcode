@@ -8,7 +8,7 @@
 		"emmet.includeLanguages": {
 			"django-html": "html"
 		},
-		//"liveServer.settings.root": "webtemplates",
+		"liveServer.settings.root": "site",
 		"editor.formatOnSave": true,
 	},
 }
