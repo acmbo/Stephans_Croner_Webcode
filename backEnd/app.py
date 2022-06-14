@@ -19,6 +19,9 @@ geopyDBPath = os.path.join(os.getcwd(), "blueprints","operationalEndpoints","geo
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{geopyDBPath}"
+SQLALCHEMY_BINDS = {
+        'geopy': f"sqlite:///{geopyDBPath}",
+}
 
 # Order matters: Initialize SQLAlchemy before Marshmallow
 

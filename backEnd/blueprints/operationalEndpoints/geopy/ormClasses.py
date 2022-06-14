@@ -11,6 +11,7 @@ Base = declarative_base()
 
 
 class Country(Base):
+    __bind_key__ = 'geopy'
     __tablename__ = 'country'
     
     id = Column(Integer, primary_key=True)
@@ -21,6 +22,7 @@ class Country(Base):
     
     
 class City(Base):
+    __bind_key__ = 'geopy'
     __tablename__ = 'city'
     
     id = Column(Integer, primary_key=True)

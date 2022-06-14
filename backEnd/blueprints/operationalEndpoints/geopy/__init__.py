@@ -4,7 +4,7 @@ from .ormClasses import City, Country
 from .geopyOrm import get_all_citys, add_city, get_city_by_name, deleteCityByName
 from extensions import db, ma
 
-blueprint = Blueprint('geopyapi', __name__, url_prefix='/geopyapi')
+blueprint = Blueprint('geopyapi', __name__, url_prefix='/geo')
 
 
 # DB Schema
@@ -35,7 +35,7 @@ def example():
    return '{"name":"Bob"}'
 
 
-@blueprint.route("/citys/", methods=['POST', 'GET'])
+@blueprint.route("/cities/", methods=['POST', 'GET'])
 def citys_open():
     
     if request.method == 'GET':
