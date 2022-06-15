@@ -1,0 +1,9 @@
+# Ignore artifacts:
+build
+coverage
+
+#Ignore templatesfiles
+backEnd/templates/*
+
+# Ignore all HTML files:
+#*.html
