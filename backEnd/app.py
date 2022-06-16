@@ -19,7 +19,8 @@ import os
 geopyDBPath = os.path.join(os.getcwd(), "blueprints",
                            "operationalEndpoints", "geopy", "geopydb.sqlite")
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder="static")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{geopyDBPath}"
 SQLALCHEMY_BINDS = {
@@ -37,4 +38,4 @@ db.init_app(app)
 ma.init_app(app)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0')
