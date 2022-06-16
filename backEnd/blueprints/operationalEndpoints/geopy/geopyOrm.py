@@ -178,7 +178,7 @@ def deleteCityByName(session, city_name):
 
 
 def deleteCountryInTable(session):
-    """deletes all cities in table
+    """deletes all country in table
 
     Args:
         session (sqlalchmey.session): current session to database
@@ -188,10 +188,10 @@ def deleteCountryInTable(session):
 
 
 def deleteCountryByName(session, country_name):
-    """delets city by name
+    """delets country by name
 
     Args:
-        city_name(str): name of city to search in db
+        country_name(str): name of country to search in db
         session (sqlalchmey.session): current session to database
     """
     session.query(Country).filter_by(country_name=country_name).delete()
