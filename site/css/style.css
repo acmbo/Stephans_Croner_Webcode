@@ -67,3 +67,29 @@
 .footer .footer_social_icon > a:hover {
   opacity: 0.9;
 }
+
+#sidebarMenu {
+  background-color:#d4d9e4; 
+
+}
+
+#sidebarMenu .nav-link{
+  padding: 1rem;
+}
+
+#sidebarMenu .nav-link{
+  padding: 1rem;
+}
+
+#sidebarMenu .nav-link:hover,
+#sidebarMenu .nav-link:focus {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+@media (max-width: 768px)  {
+
+  #sidebarMenu .nav-link{
+    font-size: 11;
+    padding: 0.5rem;
+  }
+}
