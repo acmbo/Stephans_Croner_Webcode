@@ -12,6 +12,8 @@ from extensions import db, ma
 
 # Get Blueprints
 from blueprints.operationalEndpoints.geopy import blueprint as geopy_endpoints
+from blueprints.operationalEndpoints.meta import blueprint as meta_endpoints
+from blueprints.operationalEndpoints.themegraph import blueprint as themegraph_endpoints
 from blueprints.siteEndpoints import blueprint as homepage_endpoints
 
 import os
@@ -33,6 +35,8 @@ SQLALCHEMY_BINDS = {
 # Blueprint registration
 app.register_blueprint(geopy_endpoints)
 app.register_blueprint(homepage_endpoints)
+app.register_blueprint(meta_endpoints)
+app.register_blueprint(themegraph_endpoints)
 
 db.init_app(app)
 ma.init_app(app)

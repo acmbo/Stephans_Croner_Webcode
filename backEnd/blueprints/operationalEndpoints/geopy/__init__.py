@@ -3,34 +3,12 @@ from flask import Blueprint, Response, jsonify, request, abort
 from .ormClasses import City, Country
 from .geopyOrm import get_all_citys, add_city, get_city_by_name, deleteCityByName,\
     get_all_countrys, get_country_by_name, deleteCountryByName, add_country
-from extensions import db, ma
+from .models import CitySchema, CountrySchema
+from extensions import db
 
 blueprint = Blueprint('geopyapi', __name__, url_prefix='/geo')
 
 # DB Schema
-
-
-class CitySchema(ma.SQLAlchemySchema):
-    class Meta:
-        model = City
-
-    id = ma.auto_field()
-    city_name = ma.auto_field()
-    _long = ma.auto_field()
-    _lat = ma.auto_field()
-    state = ma.auto_field()
-    country = ma.auto_field()
-
-
-class CountrySchema(ma.SQLAlchemySchema):
-    class Meta:
-        model = Country
-
-    id = ma.auto_field()
-    country_name = ma.auto_field()
-    _long = ma.auto_field()
-    _lat = ma.auto_field()
-    political_state = ma.auto_field()
 
 
 citySchema = CitySchema()
