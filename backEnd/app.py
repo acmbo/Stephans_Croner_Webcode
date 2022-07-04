@@ -20,26 +20,40 @@ import os
 
 geopyDBPath = os.path.join(os.getcwd(), "blueprints",
                            "operationalEndpoints", "geopy", "geopydb.sqlite")
+metaDBPath = os.path.join(os.getcwd(), "blueprints",
+                          "operationalEndpoints", "meta", "metadb.sqlite")
 
 app = Flask(__name__,
             static_folder="static")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{geopyDBPath}"
-SQLALCHEMY_BINDS = {
-    'geopy': f"sqlite:///{geopyDBPath}",
-}
+#app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{metaDBPath}"
+# SQLALCHEMY_BINDS = {
+#    'geopy': f"sqlite:///{geopyDBPath}",
+#    'meta': f"sqlite:///{metaDBPath}",
+# }
 
-# Order matters: Initialize SQLAlchemy before Marshmallow
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_BINDS"] = {
+    'geopy': f"sqlite:///{geopyDBPath}",
+    'meta': f"sqlite:///{metaDBPath}",
+}
 
 
 # Blueprint registration
+
+# with app.app_context():
 app.register_blueprint(geopy_endpoints)
 app.register_blueprint(homepage_endpoints)
 app.register_blueprint(meta_endpoints)
 app.register_blueprint(themegraph_endpoints)
 
+
+# Order matters: Initialize SQLAlchemy before Marshmallow
+
 db.init_app(app)
 ma.init_app(app)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
