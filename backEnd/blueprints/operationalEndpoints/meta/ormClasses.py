@@ -10,7 +10,6 @@ Base = declarative_base()
 
 
 class ScrapperData(Base):
-    __bind_key__ = 'meta'
     __tablename__ = 'scrapperdata'
 
     id = Column(Integer, primary_key=True)
@@ -21,7 +20,6 @@ class ScrapperData(Base):
 
 
 class UsedKeywords(Base):
-    __bind_key__ = 'meta'
     __tablename__ = 'usedKeywords'
 
     id = Column(Integer, primary_key=True)

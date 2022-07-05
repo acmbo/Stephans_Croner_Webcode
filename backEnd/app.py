@@ -18,31 +18,16 @@ from blueprints.siteEndpoints import blueprint as homepage_endpoints
 
 import os
 
-geopyDBPath = os.path.join(os.getcwd(), "blueprints",
-                           "operationalEndpoints", "geopy", "geopydb.sqlite")
-metaDBPath = os.path.join(os.getcwd(), "blueprints",
-                          "operationalEndpoints", "meta", "metadb.sqlite")
+DBPath = os.path.join(os.getcwd(), "db.sqlite")
 
 app = Flask(__name__,
             static_folder="static")
 
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{geopyDBPath}"
-#app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{metaDBPath}"
-# SQLALCHEMY_BINDS = {
-#    'geopy': f"sqlite:///{geopyDBPath}",
-#    'meta': f"sqlite:///{metaDBPath}",
-# }
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_BINDS"] = {
-    'geopy': f"sqlite:///{geopyDBPath}",
-    'meta': f"sqlite:///{metaDBPath}",
-}
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DBPath}"
 
 
 # Blueprint registration
 
-# with app.app_context():
 app.register_blueprint(geopy_endpoints)
 app.register_blueprint(homepage_endpoints)
 app.register_blueprint(meta_endpoints)
@@ -53,6 +38,10 @@ app.register_blueprint(themegraph_endpoints)
 
 db.init_app(app)
 ma.init_app(app)
+
+with app.app_context():
+    db.create_all()
+    db.session.commit()
 
 
 if __name__ == '__main__':
