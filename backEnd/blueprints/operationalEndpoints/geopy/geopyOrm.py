@@ -18,8 +18,8 @@ def createGeopyDb(Base):
     Creates Database for Geopy. Tables for City and Country location. Created in sqlalchemy
     Path is created with working path. Set deopyDBPath to a certain location, if no generic path should be used.
     """
-    geopyDBPath = os.path.join(os.getcwd(), "geopydb.sqlite")
-    engine = create_engine(f'sqlite:///{geopyDBPath}', echo=True)
+    geopyDBPath = os.path.join(os.getcwd(), "db.sqlite")
+    engine = create_engine(f'sqlite:///{DBPath}', echo=True)
     Base.metadata.create_all(engine)
 
 

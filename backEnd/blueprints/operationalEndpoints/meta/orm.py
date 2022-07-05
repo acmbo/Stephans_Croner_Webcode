@@ -11,8 +11,8 @@ def createMetaDb(Base):
     Creates Database for Geopy. Tables for City and Country location. Created in sqlalchemy
     Path is created with working path. Set deopyDBPath to a certain location, if no generic path should be used.
     """
-    metaDBPath = os.path.join(os.getcwd(), "metadb.sqlite")
-    engine = create_engine(f'sqlite:///{metaDBPath}', echo=True)
+    DBPath = os.path.join(os.getcwd(), "db.sqlite")
+    engine = create_engine(f'sqlite:///{DBPath}', echo=True)
     Base.metadata.create_all(engine)
 
 
