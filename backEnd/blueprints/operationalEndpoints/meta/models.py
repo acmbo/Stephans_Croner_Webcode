@@ -3,7 +3,7 @@
 for further information see : https://flask-marshmallow.readthedocs.io/en/latest/
 """
 from extensions import ma
-from .ormClasses import ScrapperData, UsedKeywords
+from extensions import ScrapperData, UsedKeywords
 
 
 class ScrapperDataSchema(ma.SQLAlchemySchema):

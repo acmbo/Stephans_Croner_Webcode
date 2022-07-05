@@ -3,7 +3,7 @@ import datetime
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .ormClasses import Base, ScrapperData, UsedKeywords
+from extensions import Base, ScrapperData, UsedKeywords
 
 
 def createMetaDb(Base):
@@ -25,7 +25,7 @@ def getEngine(Base):
     Return:
         Returns: Engine für SQLAlchemy
     """
-    metaDBPath = os.path.join(os.getcwd(), "metadb.sqlite")
+    metaDBPath = os.path.join(os.getcwd(), "db.sqlite")
     engine = create_engine(f'sqlite:///{metaDBPath}', echo=True)
     return engine
 

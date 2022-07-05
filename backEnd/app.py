@@ -3,12 +3,15 @@ https://flask-marshmallow.readthedocs.io/en/latest/#flask_marshmallow.sqla.SQLAl
 
 For installation:
 pip install -U flask-sqlalchemy marshmallow-sqlalchemy
+
+Innitialization of DB by Flask does'nt work!!! Therefore the databases have to be initialized via the orm-scripts with the functions createDB() in the seperates orm.py's
 """
 
 from flask import Flask
 
 # Get DBs and Marschmallow
-from extensions import db, ma
+#from extensions import db, ma
+from extensions import *
 
 # Get Blueprints
 from blueprints.operationalEndpoints.geopy import blueprint as geopy_endpoints
@@ -39,9 +42,13 @@ app.register_blueprint(themegraph_endpoints)
 db.init_app(app)
 ma.init_app(app)
 
-with app.app_context():
-    db.create_all()
-    db.session.commit()
+# Innitialization of DB by Flask does'nt work!!! Therefore the databases have to be initialized via the orm-scripts with the functions createDB() in the seperates orm.py's
+# with app.app_context():
+#    db.create_all()
+#    db.session.commit()
+# @app.cli.command()
+# def createdb():
+#    db.create_all()
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 for further information see : https://flask-marshmallow.readthedocs.io/en/latest/
 """
 from extensions import ma
-from .ormClasses import City, Country
+from extensions import City, Country
 
 
 class CitySchema(ma.SQLAlchemySchema):

@@ -10,7 +10,7 @@ import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .ormClasses import Base, City, Country
+from extensions import Base, City, Country
 
 
 def createGeopyDb(Base):
@@ -18,7 +18,7 @@ def createGeopyDb(Base):
     Creates Database for Geopy. Tables for City and Country location. Created in sqlalchemy
     Path is created with working path. Set deopyDBPath to a certain location, if no generic path should be used.
     """
-    geopyDBPath = os.path.join(os.getcwd(), "db.sqlite")
+    DBPath = os.path.join(os.getcwd(), "db.sqlite")
     engine = create_engine(f'sqlite:///{DBPath}', echo=True)
     Base.metadata.create_all(engine)
 
@@ -32,7 +32,7 @@ def getEngine(Base):
     Return:
         Returns: Engine für SQLAlchemy
     """
-    geopyDBPath = os.path.join(os.getcwd(), "geopydb.sqlite")
+    geopyDBPath = os.path.join(os.getcwd(), "db.sqlite")
     engine = create_engine(f'sqlite:///{geopyDBPath}', echo=True)
     return engine
 
@@ -248,6 +248,6 @@ if __name__ == "__main__":
 
     get_country_by_name("Germany", session)
 
-    deleteCountryInTable(session)
+    # deleteCountryInTable(session)
 
     #deleteCountryByName(session, "France")
