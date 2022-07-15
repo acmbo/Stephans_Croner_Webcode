@@ -9,6 +9,7 @@ Innitialization of DB by Flask does'nt work!!! Therefore the databases have to b
 
 from flask import Flask
 
+
 # Get DBs and Marschmallow
 #from extensions import db, ma
 from extensions import *
@@ -27,7 +28,6 @@ app = Flask(__name__,
             static_folder="static")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DBPath}"
-
 
 # Blueprint registration
 

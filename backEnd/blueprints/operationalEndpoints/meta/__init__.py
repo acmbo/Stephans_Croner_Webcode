@@ -17,7 +17,7 @@ def example():
     return '{"test":"Hello World"}'
 
 
-@blueprint.route("/scrapper", methods=['GET'])
+@blueprint.route("/scrapper/", methods=['GET'])
 def scrappermeta_open():
     """
 
@@ -33,7 +33,7 @@ def scrappermeta_open():
         return jsonify(metainfo_list)
 
 
-@blueprint.route("/scrapper", methods=['POST', 'DELETE'])
+@blueprint.route("/scrapper/", methods=['POST', 'DELETE'])
 def scrappermeta_closed():
 
     # if request.method == 'POST':

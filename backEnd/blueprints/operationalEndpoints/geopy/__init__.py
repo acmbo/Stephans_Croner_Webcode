@@ -97,7 +97,7 @@ def country_open():
                             status=400,)
 
 
-@blueprint.route("/city", methods=['POST', 'DELETE'])
+@blueprint.route("/city/", methods=['POST', 'DELETE'])
 def city_closed():
     """
     Api Route with authentification for a single city. Deletes a single City from the db with DELETE request. Adds a city with POST request.
@@ -149,7 +149,7 @@ def city_closed():
                             status=400,)
 
 
-@blueprint.route("/country", methods=['POST', 'DELETE'])
+@blueprint.route("/country/", methods=['POST', 'DELETE'])
 def country_closed():
     """
     Api Route with authentification for a single country. Deletes a single country from the db with DELETE request. Adds a country with POST request.
