@@ -17,7 +17,7 @@ def example():
     return '{"test":"Hello World"}'
 
 
-@blueprint.route("/scrapper/", methods=['GET'])
+@blueprint.route("/scrapper", methods=['GET'])
 def scrappermeta_open():
     """
 
@@ -41,6 +41,7 @@ def scrappermeta_closed():
     if request.method == 'POST':
 
         check = True
+        print(request)
 
         try:
             scrapper_name = request.form.get('name')
