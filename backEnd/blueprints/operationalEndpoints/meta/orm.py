@@ -72,6 +72,18 @@ def deleteScrapperTable(session):
     return 0
 
 
+def deleteScrapperbyId(session, id):
+    """deletes meta scrapper data in Table by id of entry
+
+
+    Args:
+        session (sqlalchmey.session): current session to database
+    """
+    session.query.filter_by(id=id).delete()
+    session.commit()
+    return 0
+
+
 if __name__ == '__main__':
     # create Database
     createMetaDb(Base)

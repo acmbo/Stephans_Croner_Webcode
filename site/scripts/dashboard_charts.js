@@ -11,9 +11,23 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("sampledata/test.json", function(data) {
+//d3.json("http://127.0.0.1:5000/meta/scrapperdata/", function(data) {
+ //   console.log(data)
+ // }
+  //);
+  d3.json("http://127.0.0.1:5000/meta/scrapperdata/", function(data) {
     console.log(data);
 });
+d3.json("https://blockchain.info/ticker",  function(data) {
+  console.log(data.EUR);
+});
+
+
+d3.json("http://127.0.0.1:5000/meta/scrapperdata/", function(error, data) {
+  if (error) throw error;
+  return data.id;
+});
+
 
 //Read the data
 d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",

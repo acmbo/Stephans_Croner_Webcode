@@ -8,7 +8,7 @@ Innitialization of DB by Flask does'nt work!!! Therefore the databases have to b
 """
 
 from flask import Flask
-
+from flask_cors import CORS
 
 # Get DBs and Marschmallow
 #from extensions import db, ma
@@ -26,6 +26,8 @@ DBPath = os.path.join(os.getcwd(), "db.sqlite")
 
 app = Flask(__name__,
             static_folder="static")
+
+CORS(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DBPath}"
 

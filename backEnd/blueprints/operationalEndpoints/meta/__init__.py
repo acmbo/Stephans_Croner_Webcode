@@ -1,7 +1,7 @@
 from flask import Blueprint, Response, jsonify, request, abort
 from itsdangerous import exc
 from .models import ScrapperDataSchema, UsedKeywordSchema
-from .orm import get_all_scrappermeta, add_meta, deleteScrapperTable
+from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId
 from extensions import db
 
 import datetime
@@ -17,7 +17,7 @@ def example():
     return '{"test":"Hello World"}'
 
 
-@blueprint.route("/scrapper/", methods=['GET'])
+@blueprint.route("/scrapperdata/", methods=['GET'])
 def scrappermeta_open():
     """
 
@@ -68,6 +68,6 @@ def scrappermeta_closed():
                             status=400,)
 
     if request.method == 'DELETE':
-
-        status = deleteScrapperTable(db.session)
+        id = request.form.get('id')
+        status = deleteScrapperbyId(db.session, id)
         return "", 204
