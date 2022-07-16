@@ -4,7 +4,7 @@
     "width": "container",
     "height": 250,
     "data":{"name":"table",
-        "url": "http://127.0.0.1:5000/meta/scrapperdata/"},
+        "url": "http://stephanscorner.de/meta/scrapperdata/"},
     "mark": {
       "type": "line",
       "interpolate": "step-after"
