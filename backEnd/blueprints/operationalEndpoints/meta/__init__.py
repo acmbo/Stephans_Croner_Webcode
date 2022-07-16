@@ -1,5 +1,4 @@
 from flask import Blueprint, Response, jsonify, request, abort
-from itsdangerous import exc
 from .models import ScrapperDataSchema, UsedKeywordSchema
 from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId
 from extensions import db

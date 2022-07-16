@@ -79,7 +79,7 @@ def deleteScrapperbyId(session, id):
     Args:
         session (sqlalchmey.session): current session to database
     """
-    session.query.filter_by(id=id).delete()
+    session.query(ScrapperData).filter(ScrapperData.id == id).delete()
     session.commit()
     return 0
 
