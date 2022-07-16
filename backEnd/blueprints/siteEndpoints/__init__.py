@@ -46,5 +46,5 @@ def dashboardDW_page():
         datetime.datetime.fromisoformat(submissionInfo['entrydate'])
 
     lastupdate = timedelta.days
-
+    metainfo_list.reverse()
     return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate)
