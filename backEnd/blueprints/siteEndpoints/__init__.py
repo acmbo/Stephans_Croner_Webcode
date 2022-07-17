@@ -40,11 +40,11 @@ def dashboardDW_page():
         entry['amount_of_db_entries'] = int(entry['amount_of_db_entries'])
         entry['errors'] = int(entry['errors'])
 
-    submissionInfo = metainfo_list[len(metainfo_list)-1]
+    submissionInfo = metainfo_list[0]
     print(datetime.datetime.fromisoformat(submissionInfo['entrydate']))
     timedelta = datetime.datetime.now() - \
         datetime.datetime.fromisoformat(submissionInfo['entrydate'])
 
     lastupdate = timedelta.days
-    metainfo_list.reverse()
+
     return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate)

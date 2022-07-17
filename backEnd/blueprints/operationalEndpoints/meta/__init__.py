@@ -28,7 +28,7 @@ def scrappermeta_open():
 
         metainfo = get_all_scrappermeta(db.session)
         metainfo_list = [scrapperDataSchema.dump(info) for info in metainfo]
-
+        metainfo_list.reverse()
         return jsonify(metainfo_list)
 
 
