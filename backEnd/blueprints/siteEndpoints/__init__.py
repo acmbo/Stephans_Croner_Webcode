@@ -34,6 +34,7 @@ def dashboardDW_page():
     # Add Data for Table and Submission section
     metainfo = get_all_scrappermeta(db.session)
     metainfo_list = [scrapperDataSchema.dump(info) for info in metainfo]
+    metainfo_list.reverse()
 
     for entry in metainfo_list:
         entry['entrydate'] = entry['entrydate'].split("T")[0]
