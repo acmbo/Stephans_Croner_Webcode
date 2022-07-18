@@ -1,4 +1,5 @@
 import requests
+import json
 
 internal_url = "http://127.0.0.1:5000/meta/scrapperdata"
 internal_url2 = "http://127.0.0.1:5000/meta/scrapper"
@@ -22,4 +23,14 @@ def meta_scrapper_postendpoint():
     }
 
     r = requests.post(internal_url2, files=postdata)
+    assert r.status_code == 204
+
+
+def keywords_to_api():
+
+    datas = {'kw1': 1, 'kw2': 2}
+
+    url = "http://127.0.0.1:5000/meta/keywordsmonth/"
+
+    r = requests.post(url, json=datas)
     assert r.status_code == 204

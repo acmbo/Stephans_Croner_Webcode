@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request, Response
+from os.path import exists
 
 blueprint = Blueprint('graphapi', __name__, url_prefix='/themegraph')
 
@@ -7,6 +8,70 @@ blueprint = Blueprint('graphapi', __name__, url_prefix='/themegraph')
 def example():
     # abort(404)
     return '{"test":"Hello World"}'
+
+
+@blueprint.route("/keywordsrawweek/", methods=['GET'])
+def keywordsrawweek_open():
+    if exists('kwRawWeek.txt'):
+        with open('kwRawWeek.txt', 'r') as f:
+            content = {"Keywords": f.read()}
+        return jsonify(content)
+    return jsonify({"Keywords": ""})
+
+
+@blueprint.route("/keywordsrawmonth/", methods=['GET'])
+def keywordsrawmonth_open():
+    if exists('kwRawMonth.txt'):
+        with open('kwRawMonth.txt', 'r') as f:
+            content = {"Keywords": f.read()}
+        return jsonify(content)
+    return jsonify({"Keywords": ""})
+
+
+@blueprint.route("/keywordsrawweek/", methods=['POST', 'DELETE'])
+def keywordsrawweek_closed():
+    # Here check for right input
+    if request.method == 'POST':
+
+        check = True
+
+        if check == True:
+            kws = request.form.get('keywords')
+
+            with open('kwRawWeek.txt', 'w') as f:
+                f.write(kws)
+
+            return "", 204
+        else:
+            return Response("Bad Post",
+                            status=400,)
+
+    if request.method == 'DELETE':
+        open('kwRawWeek.txt', 'w').close()
+        return "", 204
+
+
+@blueprint.route("/keywordsrawmonth/", methods=['POST', 'DELETE'])
+def keywordsrawmonth_closed():
+    # Here check for right input
+    if request.method == 'POST':
+
+        check = True
+
+        if check == True:
+            kws = request.form.get('keywords')
+
+            with open('kwRawMonth.txt', 'w') as f:
+                f.write(kws)
+
+            return "", 204
+        else:
+            return Response("Bad Post",
+                            status=400,)
+
+    if request.method == 'DELETE':
+        open('kwRawMonth.txt', 'w').close()
+        return "", 204
 
 
 @blueprint.route('/miserables')

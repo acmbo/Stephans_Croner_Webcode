@@ -3,7 +3,7 @@ import datetime
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from extensions import Base, ScrapperData, UsedKeywords
+from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days
 
 
 def createMetaDb(Base):
@@ -14,6 +14,12 @@ def createMetaDb(Base):
     DBPath = os.path.join(os.getcwd(), "db.sqlite")
     engine = create_engine(f'sqlite:///{DBPath}', echo=True)
     Base.metadata.create_all(engine)
+
+
+def droptable(Entity=UsedKeywords):
+    DBPath = os.path.join(os.getcwd(), "db.sqlite")
+    engine = create_engine(f'sqlite:///{DBPath}', echo=True)
+    Entity.__table__.drop(engine)
 
 
 def getEngine(Base):
@@ -50,6 +56,38 @@ def add_meta(session,
     return 0
 
 
+def add_keyword(session,
+                keyword: str,
+                amount_of_uses: int):
+
+    arguments = locals()
+    print("HERE")
+    kwData = UsedKeywords(
+        keyword=keyword,
+        amount_of_uses=amount_of_uses
+    )
+
+    session.add(kwData)
+    session.commit()
+    return 0
+
+
+def add_keyword_7days(session,
+                      keyword: str,
+                      amount_of_uses: int):
+
+    arguments = locals()
+
+    kwData = UsedKeywords_7days(
+        keyword=keyword,
+        amount_of_uses=amount_of_uses
+    )
+
+    session.add(kwData)
+    session.commit()
+    return 0
+
+
 # -------------- Read from Database --------------------------------
 
 
@@ -57,6 +95,18 @@ def get_all_scrappermeta(session):
 
     scrappermeta = session.query(ScrapperData).all()
     return scrappermeta
+
+
+def get_all_keywords(session):
+
+    kwdata = session.query(UsedKeywords).all()
+    return kwdata
+
+
+def get_all_keywords_7days(session):
+
+    kwdata = session.query(UsedKeywords_7days).all()
+    return kwdata
 
 
 # ---------------- Delete from Database --------------------------
@@ -80,6 +130,20 @@ def deleteScrapperbyId(session, id):
         session (sqlalchmey.session): current session to database
     """
     session.query(ScrapperData).filter(ScrapperData.id == id).delete()
+    session.commit()
+    return 0
+
+
+def delete_all_keywords(session):
+
+    session.query(UsedKeywords).delete()
+    session.commit()
+    return 0
+
+
+def delete_all_keywords_7days(session):
+
+    session.query(UsedKeywords_7days).delete()
     session.commit()
     return 0
 

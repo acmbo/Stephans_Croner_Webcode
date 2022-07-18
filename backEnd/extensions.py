@@ -53,5 +53,13 @@ class UsedKeywords(Base):
     __tablename__ = 'usedKeywords'
 
     id = Column(Integer, primary_key=True)
-    keywords = Column(String, nullable=False)
+    keyword = Column(String, nullable=False)
+    amount_of_uses = Column(Float, nullable=False)
+
+
+class UsedKeywords_7days(Base):
+    __tablename__ = 'usedKeywords_7days'
+
+    id = Column(Integer, primary_key=True)
+    keyword = Column(String, nullable=False)
     amount_of_uses = Column(Float, nullable=False)
