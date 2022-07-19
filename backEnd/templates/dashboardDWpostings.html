@@ -1,0 +1,252 @@
+
+{% extends 'baseDashboard.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+{% endblock %}
+
+{% block title %} Homepage{% endblock title %}
+
+
+{% block sitecontent %}
+<!--Cotainter for Main Body-->
+
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <!-- Main Body with Informations-->
+    <div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand">
+            <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink">
+            <div class=""></div>
+        </div>
+    </div>
+
+    <!--Title Section-->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+        <h1 class="h2">DW Postings</h1>
+        <div class="btn-toolbar mb-2 mb-md-0 dropdown">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Monthly
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM" style="">
+                    <li><h6 class="dropdown-header">Timeframe</h6></li>
+                    <li><a class="dropdown-item" href="dashboardDWpostingsweek">Weekly</a></li>
+                    <li><a class="dropdown-item" href="dashboardDWpostingsmonth">Monthly</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation and Information-->
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+        <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Explanation
+            </button>
+        </h4>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+            <div class="accordion-body">
+            <strong>DW Postings</strong> shows the analysis of the data gathered by the scrappers. The data can be used in different contexs. Below you can find different approaches to analyze the data.
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Databox and Plot Postingdays-->
+    <div class="row">
+        <div class="col-md pt-3 pb-3">
+            <div class="card">
+                <div class="card-header"><strong>Posting frequency</strong></div>
+
+                <div class="card-body">
+
+                    <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
+
+                </div>
+
+                <div class="card-footer text-muted">Updated 2 days ago</div>
+            </div>
+        </div>
+
+        <div class="col-md pt-3">
+            <div class="card">
+                <div class="card-body">
+                    <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
+                </div>
+                <div class="card-footer text-muted">2 days ago</div>
+        </div>
+        
+        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+        </div>
+    </div>
+
+    <!-- Databox and Plot Wordcloud -->
+    <div class="row">
+        <div class="col-md pt-3">
+            <div class="card">
+                <div class="card-header"><strong>Wordcloud</strong></div>
+
+                <div class="card-body">
+                    <p class="card-text">Articles in <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> have <strong>keywords</strong> assigned by the author of the article. These keywords can be analyzed by their frequency of use. The size of a word in the plot indicates the frequency the word is used as a keyword.</p>
+
+                </div>
+
+                <div class="card-footer text-muted">Updated 2 days ago</div>
+            </div>
+        </div>
+
+        <div class="col-md pt-3 pb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div id="dataviz_wordcloud" class="d-flex justify-content-center overflow-hidden"></div>
+                </div>
+                <div class="card-footer text-muted">Plot most used keywords</div>
+        </div>
+        
+        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+        </div>
+    </div>
+
+    <!-- Databox and Plot KeywordsBarplot -->
+    <div class="row">
+        <div class="col-md pt-3">
+            <div class="card">
+                <div class="card-header"><strong>Keywords used</strong></div>
+
+                <div class="card-body">
+                    <p class="card-text">The worcloud above shows the frequency of words in a more creative way. This bar plot shows the actual values from the database. It depicts the top 20 used keywords wihtin the dataset in a given timeframe.</p>
+
+                </div>
+
+                <div class="card-footer text-muted">Updated 2 days ago</div>
+            </div>
+        </div>
+
+        <div class="col-md pt-3 pb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
+                </div>
+                <div class="card-footer text-muted">Plot most used keywords</div>
+        </div>
+        
+        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+        </div>
+    </div>
+</div>
+
+{% endblock sitecontent %} 
+
+
+{% block dependenciesEnd %}
+<!--Internal-->
+
+<script>
+
+    const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_postingdays.json') }}"
+    vegaEmbed("#dataviz_postingdays", spec_postingdays)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+    const spec_wordcloud = {
+        "$schema": "https://vega.github.io/schema/vega/v5.json",
+        "description": "A word cloud visualization depicting Vega research paper abstracts.",
+        "width": 450,
+        "height": 300,
+        "padding": 0,
+      
+        "data": [
+          {
+            "name": "table",
+            "values": ["{{ wordclouddata }}",
+            ],
+            "transform": [
+              {
+                "type": "countpattern",
+                "field": "data",
+                "case": "upper",
+                "pattern": "[äöüÄÖÜß\\w]{3,}",
+                "stopwords": "(i|me|my|myself|we|us|our|ours|ourselves|you|your|yours|yourself|yourselves|he|him|his|himself|she|her|hers|herself|it|its|itself|they|them|their|theirs|themselves|what|which|who|whom|whose|this|that|these|those|am|is|are|was|were|be|been|being|have|has|had|having|do|does|did|doing|will|would|should|can|could|ought|i'm|you're|he's|she's|it's|we're|they're|i've|you've|we've|they've|i'd|you'd|he'd|she'd|we'd|they'd|i'll|you'll|he'll|she'll|we'll|they'll|isn't|aren't|wasn't|weren't|hasn't|haven't|hadn't|doesn't|don't|didn't|won't|wouldn't|shan't|shouldn't|can't|cannot|couldn't|mustn't|let's|that's|who's|what's|here's|there's|when's|where's|why's|how's|a|an|the|and|but|if|or|because|as|until|while|of|at|by|for|with|about|against|between|into|through|during|before|after|above|below|to|from|up|upon|down|in|out|on|off|over|under|again|further|then|once|here|there|when|where|why|how|all|any|both|each|few|more|most|other|some|such|no|nor|not|only|own|same|so|than|too|very|say|says|said|shall|a|ab|aber|ach|acht|achte|achten|achter|achtes|ag|alle|allein|allem|allen|aller|allerdings|alles|allgemeinen|als|also|am|an|ander|andere|anderem|anderen|anderer|anderes|anderm|andern|anderr|anders|au|auch|auf|aus|ausser|ausserdem|außer|außerdem|b|bald|bei|beide|beiden|beim|beispiel|bekannt|bereits|besonders|besser|besten|bin|bis|bisher|bist|c|d|d.h|da|dabei|dadurch|dafür|dagegen|daher|dahin|dahinter|damals|damit|danach|daneben|dank|dann|daran|darauf|daraus|darf|darfst|darin|darum|darunter|darüber|das|dasein|daselbst|dass|dasselbe|davon|davor|dazu|dazwischen|daß|dein|deine|deinem|deinen|deiner|deines|dem|dementsprechend|demgegenüber|demgemäss|demgemäß|demselben|demzufolge|den|denen|denn|denselben|der|deren|derer|derjenige|derjenigen|dermassen|dermaßen|derselbe|derselben|des|deshalb|desselben|dessen|deswegen|dich|die|diejenige|diejenigen|dies|diese|dieselbe|dieselben|diesem|diesen|dieser|dieses|dir|doch|dort|drei|drin|dritte|dritten|dritter|drittes|du|durch|durchaus|durfte|durften|dürfen|dürft|e|eben|ebenso|ehrlich|ei|ei,|eigen|eigene|eigenen|eigener|eigenes|ein|einander|eine|einem|einen|einer|eines|einig|einige|einigem|einigen|einiger|einiges|einmal|eins|elf|en|ende|endlich|entweder|er|ernst|erst|erste|ersten|erster|erstes|es|etwa|etwas|euch|euer|eure|eurem|euren|eurer|eures|f|folgende|früher|fünf|fünfte|fünften|fünfter|fünftes|für|g|gab|ganz|ganze|ganzen|ganzer|ganzes|gar|gedurft|gegen|gegenüber|gehabt|gehen|geht|gekannt|gekonnt|gemacht|gemocht|gemusst|genug|gerade|gern|gesagt|geschweige|gewesen|gewollt|geworden|gibt|ging|gleich|gott|gross|grosse|grossen|grosser|grosses|groß|große|großen|großer|großes|gut|gute|guter|gutes|h|hab|habe|haben|habt|hast|hat|hatte|hatten|hattest|hattet|heisst|her|heute|hier|hin|hinter|hoch|hätte|hätten|i|ich|ihm|ihn|ihnen|ihr|ihre|ihrem|ihren|ihrer|ihres|im|immer|in|indem|infolgedessen|ins|irgend|ist|j|ja|jahr|jahre|jahren|je|jede|jedem|jeden|jeder|jedermann|jedermanns|jedes|jedoch|jemand|jemandem|jemanden|jene|jenem|jenen|jener|jenes|jetzt|k|kam|kann|kannst|kaum|kein|keine|keinem|keinen|keiner|keines|kleine|kleinen|kleiner|kleines|kommen|kommt|konnte|konnten|kurz|können|könnt|könnte|l|lang|lange|leicht|leide|lieber|los|m|machen|macht|machte|mag|magst|mahn|mal|man|manche|manchem|manchen|mancher|manches|mann|mehr|mein|meine|meinem|meinen|meiner|meines|mensch|menschen|mich|mir|mit|mittel|mochte|mochten|morgen|muss|musst|musste|mussten|muß|mußt|möchte|mögen|möglich|mögt|müssen|müsst|müßt|n|na|nach|nachdem|nahm|natürlich|neben|nein|neue|neuen|neun|neunte|neunten|neunter|neuntes|nicht|nichts|nie|niemand|niemandem|niemanden|noch|nun|nur|o|ob|oben|oder|offen|oft|ohne|ordnung|p|q|r|recht|rechte|rechten|rechter|rechtes|richtig|rund|s|sa|sache|sagt|sagte|sah|satt|schlecht|schluss|schon|sechs|sechste|sechsten|sechster|sechstes|sehr|sei|seid|seien|sein|seine|seinem|seinen|seiner|seines|seit|seitdem|selbst|sich|sie|sieben|siebente|siebenten|siebenter|siebentes|sind|so|solang|solche|solchem|solchen|solcher|solches|soll|sollen|sollst|sollt|sollte|sollten|sondern|sonst|soweit|sowie|später|startseite|statt|steht|suche|t|tag|tage|tagen|tat|teil|tel|tritt|trotzdem|tun|u|uhr|um|und|uns|unse|unsem|unsen|unser|unsere|unserer|unses|unter|v|vergangenen|viel|viele|vielem|vielen|vielleicht|vier|vierte|vierten|vierter|viertes|vom|von|vor|w|wahr|wann|war|waren|warst|wart|warum|was|weg|wegen|weil|weit|weiter|weitere|weiteren|weiteres|welche|welchem|welchen|welcher|welches|wem|wen|wenig|wenige|weniger|weniges|wenigstens|wenn|wer|werde|werden|werdet|weshalb|wessen|wie|wieder|wieso|will|willst|wir|wird|wirklich|wirst|wissen|wo|woher|wohin|wohl|wollen|wollt|wollte|wollten|worden|wurde|wurden|während|währenddem|währenddessen|wäre|würde|würden|x|y|z|z.b|zehn|zehnte|zehnten|zehnter|zehntes|zeit|zu|zuerst|zugleich|zum|zunächst|zur|zurück|zusammen|zwanzig|zwar|zwei|zweite|zweiten|zweiter|zweites|zwischen|zwölf|über|überhaupt|übrigens|)"
+              },
+              {
+                "type": "formula", "as": "angle",
+                "expr": "[-45, 0, 45][~~(random() * 3)]"
+              },
+              {
+                "type": "formula", "as": "weight",
+                "expr": "if(datum.text=='VEGA', 600, 300)"
+              }
+            ]
+          }
+        ],
+      
+        "scales": [
+          {
+            "name": "color",
+            "type": "ordinal",
+            "domain": {"data": "table", "field": "text"},
+            "range": ["#d5a928", "#652c90", "#939597"]
+          }
+        ],
+      
+        "marks": [
+          {
+            "type": "text",
+            "from": {"data": "table"},
+            "encode": {
+              "enter": {
+                "text": {"field": "text"},
+                "align": {"value": "center"},
+                "baseline": {"value": "alphabetic"},
+                "fill": {"scale": "color", "field": "text"}
+              },
+              "update": {
+                "fillOpacity": {"value": 1}
+              },
+              "hover": {
+                "fillOpacity": {"value": 0.5}
+              }
+            },
+            "transform": [
+              {
+                "type": "wordcloud",
+                "size": [450, 300],
+                "text": {"field": "text"},
+                "rotate": {"field": "30"},
+                "font": "Helvetica Neue, Arial",
+                "fontSize": {"field": "datum.count"},
+                "fontWeight": {"field": "datum.weight"},
+                "fontSizeRange": [12, 56],
+                "padding": 2
+              }
+            ]
+          }
+        ]
+      };
+
+    vegaEmbed("#dataviz_wordcloud", spec_wordcloud)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+    const spec_bar = "{{ url_for('static', filename='scripts/dashboard/postings_bar.json') }}";
+    vegaEmbed("#dataviz_bar", spec_bar)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+    
+</script>
+{% endblock dependenciesEnd %}

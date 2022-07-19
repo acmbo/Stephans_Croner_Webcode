@@ -2,10 +2,12 @@
 """
 
 from flask import Blueprint, render_template
+from sympy import re
 from extensions import db
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId
 import datetime
+import requests
 
 blueprint = Blueprint('Homepage', __name__)
 
@@ -49,3 +51,33 @@ def dashboardDW_page():
     lastupdate = timedelta.days
 
     return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate)
+
+
+# Monthly Postings
+@blueprint.route('/dashboardDWpostingsmonth')
+def dashboardDWpostings_page():
+    url = 'http://stephanscorner.de/themegraph/keywordsrawmonth/'
+    r = requests.get(url)
+    data = r.json()
+    wordclouddata = data["Keywords"]
+    return render_template('dashboardDWpostings.html', wordclouddata=wordclouddata)
+
+
+@blueprint.route('/dashboardDWthemegraphmonth')
+def dashboardDWthemegraph_page():
+    return render_template('dashboardDWthemegraph.html')
+
+
+# Weekly Postings
+@blueprint.route('/dashboardDWpostingsweek')
+def dashboardDWpostingsWeek_page():
+    url = 'http://stephanscorner.de/themegraph/keywordsrawweek/'
+    r = requests.get(url)
+    data = r.json()
+    wordclouddata = data["Keywords"]
+    return render_template('dashboardDWpostingsweek.html', wordclouddata=wordclouddata)
+
+
+@blueprint.route('/dashboardDWthemegraphweek')
+def dashboardDWthemegraphWeek_page():
+    return render_template('dashboardDWthemegraphweek.html')
