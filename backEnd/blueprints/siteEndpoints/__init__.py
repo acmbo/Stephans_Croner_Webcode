@@ -2,7 +2,6 @@
 """
 
 from flask import Blueprint, render_template
-from sympy import re
 from extensions import db
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId
