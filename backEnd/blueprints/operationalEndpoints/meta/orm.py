@@ -3,7 +3,7 @@ import datetime
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days
+from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_montly, Postings_weekly
 
 
 def createMetaDb(Base):
@@ -88,6 +88,38 @@ def add_keyword_7days(session,
     return 0
 
 
+def add_posting_7days(session,
+                      post: int,
+                      date:  datetime.datetime):
+
+    arguments = locals()
+
+    post = Postings_weekly(
+        date=date,
+        post=post
+    )
+
+    session.add(post)
+    session.commit()
+    return 0
+
+
+def add_posting_month(session,
+                      post: int,
+                      date:  datetime.datetime):
+
+    arguments = locals()
+
+    post = Postings_montly(
+        date=date,
+        post=post
+    )
+
+    session.add(post)
+    session.commit()
+    return 0
+
+
 # -------------- Read from Database --------------------------------
 
 
@@ -98,7 +130,7 @@ def get_all_scrappermeta(session):
 
 
 def get_all_keywords(session):
-
+    # Montly
     kwdata = session.query(UsedKeywords).all()
     return kwdata
 
@@ -107,6 +139,18 @@ def get_all_keywords_7days(session):
 
     kwdata = session.query(UsedKeywords_7days).all()
     return kwdata
+
+
+def get_all_postings_7days(session):
+
+    posts = session.query(Postings_weekly).all()
+    return posts
+
+
+def get_all_postings_Month(session):
+
+    posts = session.query(Postings_montly).all()
+    return posts
 
 
 # ---------------- Delete from Database --------------------------
@@ -144,6 +188,20 @@ def delete_all_keywords(session):
 def delete_all_keywords_7days(session):
 
     session.query(UsedKeywords_7days).delete()
+    session.commit()
+    return 0
+
+
+def delete_all_postings_7days(session):
+
+    session.query(Postings_weekly).delete()
+    session.commit()
+    return 0
+
+
+def delete_all_postings_month(session):
+
+    session.query(Postings_montly).delete()
     session.commit()
     return 0
 

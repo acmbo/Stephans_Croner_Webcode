@@ -63,3 +63,19 @@ class UsedKeywords_7days(Base):
     id = Column(Integer, primary_key=True)
     keyword = Column(String, nullable=False)
     amount_of_uses = Column(Float, nullable=False)
+
+
+class Postings_weekly(Base):
+    __tablename__ = 'postings_weekly'
+
+    id = Column(Integer, primary_key=True)
+    date = Column(DateTime, nullable=False)
+    post = Column(Float, nullable=False)
+
+
+class Postings_montly(Base):
+    __tablename__ = 'postings_monthly'
+
+    id = Column(Integer, primary_key=True)
+    date = Column(DateTime, nullable=False)
+    post = Column(Float, nullable=False)

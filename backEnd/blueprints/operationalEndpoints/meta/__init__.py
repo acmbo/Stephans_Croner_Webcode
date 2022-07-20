@@ -1,6 +1,8 @@
 from flask import Blueprint, Response, jsonify, request
-from .models import ScrapperDataSchema, UsedKeywordSchema, UsedKeyword_7daysSchema
-from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_keywords, get_all_keywords_7days, delete_all_keywords, delete_all_keywords_7days, add_keyword, add_keyword_7days
+from .models import ScrapperDataSchema, UsedKeywordSchema, UsedKeyword_7daysSchema, Postings_weeklySchema, Postings_montlySchema
+from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_keywords, get_all_keywords_7days
+from .orm import delete_all_keywords, delete_all_keywords_7days, add_keyword, add_keyword_7days
+from .orm import get_all_postings_7days, get_all_postings_Month, add_posting_7days, add_posting_month, delete_all_postings_7days, delete_all_postings_month
 from extensions import db
 
 import json
@@ -11,6 +13,8 @@ blueprint = Blueprint('metaapi', __name__, url_prefix='/meta')
 scrapperDataSchema = ScrapperDataSchema()
 usedKeywordSchema = UsedKeywordSchema()
 usedKeyword_7daysSchema = UsedKeyword_7daysSchema()
+postings_weeklySchema = Postings_weeklySchema()
+postings_montlySchema = Postings_montlySchema()
 
 
 @blueprint.route('/')
@@ -157,4 +161,77 @@ def keywords7days_closed():
 
     if request.method == 'DELETE':
         status = delete_all_keywords_7days(db.session)
+        return "", 204
+
+
+@blueprint.route("/postingsweek/", methods=['GET'])
+def postingsweek_open():
+
+    if request.method == 'GET':
+
+        posts = get_all_postings_7days(db.session)
+        posts_list = [postings_weeklySchema.dump(info) for info in posts]
+
+        return jsonify(posts_list)
+
+
+@blueprint.route("/postingsweek/", methods=['POST', 'DELETE'])
+def postingsweek_closed():
+
+    if request.method == 'POST':
+
+        check = True
+
+        if check == True:
+            post = int(request.form.get('post'))
+            date = datetime.datetime.fromisoformat(
+                request.form.get('date'))
+
+            add_posting_7days(db.session, post, date)
+            return "", 204
+
+        else:
+            return Response("Bad Post",
+                            status=400,)
+
+    if request.method == 'DELETE':
+        status = delete_all_postings_7days(db.session)
+        return "", 204
+
+
+@blueprint.route("/postingsmonth/", methods=['GET'])
+def postingsmonth_open():
+
+    if request.method == 'GET':
+
+        posts = get_all_postings_Month(db.session)
+        posts_list = [postings_weeklySchema.dump(info) for info in posts]
+
+        return jsonify(posts_list)
+
+
+#get_all_postings_7days, get_all_postings_Month, add_posting_7days, add_posting_month, delete_all_postings_7days, delete_all_postings_month
+
+
+@blueprint.route("/postingsmonth/", methods=['POST', 'DELETE'])
+def ppostingsmonth_closed():
+
+    if request.method == 'POST':
+
+        check = True
+
+        if check == True:
+            post = int(request.form.get('post'))
+            date = datetime.datetime.fromisoformat(
+                request.form.get('date'))
+
+            add_posting_month(db.session, post, date)
+            return "", 204
+
+        else:
+            return Response("Bad Post",
+                            status=400,)
+
+    if request.method == 'DELETE':
+        status = delete_all_postings_month(db.session)
         return "", 204

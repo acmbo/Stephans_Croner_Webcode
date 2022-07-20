@@ -6,13 +6,16 @@
     "data":{"name":"table",
         "url": "https://stephanscorner.de/meta/scrapperdata/"},
     "mark": {
-      "type": "line",
+      "type": "area", 
+      "line": true,
       "interpolate": "step-after"
+
     },
     "encoding": {
       "x": {"field": "entrydate", 
             "title": "Date",
-            "type": "temporal"},
+            "type": "temporal",
+            "timeUnit": "day"},
       "y": {"field": "amount_of_db_entries", 
             "title":"Scrapped articles",
             "type": "quantitative"}
