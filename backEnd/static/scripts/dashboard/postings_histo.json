@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "A simple donut chart with embedded data.",
     "data":{"name":"table",
-      "url": "http://127.0.0.1:5000/meta/postingsmonth/"},
+      "url": "https://stephanscorner.de/meta/postingsmonth/"},
     "mark": "bar",
     "width":370,
     "height":200,

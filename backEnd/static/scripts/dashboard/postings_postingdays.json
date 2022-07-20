@@ -3,9 +3,9 @@
     "height":300,
     "width":350,
     "data": {
-        "url": "https://raw.githubusercontent.com/vega/vega/main/docs/data/seattle-weather.csv"
+        "url": "https://stephanscorner.de/meta/postingsyear/"
     },
-    "title": "Daily Max Temperatures (C) in Seattle, WA",
+    "title": "Daily Postings of DW acorss the year",
     "config": {
         "view": {
             "strokeWidth": 0,
@@ -34,8 +34,8 @@
             "title": "Month"
         },
         "color": {
-            "field": "temp_max",
-            "aggregate": "max",
+            "field": "post",
+            "aggregate": "sum",
             "type": "quantitative",
             "legend": {
                 "title": null

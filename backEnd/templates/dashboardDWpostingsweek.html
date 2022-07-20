@@ -189,7 +189,7 @@
     .catch(console.warn);
 
 
-    const spec_postingdaysYear = "{{ url_for('static', filename='scripts/dashboard/postings_postingdays_week.json') }}";
+    const spec_postingdaysYear = "{{ url_for('static', filename='scripts/dashboard/postings_postingdays.json') }}";
     vegaEmbed("#dataviz_postingdaysYear", spec_postingdaysYear )
     // result.view provides access to the Vega View API
     .then(result => console.log(result))
