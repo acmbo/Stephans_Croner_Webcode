@@ -91,7 +91,7 @@ def meta_postingsmonth_postendpoint():
     # Check get statement
     postdata = {
         'post': (None, 1),
-        'date': (None, '2022-07-15'),
+        'date': (None, '2022-07-13'),
     }
 
     r = requests.post(url, files=postdata)

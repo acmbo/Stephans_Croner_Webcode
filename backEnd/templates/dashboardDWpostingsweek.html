@@ -48,104 +48,131 @@
     <!-- Documentation and Information-->
 
     <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-        <h4 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-            Explanation
-            </button>
-        </h4>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
-            <div class="accordion-body">
-            <strong>DW Postings</strong> shows the analysis of the data gathered by the scrappers. The data can be used in different contexs. Below you can find different approaches to analyze the data.
+      <div class="accordion-item">
+      <h4 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Explanation
+          </button>
+      </h4>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+          <div class="accordion-body">
+          <strong>DW Postings</strong> shows the analysis of the data gathered by the scrappers. The data can be used in different contexs. Below you can find different approaches to analyze the data.
+          </div>
+      </div>
+      </div>
+  </div>
+
+  <!-- Databox and Plot Wordcloud -->
+  <div class="row">
+      <div class="col-md pt-3">
+          <div class="card">
+              <div class="card-header"><strong>Wordcloud</strong></div>
+
+              <div class="card-body">
+                  <p class="card-text">Articles in <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> have <strong>keywords</strong> assigned by the author of the article. These keywords can be analyzed by their frequency of use. The size of a word in the plot indicates the frequency the word is used as a keyword.</p>
+
+              </div>
+
+              <div class="card-footer text-muted">Updated 2 days ago</div>
+          </div>
+      </div>
+
+      <div class="col-md pt-3 pb-3">
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_wordcloud" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+              <div class="card-footer text-muted">Plot most used keywords</div>
+      </div>
+      
+      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+      </div>
+  </div>
+
+  <!-- Databox and Plot KeywordsBarplot -->
+  <div class="row">
+      <div class="col-md pt-3">
+          <div class="card">
+              <div class="card-header"><strong>Keywords used</strong></div>
+
+              <div class="card-body">
+                  <p class="card-text">The worcloud above shows the frequency of words in a more creative way. This bar plot shows the actual values from the database. It depicts the top 20 used keywords wihtin the dataset in a given timeframe.</p>
+
+              </div>
+
+              <div class="card-footer text-muted">Updated 2 days ago</div>
+          </div>
+      </div>
+
+      <div class="col-md pt-3 pb-3">
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+              <div class="card-footer text-muted">Plot most used keywords</div>
+          </div>
+      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+      </div>
+  </div>
+
+
+  <!-- Databox and bar postings-->
+  <div class="row">
+    <div class="col-md pt-3 pb-3">
+        <div class="card">
+            <div class="card-header"><strong>Posting frequency</strong></div>
+
+            <div class="card-body">
+
+                <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
+
             </div>
-        </div>
+
+            <div class="card-footer text-muted">Updated 2 days ago</div>
         </div>
     </div>
 
-
-    <!-- Databox and Plot Postingdays-->
-    <div class="row">
-        <div class="col-md pt-3 pb-3">
-            <div class="card">
-                <div class="card-header"><strong>Posting frequency</strong></div>
-
-                <div class="card-body">
-
-                    <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
-
-                </div>
-
-                <div class="card-footer text-muted">Updated 2 days ago</div>
+    <div class="col-md pt-3">
+        <div class="card">
+            <div class="card-body">
+                <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
             </div>
-        </div>
-
-        <div class="col-md pt-3">
-            <div class="card">
-                <div class="card-body">
-                    <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
-                </div>
-                <div class="card-footer text-muted">2 days ago</div>
-        </div>
-        
-        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-        </div>
+            <div class="card-footer text-muted">2 days ago</div>
     </div>
-
-    <!-- Databox and Plot Wordcloud -->
-    <div class="row">
-        <div class="col-md pt-3">
-            <div class="card">
-                <div class="card-header"><strong>Wordcloud</strong></div>
-
-                <div class="card-body">
-                    <p class="card-text">Articles in <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> have <strong>keywords</strong> assigned by the author of the article. These keywords can be analyzed by their frequency of use. The size of a word in the plot indicates the frequency the word is used as a keyword.</p>
-
-                </div>
-
-                <div class="card-footer text-muted">Updated 2 days ago</div>
-            </div>
-        </div>
-
-        <div class="col-md pt-3 pb-3">
-            <div class="card">
-                <div class="card-body">
-                    <div id="dataviz_wordcloud" class="d-flex justify-content-center overflow-hidden"></div>
-                </div>
-                <div class="card-footer text-muted">Plot most used keywords</div>
-        </div>
-        
-        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-        </div>
+    
+    <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
     </div>
+  </div>
 
-    <!-- Databox and Plot KeywordsBarplot -->
-    <div class="row">
-        <div class="col-md pt-3">
-            <div class="card">
-                <div class="card-header"><strong>Keywords used</strong></div>
+  <!-- Databox and Plot Postingdays-->
+  <div class="row">
+      <div class="col-md pt-3 pb-3">
+          <div class="card">
+            <div class="card-header"><strong>Posting frequency across the year</strong></div>
 
-                <div class="card-body">
-                    <p class="card-text">The worcloud above shows the frequency of words in a more creative way. This bar plot shows the actual values from the database. It depicts the top 20 used keywords wihtin the dataset in a given timeframe.</p>
+              <div class="card-body">
+                <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
+              </div>
 
-                </div>
+              <div class="card-footer text-muted">Updated 2 days ago</div>
+          </div>
+      </div>
 
-                <div class="card-footer text-muted">Updated 2 days ago</div>
-            </div>
-        </div>
+      <div class="col-md pt-3">
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+          <div class="card-footer text-muted">2 days ago</div>
+      </div>
 
-        <div class="col-md pt-3 pb-3">
-            <div class="card">
-                <div class="card-body">
-                    <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
-                </div>
-                <div class="card-footer text-muted">Plot most used keywords</div>
-        </div>
-        
-        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-        </div>
-    </div>
+      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+      </div>
+  </div>
+
+
+
 </div>
-
 {% endblock sitecontent %} 
 
 
@@ -154,11 +181,21 @@
 
 <script>
 
-    const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_postingdays_week.json') }}"
+
+    const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_histo_week.json') }}";
     vegaEmbed("#dataviz_postingdays", spec_postingdays)
     // result.view provides access to the Vega View API
     .then(result => console.log(result))
     .catch(console.warn);
+
+
+    const spec_postingdaysYear = "{{ url_for('static', filename='scripts/dashboard/postings_postingdays_week.json') }}";
+    vegaEmbed("#dataviz_postingdaysYear", spec_postingdaysYear )
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+
 
     const spec_wordcloud = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
