@@ -3,7 +3,7 @@ import datetime
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_montly, Postings_weekly
+from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_montly, Postings_weekly, Postings_year
 
 
 def createMetaDb(Base):
@@ -120,6 +120,21 @@ def add_posting_month(session,
     return 0
 
 
+def add_posting_year(session,
+                     post: int,
+                     date:  datetime.datetime):
+
+    arguments = locals()
+
+    post = Postings_year(
+        date=date,
+        post=post
+    )
+
+    session.add(post)
+    session.commit()
+    return 0
+
 # -------------- Read from Database --------------------------------
 
 
@@ -152,6 +167,11 @@ def get_all_postings_Month(session):
     posts = session.query(Postings_montly).all()
     return posts
 
+
+def get_all_postings_Year(session):
+
+    posts = session.query(Postings_year).all()
+    return posts
 
 # ---------------- Delete from Database --------------------------
 
@@ -202,6 +222,13 @@ def delete_all_postings_7days(session):
 def delete_all_postings_month(session):
 
     session.query(Postings_montly).delete()
+    session.commit()
+    return 0
+
+
+def delete_all_postings_year(session):
+
+    session.query(Postings_year).delete()
     session.commit()
     return 0
 

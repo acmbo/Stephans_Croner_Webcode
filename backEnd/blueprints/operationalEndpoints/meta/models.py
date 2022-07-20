@@ -3,7 +3,7 @@
 for further information see : https://flask-marshmallow.readthedocs.io/en/latest/
 """
 from extensions import ma
-from extensions import ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_weekly, Postings_montly
+from extensions import ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_weekly, Postings_montly, Postings_year
 
 
 class ScrapperDataSchema(ma.SQLAlchemySchema):
@@ -47,6 +47,15 @@ class Postings_weeklySchema(ma.SQLAlchemySchema):
 class Postings_montlySchema(ma.SQLAlchemySchema):
     class Meta:
         model = Postings_montly
+
+    id = ma.auto_field()
+    date = ma.auto_field()
+    post = ma.auto_field()
+
+
+class Postings_yearSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = Postings_year
 
     id = ma.auto_field()
     date = ma.auto_field()

@@ -78,6 +78,8 @@ def meta_postingsweek_delete_endpoint():
     assert r.status_code == 204
 
 
+# Postings - Month
+
 def meta_postingsmonth_getendpoint():
     url = "http://127.0.0.1:5000/meta/postingsmonth/"
     # Check get statement
@@ -102,6 +104,37 @@ def meta_postingsmonth_postendpoint():
 def meta_postingsmonth_delete_endpoint():
 
     url = "http://127.0.0.1:5000/meta/postingsmonth/"
+    r = requests.delete(url)
+    print(r)
+    assert r.status_code == 204
+
+
+# Postings - Year
+
+def meta_postingsyear_getendpoint():
+    url = "http://127.0.0.1:5000/meta/postingsyear/"
+    # Check get statement
+    r = requests.get(url)
+    print(r)
+    assert r.status_code == 200
+
+
+def meta_postingsyear_postendpoint():
+    url = "http://127.0.0.1:5000/meta/postingsyear/"
+    # Check get statement
+    postdata = {
+        'post': (None, 1),
+        'date': (None, '2022-05-02'),
+    }
+
+    r = requests.post(url, files=postdata)
+    print(r)
+    assert r.status_code == 204
+
+
+def meta_postingsyear_delete_endpoint():
+
+    url = "http://127.0.0.1:5000/meta/postingsyear/"
     r = requests.delete(url)
     print(r)
     assert r.status_code == 204

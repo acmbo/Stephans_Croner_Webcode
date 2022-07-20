@@ -79,3 +79,11 @@ class Postings_montly(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
     post = Column(Float, nullable=False)
+
+
+class Postings_year(Base):
+    __tablename__ = 'postings_year'
+
+    id = Column(Integer, primary_key=True)
+    date = Column(DateTime, nullable=False)
+    post = Column(Float, nullable=False)

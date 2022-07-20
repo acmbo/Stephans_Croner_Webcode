@@ -1,8 +1,9 @@
 from flask import Blueprint, Response, jsonify, request
-from .models import ScrapperDataSchema, UsedKeywordSchema, UsedKeyword_7daysSchema, Postings_weeklySchema, Postings_montlySchema
+from .models import ScrapperDataSchema, UsedKeywordSchema, UsedKeyword_7daysSchema, Postings_weeklySchema, Postings_montlySchema, Postings_yearSchema
 from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_keywords, get_all_keywords_7days
 from .orm import delete_all_keywords, delete_all_keywords_7days, add_keyword, add_keyword_7days
 from .orm import get_all_postings_7days, get_all_postings_Month, add_posting_7days, add_posting_month, delete_all_postings_7days, delete_all_postings_month
+from .orm import get_all_postings_Year, add_posting_year, delete_all_postings_year
 from extensions import db
 
 import json
@@ -15,6 +16,7 @@ usedKeywordSchema = UsedKeywordSchema()
 usedKeyword_7daysSchema = UsedKeyword_7daysSchema()
 postings_weeklySchema = Postings_weeklySchema()
 postings_montlySchema = Postings_montlySchema()
+postings_yearSchema = Postings_yearSchema()
 
 
 @blueprint.route('/')
@@ -234,4 +236,42 @@ def ppostingsmonth_closed():
 
     if request.method == 'DELETE':
         status = delete_all_postings_month(db.session)
+        return "", 204
+
+
+@blueprint.route("/postingsyear/", methods=['GET'])
+def postingsyear_open():
+
+    if request.method == 'GET':
+
+        posts = get_all_postings_Year(db.session)
+        posts_list = [postings_yearSchema.dump(info) for info in posts]
+
+        return jsonify(posts_list)
+
+
+#get_all_postings_7days, get_all_postings_Month, add_posting_7days, add_posting_month, delete_all_postings_7days, delete_all_postings_month
+
+
+@blueprint.route("/postingsyear/", methods=['POST', 'DELETE'])
+def ppostingsyear_closed():
+
+    if request.method == 'POST':
+
+        check = True
+
+        if check == True:
+            post = int(request.form.get('post'))
+            date = datetime.datetime.fromisoformat(
+                request.form.get('date'))
+
+            add_posting_year(db.session, post, date)
+            return "", 204
+
+        else:
+            return Response("Bad Post",
+                            status=400,)
+
+    if request.method == 'DELETE':
+        status = delete_all_postings_year(db.session)
         return "", 204
