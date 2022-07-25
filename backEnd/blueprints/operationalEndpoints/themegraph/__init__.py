@@ -143,7 +143,7 @@ def themeGraphMonthly_open():
     Returns:
         json or bad request: scrappermeta information from db
     """
-    timeperiod = "daily"
+    timeperiod = "monthly"
     edges = get_all_edges(db.session, timeperiod=timeperiod)
     edges_list = [themeGraphMonthlySchema.dump(info) for info in edges]
 
