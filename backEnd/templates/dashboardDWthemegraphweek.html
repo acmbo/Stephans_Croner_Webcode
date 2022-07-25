@@ -120,7 +120,7 @@
 
 
 
-    d3.json("https://gist.githubusercontent.com/abkunal/98d35b9b235312e90f3e43c9f7b6932b/raw/d5589ddd53731ae8eec7abd091320df91cdcf5cd/miserables.json", function(error, graph) {
+    d3.json("https://stephanscorner.de/themegraph/themeGraphWeekly/", function(error, graph) {
         if (error) throw error;
 
         var link = g.append("g")
@@ -142,9 +142,9 @@
 
         // Create a drag handler and append it to the node object instead
         var drag_handler = d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
 
         drag_handler(node);
 
@@ -206,7 +206,6 @@
     function zoom_actions(){
             g.attr("transform", d3.event.transform)
         }
-
 
 </script>
 {% endblock dependenciesEnd %}

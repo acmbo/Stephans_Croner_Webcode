@@ -6,8 +6,7 @@
     "data":{"name":"table",
         "url": "https://stephanscorner.de/meta/scrapperdata/"},
     "mark": {
-      "type": "area", 
-      "line": true,
+      "type": "line", 
       "interpolate": "step-after"
 
     },
