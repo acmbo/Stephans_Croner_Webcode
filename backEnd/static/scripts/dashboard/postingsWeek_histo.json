@@ -21,7 +21,8 @@
           "field": "date",
           "timeUnit": "day",
           "type": "ordinal",
-          "title": "Day"
+          "title": "Day",
+          "sort":["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
       },
       "y": {
           "field": "date",
