@@ -138,3 +138,106 @@ def meta_postingsyear_delete_endpoint():
     r = requests.delete(url)
     print(r)
     assert r.status_code == 204
+
+
+# ---------------------- Graphendpoints --------------------------
+
+# Daily
+
+def graphedges_get_endpoint_daily():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphDaily/"
+    r = requests.get(url)
+    print(r)
+    print(r.json())
+    assert r.status_code == 200
+
+
+def graphedges_post_endpoint_daily():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphDaily/"
+
+    # Check get statement
+    postdata = {
+        'source': (None, "targetTest"),
+        'target': (None, 'Target2'),
+        'value': (None, '0.5'),
+        'urls': (None, ''),
+    }
+
+    r = requests.post(url, files=postdata)
+    print(r)
+    assert r.status_code == 204
+
+
+def graphedges_delete_endpoint_daily():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphDaily/"
+    r = requests.delete(url)
+    print(r)
+    assert r.status_code == 204
+
+
+# Weekly
+
+
+def graphedges_get_endpoint_week():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphWeekly/"
+    r = requests.get(url)
+    print(r)
+    print(r.json())
+    assert r.status_code == 200
+
+
+def graphedges_post_endpoint_week():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphWeekly/"
+
+    # Check get statement
+    postdata = {
+        'source': (None, "targetTest"),
+        'target': (None, 'Target2'),
+        'value': (None, '0.5'),
+        'urls': (None, ''),
+    }
+
+    r = requests.post(url, files=postdata)
+    print(r)
+    assert r.status_code == 204
+
+
+def graphedges_delete_endpoint_week():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphWeekly/"
+    r = requests.delete(url)
+    print(r)
+    assert r.status_code == 204
+
+
+# Monthly
+
+
+def graphedges_get_endpoint_month():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphMonthly/"
+    r = requests.get(url)
+    print(r)
+    print(r.json())
+    assert r.status_code == 200
+
+
+def graphedges_post_endpoint_month():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphMonthly/"
+
+    # Check get statement
+    postdata = {
+        'source': (None, "targetTest"),
+        'target': (None, 'Target2'),
+        'value': (None, '0.5'),
+        'urls': (None, ''),
+    }
+
+    r = requests.post(url, files=postdata)
+    print(r)
+    assert r.status_code == 204
+
+
+def graphedges_delete_endpoint_month():
+    url = "http://127.0.0.1:5000/themegraph/themeGraphMonthly/"
+    r = requests.delete(url)
+    print(r)
+    assert r.status_code == 204

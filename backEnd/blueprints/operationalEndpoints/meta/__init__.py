@@ -83,8 +83,6 @@ def scrappermeta_closed():
 @blueprint.route("/keywordsmonth/", methods=['GET'])
 def keywordsmonth_open():
     """
-
-
     Returns:
         json or bad request: scrappermeta information from db
     """

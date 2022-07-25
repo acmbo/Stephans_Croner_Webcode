@@ -87,3 +87,33 @@ class Postings_year(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
     post = Column(Float, nullable=False)
+
+
+class ThemeGraphDaily(Base):
+    __tablename__ = 'themeGraphDaily'
+
+    id = Column(Integer, primary_key=True)
+    source = Column(String, nullable=False)
+    target = Column(String, nullable=False)
+    value = Column(Float, default=1.0)
+    urls = Column(String)
+
+
+class ThemeGraphWeekly(Base):
+    __tablename__ = 'themeGraphWeekly'
+
+    id = Column(Integer, primary_key=True)
+    source = Column(String, nullable=False)
+    target = Column(String, nullable=False)
+    value = Column(Float, default=1.0)
+    urls = Column(String)
+
+
+class ThemeGraphMonthly(Base):
+    __tablename__ = 'themeGraphMontly'
+
+    id = Column(Integer, primary_key=True)
+    source = Column(String, nullable=False)
+    target = Column(String, nullable=False)
+    value = Column(Float, default=1.0)
+    urls = Column(String)
