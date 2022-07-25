@@ -1,6 +1,7 @@
 from time import time
 from flask import Blueprint, jsonify, request, Response
 from os.path import exists
+import json
 
 from .models import ThemeGraphDailySchema, ThemeGraphWeeklySchema, ThemeGraphMonthlySchema
 from extensions import db, ThemeGraphDaily, ThemeGraphMonthly, ThemeGraphWeekly
@@ -23,8 +24,8 @@ def example():
 
 @blueprint.route("/keywordsrawweek/", methods=['GET'])
 def keywordsrawweek_open():
-    if exists('kwRawWeek.txt'):
-        with open('kwRawWeek.txt', 'r') as f:
+    if exists('data/kwRawWeek.txt'):
+        with open('data/kwRawWeek.txt', 'r') as f:
             content = {"Keywords": f.read()}
         return jsonify(content)
     return jsonify({"Keywords": ""})
@@ -32,8 +33,8 @@ def keywordsrawweek_open():
 
 @blueprint.route("/keywordsrawmonth/", methods=['GET'])
 def keywordsrawmonth_open():
-    if exists('kwRawMonth.txt'):
-        with open('kwRawMonth.txt', 'r') as f:
+    if exists('data/kwRawMonth.txt'):
+        with open('data/kwRawMonth.txt', 'r') as f:
             content = {"Keywords": f.read()}
         return jsonify(content)
     return jsonify({"Keywords": ""})
@@ -49,7 +50,7 @@ def keywordsrawweek_closed():
         if check == True:
             kws = request.form.get('keywords')
 
-            with open('kwRawWeek.txt', 'w') as f:
+            with open('data/kwRawWeek.txt', 'w') as f:
                 f.write(kws)
 
             return "", 204
@@ -58,7 +59,7 @@ def keywordsrawweek_closed():
                             status=400,)
 
     if request.method == 'DELETE':
-        open('kwRawWeek.txt', 'w').close()
+        open('data/kwRawWeek.txt', 'w').close()
         return "", 204
 
 
@@ -72,7 +73,7 @@ def keywordsrawmonth_closed():
         if check == True:
             kws = request.form.get('keywords')
 
-            with open('kwRawMonth.txt', 'w') as f:
+            with open('data/kwRawMonth.txt', 'w') as f:
                 f.write(kws)
 
             return "", 204
@@ -81,7 +82,7 @@ def keywordsrawmonth_closed():
                             status=400,)
 
     if request.method == 'DELETE':
-        open('kwRawMonth.txt', 'w').close()
+        open('data/kwRawMonth.txt', 'w').close()
         return "", 204
 
 
@@ -95,10 +96,11 @@ def themeGraphDaily_open():
         json or bad request: scrappermeta information from db
     """
     timeperiod = "daily"
-    edges = get_all_edges(db.session, timeperiod=timeperiod)
-    edges_list = [themeGraphDailySchema.dump(info) for info in edges]
 
-    return jsonify(edges_list)
+    with open('data/themeGraphDaily.json', 'r') as f:
+        data = json.load(f)
+
+    return jsonify(data)
 
 
 @blueprint.route("/themeGraphDaily/", methods=['POST', 'DELETE'])
@@ -112,42 +114,32 @@ def themeGraphDaily_closed():
 
         check = True
 
-        source = request.form.get('source')
-        target = request.form.get('target')
-        value = float(request.form.get('value'))
-        urls = request.form.get('urls')
+        data = request.json
 
-        if check == True:
-            add_edge(db.session,
-                     source=source,
-                     target=target,
-                     value=value,
-                     urls=urls,
-                     timeperiod=timeperiod)
+        data = json.dumps(data)
 
-            return "", 204
-
-        else:
-            return Response("Bad Post",
-                            status=400,)
+        with open('data/themeGraphDaily.json', 'w') as f:
+            f.write(data)
+        return "", 204
 
     if request.method == 'DELETE':
-
-        status = deleteedges(db.session, timeperiod=timeperiod)
+        data = {}
+        data = json.dumps(data)
+        with open('data/themeGraphDaily.json', 'w') as f:
+            f.write(data)
         return "", 204
 
 
 @blueprint.route("/themeGraphMonthly/", methods=['GET'])
-def themeGraphMonthly_open():
+def themthemeGraphMonthlyeGraphMonthly_open():
     """
     Returns:
         json or bad request: scrappermeta information from db
     """
-    timeperiod = "monthly"
-    edges = get_all_edges(db.session, timeperiod=timeperiod)
-    edges_list = [themeGraphMonthlySchema.dump(info) for info in edges]
+    with open('data/themeGraphMonthly.json', 'r') as f:
+        data = json.load(f)
 
-    return jsonify(edges_list)
+    return jsonify(data)
 
 
 @blueprint.route("/themeGraphMonthly/", methods=['POST', 'DELETE'])
@@ -156,29 +148,24 @@ def themeGraphMonthly_closed():
     # if request.method == 'POST':
     # Here check for right input
     timeperiod = "monthly"
-
     if request.method == 'POST':
 
         check = True
 
-        source = request.form.get('source')
-        target = request.form.get('target')
-        value = float(request.form.get('value'))
-        urls = request.form.get('urls')
+        data = request.json
 
-        if check == True:
-            add_edge(db.session,
-                     source=source,
-                     target=target,
-                     value=value,
-                     urls=urls,
-                     timeperiod=timeperiod)
+        data = json.dumps(data)
 
-            return "", 204
+        with open('data/themeGraphMonthly.json', 'w') as f:
+            f.write(data)
+        return "", 204
 
-        else:
-            return Response("Bad Post",
-                            status=400,)
+    if request.method == 'DELETE':
+        data = {}
+        data = json.dumps(data)
+        with open('data/themeGraphMonthly.json', 'w') as f:
+            f.write(data)
+        return "", 204
 
     if request.method == 'DELETE':
 
@@ -192,11 +179,10 @@ def themeGraphWeekly_open():
     Returns:
         json or bad request: scrappermeta information from db
     """
-    timeperiod = "weekly"
-    edges = get_all_edges(db.session, timeperiod=timeperiod)
-    edges_list = [themeGraphWeeklySchema.dump(info) for info in edges]
+    with open('data/themeGraphWeekly.json', 'r') as f:
+        data = json.load(f)
 
-    return jsonify(edges_list)
+    return jsonify(data)
 
 
 @blueprint.route("/themeGraphWeekly/", methods=['POST', 'DELETE'])
@@ -205,29 +191,24 @@ def themeGraphWeekly_closed():
     # if request.method == 'POST':
     # Here check for right input
     timeperiod = "weekly"
-
     if request.method == 'POST':
 
         check = True
 
-        source = request.form.get('source')
-        target = request.form.get('target')
-        value = float(request.form.get('value'))
-        urls = request.form.get('urls')
+        data = request.json
 
-        if check == True:
-            add_edge(db.session,
-                     source=source,
-                     target=target,
-                     value=value,
-                     urls=urls,
-                     timeperiod=timeperiod)
+        data = json.dumps(data)
 
-            return "", 204
+        with open('data/themeGraphWeekly.json', 'w') as f:
+            f.write(data)
+        return "", 204
 
-        else:
-            return Response("Bad Post",
-                            status=400,)
+    if request.method == 'DELETE':
+        data = {}
+        data = json.dumps(data)
+        with open('data/themeGraphWeekly.json', 'w') as f:
+            f.write(data)
+        return "", 204
 
     if request.method == 'DELETE':
 

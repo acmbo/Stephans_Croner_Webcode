@@ -156,14 +156,18 @@ def graphedges_post_endpoint_daily():
     url = "http://127.0.0.1:5000/themegraph/themeGraphDaily/"
 
     # Check get statement
-    postdata = {
-        'source': (None, "targetTest"),
-        'target': (None, 'Target2'),
-        'value': (None, '0.5'),
-        'urls': (None, ''),
-    }
+    postdata = [
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+    ]
 
-    r = requests.post(url, files=postdata)
+    r = requests.post(url, json=postdata)
     print(r)
     assert r.status_code == 204
 
@@ -190,14 +194,18 @@ def graphedges_post_endpoint_week():
     url = "http://127.0.0.1:5000/themegraph/themeGraphWeekly/"
 
     # Check get statement
-    postdata = {
-        'source': (None, "targetTest"),
-        'target': (None, 'Target2'),
-        'value': (None, '0.5'),
-        'urls': (None, ''),
-    }
+    postdata = [
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+    ]
 
-    r = requests.post(url, files=postdata)
+    r = requests.post(url, json=postdata)
     print(r)
     assert r.status_code == 204
 
@@ -224,14 +232,18 @@ def graphedges_post_endpoint_month():
     url = "http://127.0.0.1:5000/themegraph/themeGraphMonthly/"
 
     # Check get statement
-    postdata = {
-        'source': (None, "targetTest"),
-        'target': (None, 'Target2'),
-        'value': (None, '0.5'),
-        'urls': (None, ''),
-    }
+    postdata = [
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+    ]
 
-    r = requests.post(url, files=postdata)
+    r = requests.post(url, json=postdata)
     print(r)
     assert r.status_code == 204
 
