@@ -162,7 +162,7 @@
       <div class="col-md pt-3">
           <div class="card">
               <div class="card-body">
-                  <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+                  <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
               </div>
           <div class="card-footer text-muted">2 days ago</div>
       </div>
@@ -171,6 +171,32 @@
       </div>
   </div>
 
+
+    <!-- Databox and Plot Postingdays-->
+    <div class="row">
+      <div class="col-md pt-3 pb-3">
+          <div class="card">
+            <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+              <div class="card-body">
+                <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+              </div>
+
+              <div class="card-footer text-muted">Updated 2 days ago</div>
+          </div>
+      </div>
+
+      <div class="col-md pt-3">
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+          <div class="card-footer text-muted">2 days ago</div>
+      </div>
+
+      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+      </div>
+  </div>
 
 
 </div>
@@ -182,6 +208,15 @@
 <!--Internal-->
 
 <script>
+
+ 
+    const spec_postingweekdays = "{{ url_for('static', filename='scripts/dashboard/postingsWeek_histo.json') }}";
+    vegaEmbed("#dataviz_postingweekdayYear", spec_postingweekdays)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+    
     const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_histo.json') }}";
     vegaEmbed("#dataviz_postingdays", spec_postingdays)
     // result.view provides access to the Vega View API
