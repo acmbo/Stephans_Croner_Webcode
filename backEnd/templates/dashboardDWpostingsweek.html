@@ -213,7 +213,7 @@
     .catch(console.warn);
 
 
-    const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_histo.json') }}";
+    const spec_postingdays = "{{ url_for('static', filename='scripts/dashboard/postings_histo_week.json') }}";
     vegaEmbed("#dataviz_postingdays", spec_postingdays)
     // result.view provides access to the Vega View API
     .then(result => console.log(result))

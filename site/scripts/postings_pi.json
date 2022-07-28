@@ -1,0 +1,28 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple donut chart with embedded data.",
+    "data":{"name":"table",
+      "url": "http://127.0.0.1:5000/meta/postingsmonth/"},
+    
+    "encoding": {
+      "theta": {"field": "post", 
+              "type": "quantitative",
+              "aggregate": "sum",
+              "stack": true
+            },
+      "color": {"field": "date", 
+              "timeUnit": "day",
+              "type": "nominal",
+              "title": "Day"
+              }
+
+    },
+    "layer": [{
+      "mark": {"type": "arc", "innerRadius": 50}
+    }, {
+      "mark": {"type": "text", "radius": 110},
+      "encoding": {
+        "text": {"field": "post", "type": "quantitative","aggregate": "sum"}
+      }
+    }]
+  }
