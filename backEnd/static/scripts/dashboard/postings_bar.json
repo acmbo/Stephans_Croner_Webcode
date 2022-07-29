@@ -3,19 +3,19 @@
     "description": "A bar chart that sorts the y-values by the x-values.",
     "data":{"name":"table",
       "url": "https://stephanscorner.de/meta/keywordsmonth/"},
-    "height":300,
-    "width":315,
-    "mark": "bar",
-    "encoding": {
-      "y": {
-        "title": "Keyword",
-        "field": "keyword",
-        "type": "ordinal"
-      },
-      "x": {
-        "aggregate": "sum",
-        "field": "amount_of_uses",
-        "title": "Frequency"
+      "width": "container",
+      "height":{"step": 12},
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "title": "Keyword",
+          "field": "keyword",
+          "type": "ordinal"
+        },
+        "x": {
+          "aggregate": "sum",
+          "field": "amount_of_uses",
+          "title": "Frequency"
+        }
       }
     }
-  }

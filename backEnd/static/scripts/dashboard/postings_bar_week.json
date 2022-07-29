@@ -3,8 +3,8 @@
     "description": "A bar chart that sorts the y-values by the x-values.",
     "data":{"name":"table",
       "url": "https://stephanscorner.de/meta/keywordsweek/"},
-    "height":300,
-    "width":315,
+    "width": "container",
+    "height":{"step": 12},
     "mark": "bar",
     "encoding": {
       "y": {

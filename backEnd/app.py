@@ -6,7 +6,6 @@ pip install -U flask-sqlalchemy marshmallow-sqlalchemy
 
 Innitialization of DB by Flask does'nt work!!! Therefore the databases have to be initialized via the orm-scripts with the functions createDB() in the seperates orm.py's
 """
-
 from flask import Flask
 from flask_cors import CORS
 

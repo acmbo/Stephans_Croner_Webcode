@@ -148,14 +148,20 @@
                   <!--Title Section-->
                   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                      <h1 class="h2">DW Theme Graph</h1>
-                      <div class="btn-toolbar mb-2 mb-md-0">
-
-                      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                          This week
-                      </button>
-                      </div>
+                    <h1 class="h2">DW Theme Graphs</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0 dropdown">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            Weekly
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM" style="">
+                            <li><h6 class="dropdown-header">Timeframe</h6></li>
+                            <li><a class="dropdown-item" href="dashboardDWthemegraphweek">Weekly</a></li>
+                            <li><a class="dropdown-item" href="dashboardDWthemegraphmonth">Monthly</a></li>
+                            </ul>
+                        </div>
+                    </div>
                   </div>
                   
                   <!-- Documentation and Information-->
@@ -242,29 +248,28 @@
             .range([0, 6]);
 
         var svg = d3.select("#dataviz_spec_kwgraph_svg"),
-            width = +svg.attr("width"),
-            height = +svg.attr("height");
+            //width = +svg.attr("width"),
+            //height = +svg.attr("height");
             width = window.innerWidth < 960 ? window.innerWidth - 200 : 920
-            height = 400
-
+            height = 600
+        
+        var scale_width = width < 720 ? width/0.6 : width/0.8
 
         var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-
+        console.log(width);
+        console.log(scale_width);
         //https://stackoverflow.com/questions/46977022/how-to-adjust-size-of-force-directed-graph-in-d3-js
         var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody())
         //.force("charge", d3.forceManyBody().strength(forcestrength))  // Use this if you use to want forcestrenght
-        .force("center", d3.forceCenter(width / 0.9, height / 0.8));
+        .force("center", d3.forceCenter(scale_width, height/0.8));
         //.force("collide", d3.forceCollide(5).iterations(10));  // FOr overlap
 
         //add encompassing group for the zoom 
         var g = svg.append("g")
             .attr("class", "everything")
-            .attr("transform", "scale(0.5)");
-
-
+            .attr("transform", "scale(0.4)");
 
         d3.json("https://gist.githubusercontent.com/acmbo/b49be7beef592e8b6088225375db54c2/raw/255d88a91965b1415d950132aeb093f597260f01/graph", function(error, graph) {
             if (error) throw error;
@@ -284,33 +289,10 @@
                 .enter().append("g")
             
 
-
-
-            // Add degree 
-            //https://jsfiddle.net/gilsha/ztp9bqj8/2/
-            //https://bl.ocks.org/BTKY/6c282b65246f8f46bb55aadc322db709
-
-
-            // NOde degree end
-
-            //var circles = node.append("circle")
-                //.attr("r", 5) // Without variable radius
-            //    .attr("r", function(d) { return radius(d.value / 2); })
-             //   .attr("fill", function(d) { return color(d.group); });
-            console.log(graph.links)
             node.append('circle')
              .attr("r", function(d) { return radius(d.value / 2); })
              .attr("fill", function(d) { return color(d.group); })
         
-            // Create a drag handler and append it to the node object instead
-            /*var drag_handler = d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
-
-            drag_handler(node);
-            */
-
             //add zoom capabilities 
             var zoom_handler = d3.zoom()
                 .on("zoom", zoom_actions);
@@ -348,25 +330,6 @@
                 })
             }
         });
-
-
-
-        function dragstarted(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            }
-
-        function dragged(d) {
-                d.fx = d3.event.x;
-                d.fy = d3.event.y;
-            }
-
-        function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            }
 
         //Zoom functions 
         function zoom_actions(){

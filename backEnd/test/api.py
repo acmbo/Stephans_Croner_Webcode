@@ -6,7 +6,7 @@ internal_url2 = "http://127.0.0.1:5000/meta/scrapper"
 
 
 def meta_scrapper_getendpoint():
-
+    internal_url = "http://127.0.0.1:5000/meta/scrapperdata"
     # Check get statement
     r = requests.get(internal_url)
     assert r.status_code == 200
@@ -27,13 +27,14 @@ def meta_scrapper_postendpoint():
 
 
 def meta_scrapper_delete_endpoint():
-
+    internal_url2 = "http://127.0.0.1:5000/meta/scrapper"
     # Check get statement
     postdata = {
-        'id': (None, "10"),
+        'id': (None, "22"),
     }
 
     r = requests.delete(internal_url2, files=postdata)
+    print(r)
     assert r.status_code == 204
 
 

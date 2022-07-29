@@ -4,9 +4,8 @@
     "data":{"name":"table",
       "url": "https://stephanscorner.de/meta/postingsweek/"},
     "mark": "bar",
-    "width":370,
-    "height":200,
-    "padding":30,
+    "width":"container",
+    "padding":20,
     "encoding": {
       "y": {"field": "post", 
             "type": "quantitative",
@@ -16,7 +15,8 @@
       "x": {"field": "date", 
             "timeUnit": "day",
             "type": "nominal",
-            "title": "Weekday"
+            "title": "Weekday",
+            "sort":["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
             }
     }
   }

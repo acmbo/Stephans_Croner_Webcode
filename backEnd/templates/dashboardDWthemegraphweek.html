@@ -21,21 +21,18 @@
     }
 
     #dataviz_spec_kwgraph_svg {
-        width: 500px;
-        height: 500px;
         position: relative; 
         margin: auto; 
-        height: 500px !important;
-        width: 960px !important; 
+        height: 600px;
+        width: 95%; 
         border:1px solid rgb(230, 224, 224);
         border-radius:10px;
-        
     }
     
 </style>
 {% endblock %}
 
-{% block title %} Homepage{% endblock title %}
+{% block title %} Themegraph{% endblock title %}
 
 
 {% block sitecontent %}
@@ -55,13 +52,19 @@
     <!--Title Section-->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-        <h1 class="h2">Scrapper</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            This week
-        </button>
+        <h1 class="h2">DW Theme Graphs</h1>
+        <div class="btn-toolbar mb-2 mb-md-0 dropdown">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Weekly
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM" style="">
+                <li><h6 class="dropdown-header">Timeframe</h6></li>
+                <li><a class="dropdown-item" href="dashboardDWthemegraphweek">Weekly</a></li>
+                <li><a class="dropdown-item" href="dashboardDWthemegraphmonth">Monthly</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     
@@ -103,104 +106,89 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
+    var forcestrength = -12;
+    var radius = d3.scaleSqrt()
+        .range([0, 6]);
+
     var svg = d3.select("#dataviz_spec_kwgraph_svg"),
-        width = +svg.attr("width"),
-        height = +svg.attr("height");
+        width = window.innerWidth < 960 ? window.innerWidth - 200 : 920
+        height = 600
+    
+    var scale_width = width < 720 ? width/0.6 : width/0.8
 
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function(d) { return d.id; }))
-        .force("charge", d3.forceManyBody())
-        .force("center", d3.forceCenter(width / 2, height / 2));
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(scale_width, height/0.8));
+
 
     //add encompassing group for the zoom 
     var g = svg.append("g")
-        .attr("class", "everything");
-
+        .attr("class", "everything")
+        .attr("transform", "scale(0.4)");
 
 
     d3.json("https://stephanscorner.de/themegraph/themeGraphWeekly/", function(error, graph) {
-        if (error) throw error;
+    if (error) throw error;
 
-        var link = g.append("g")
-            .attr("class", "links")
-            .selectAll("line")
-            .data(graph.links)
-            .enter().append("line")
-            .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+    var link = g.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", "link")
+        .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-        var node = g.append("g")
-            .attr("class", "nodes")
-            .selectAll("g")
-            .data(graph.nodes)
-            .enter().append("g")
+    var node = g.append("g")
+        .attr("class", "nodes")
+        .selectAll("g")
+        .data(graph.nodes)
+        .enter().append("g")
+    
 
-        var circles = node.append("circle")
-            .attr("r", 5)
-            .attr("fill", function(d) { return color(d.group); });
+    node.append('circle')
+     .attr("r", function(d) { return radius(d.value / 2); })
+     .attr("fill", function(d) { return color(d.group); })
 
-        // Create a drag handler and append it to the node object instead
-        var drag_handler = d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended);
+    //add zoom capabilities 
+    var zoom_handler = d3.zoom()
+        .on("zoom", zoom_actions);
 
-        drag_handler(node);
+    zoom_handler(svg);
 
-        //add zoom capabilities 
-        var zoom_handler = d3.zoom()
-            .on("zoom", zoom_actions);
+    var lables = node.append("text")
+        .text(function(d) {
+        return d.id;
+        })
+        .style("font-size", "8px")
+        .attr('x', 6)
+        .attr('y', 3);
 
-        zoom_handler(svg);
+    node.append("title")
+        .text(function(d) { return d.id; });
 
-        var lables = node.append("text")
-            .text(function(d) {
-            return d.id;
-            })
-            .attr('x', 6)
-            .attr('y', 3);
+    simulation
+        .nodes(graph.nodes)
+        .on("tick", ticked);
 
-        node.append("title")
-            .text(function(d) { return d.id; });
+    simulation.force("link")
+        .links(graph.links);
 
-        simulation
-            .nodes(graph.nodes)
-            .on("tick", ticked);
+    function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
 
-        simulation.force("link")
-            .links(graph.links);
-
-        function ticked() {
-        link
-            .attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
-
-        node
-            .attr("transform", function(d) {
-            return "translate(" + d.x + "," + d.y + ")";
-            })
-        }
+    node
+        .attr("transform", function(d) {
+        return "translate(" + d.x + "," + d.y + ")";
+        })
+    }
     });
-
-    function dragstarted(d) {
-    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-        }
-
-    function dragged(d) {
-            d.fx = d3.event.x;
-            d.fy = d3.event.y;
-        }
-
-    function dragended(d) {
-        if (!d3.event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        }
 
     //Zoom functions 
     function zoom_actions(){
