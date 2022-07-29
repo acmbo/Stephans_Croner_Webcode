@@ -22,7 +22,8 @@
       "y": {"field": "amount_of_db_entries", 
             "title":"Scrapped articles",
             "type": "quantitative",
-            "scale": {"domain": [0, 50]}
+            "scale": {"domain": [0, 50]},
+            "aggregate":"sum"
           }
     }
 }
