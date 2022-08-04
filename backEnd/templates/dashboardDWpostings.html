@@ -92,40 +92,12 @@
 
   <!-- Databox and Plot KeywordsBarplot -->
   <div class="row">
-      <div class="col-md-6 pt-3">
-          <div class="card">
-              <div class="card-header"><strong>Keywords used</strong></div>
-
-              <div class="card-body">
-                  <p class="card-text">The worcloud above shows the frequency of words in a more creative way. This bar plot shows the actual values from the database. It depicts the top 20 used keywords wihtin the dataset in a given timeframe.</p>
-
-              </div>
-
-              <div class="card-footer text-muted">Updated 2 days ago</div>
-          </div>
-      </div>
-
-      <div class="col-md-6 pt-3 pb-3">
-          <div class="card">
-              <div class="card-body">
-                  <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
-              </div>
-              <div class="card-footer text-muted">Plot most used keywords</div>
-          </div>
-      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-      </div>
-  </div>
-
-
-  <!-- Databox and bar postings-->
-  <div class="row">
-    <div class="col-md-6 pt-3 pb-3">
+    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
         <div class="card">
-            <div class="card-header"><strong>Posting frequency</strong></div>
+            <div class="card-header"><strong>Keywords used</strong></div>
 
             <div class="card-body">
-
-                <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
+                <p class="card-text">The worcloud above shows the frequency of words in a more creative way. This bar plot shows the actual values from the database. It depicts the top 20 used keywords wihtin the dataset in a given timeframe.</p>
 
             </div>
 
@@ -133,71 +105,98 @@
         </div>
     </div>
 
-    <div class="col-md-6 pt-3">
+    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
         <div class="card">
             <div class="card-body">
-                <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
+                <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
             </div>
-            <div class="card-footer text-muted">2 days ago</div>
-    </div>
-    
+            <div class="card-footer text-muted">Plot most used keywords</div>
+        </div>
     <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
     </div>
-  </div>
 
-  <!-- Databox and Plot Postingdays-->
-  <div class="row">
-      <div class="col-md-6 pt-3 pb-3">
-          <div class="card">
-            <div class="card-header"><strong>Posting frequency across the year</strong></div>
 
-              <div class="card-body">
-                <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
-              </div>
 
-              <div class="card-footer text-muted">Updated 2 days ago</div>
+  <!-- Databox and bar postings-->
+
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+      <div class="card">
+          <div class="card-header"><strong>Posting frequency</strong></div>
+
+          <div class="card-body">
+
+              <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
+
           </div>
-      </div>
 
-      <div class="col-md-6 pt-3">
-          <div class="card">
-              <div class="card-body">
-                  <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
-              </div>
-          <div class="card-footer text-muted">2 days ago</div>
-      </div>
-
-      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+          <div class="card-footer text-muted">Updated 2 days ago</div>
       </div>
   </div>
 
-
-    <!-- Databox and Plot Postingdays-->
-    <div class="row">
-      <div class="col-md-6 pt-3 pb-3">
-          <div class="card">
-            <div class="card-header"><strong>Daily postings across the year</strong></div>
-
-              <div class="card-body">
-                <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
-              </div>
-
-              <div class="card-footer text-muted">Updated 2 days ago</div>
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+      <div class="card">
+          <div class="card-body">
+              <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
           </div>
-      </div>
-
-      <div class="col-md-6 pt-3">
-          <div class="card">
-              <div class="card-body">
-                  <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
-              </div>
           <div class="card-footer text-muted">2 days ago</div>
-      </div>
+  </div>
+  
+  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+  </div>
+</div>
 
-      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+<!-- Databox and Plot Postingdays-->
+<div class="row">
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+      <div class="card">
+        <div class="card-header"><strong>Posting frequency across the year</strong></div>
+
+          <div class="card-body">
+            <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
+          </div>
+
+          <div class="card-footer text-muted">Updated 2 days ago</div>
       </div>
   </div>
 
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+      <div class="card">
+          <div class="card-body">
+              <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
+          </div>
+      <div class="card-footer text-muted">2 days ago</div>
+  </div>
+
+  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+  </div>
+
+
+
+<!-- Databox and Plot Postingdays-->
+
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+      <div class="card">
+        <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+          <div class="card-body">
+            <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+          </div>
+
+          <div class="card-footer text-muted">Updated 2 days ago</div>
+      </div>
+  </div>
+
+  <div class="col-md-6 col-xxl-3 pt-3 pb-3" >    
+      <div class="card">
+          <div class="card-body">
+              <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+          </div>
+      <div class="card-footer text-muted">2 days ago</div>
+  </div>
+
+  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+  </div>
+</div>
 
 </div>
 

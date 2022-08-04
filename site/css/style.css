@@ -10,14 +10,18 @@
   --fontfamily-nav: "Roboto", sans-serif;
 }
 
-
 .footer {
   width: 100%;
+  height: auto;
   padding: 0px;
   background-color: var(--colorpal-dark-grey);
   bottom: 0px;
   min-height: 5vh;
   color: var(--font-color-foot);
+}
+
+.main {
+  height: calc(100vh - 100px);
 }
 
 .footer_list {
@@ -69,26 +73,25 @@
 }
 
 #sidebarMenu {
-  background-color:#d4d9e4; 
-
+  background-color: #d4d9e4;
 }
 
-#sidebarMenu .nav-link{
+#sidebarMenu .nav-link {
   padding: 1rem;
 }
 
-#sidebarMenu .nav-link{
+#sidebarMenu .nav-link {
   padding: 1rem;
 }
 
 #sidebarMenu .nav-link:hover,
 #sidebarMenu .nav-link:focus {
-  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
 }
 
-@media (max-width: 768px)  {
-
-  #sidebarMenu .nav-link{
+@media (max-width: 768px) {
+  #sidebarMenu .nav-link {
     font-size: 11;
     padding: 0.5rem;
   }
