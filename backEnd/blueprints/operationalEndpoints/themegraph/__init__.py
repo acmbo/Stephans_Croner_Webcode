@@ -207,7 +207,7 @@ def themeGraphWeekly_closed():
 
 
 @blueprint.route("/testjson/", methods=['GET'])
-def themeGraphDaily_open():
+def testendpoint_open():
     """
     Returns:
         json or bad request: scrappermeta information from db
