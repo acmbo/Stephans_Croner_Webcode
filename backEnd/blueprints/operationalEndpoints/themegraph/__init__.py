@@ -3,6 +3,8 @@ from flask import Blueprint, jsonify, request, Response
 from os.path import exists
 import json
 
+from itsdangerous import exc
+
 from .models import ThemeGraphDailySchema, ThemeGraphWeeklySchema, ThemeGraphMonthlySchema
 from extensions import db, ThemeGraphDaily, ThemeGraphMonthly, ThemeGraphWeekly
 from .orm import get_all_edges, add_edge, deleteedges
@@ -212,9 +214,11 @@ def testendpoint_open():
     Returns:
         json or bad request: scrappermeta information from db
     """
-
-    with open('data/testjson.json', 'r') as f:
-        data = json.load(f)
+    try:
+        with open('data/testjson.json', 'r') as f:
+            data = json.load(f)
+    except:
+        data = {}
 
     return jsonify(data)
 
@@ -228,13 +232,13 @@ def testendpoint_closed():
 
         data = json.dumps(data)
 
-        with open('data/testjson.json', 'w') as f:
+        with open('data/testjson.json', 'w+') as f:
             f.write(data)
         return "", 204
 
     if request.method == 'DELETE':
         data = {}
         data = json.dumps(data)
-        with open('data/testjson.json', 'w') as f:
+        with open('data/testjson.json', 'w+') as f:
             f.write(data)
         return "", 204
