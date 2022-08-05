@@ -3,7 +3,7 @@ from .models import ScrapperDataSchema, UsedKeywordSchema, UsedKeyword_7daysSche
 from .orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_keywords, get_all_keywords_7days
 from .orm import delete_all_keywords, delete_all_keywords_7days, add_keyword, add_keyword_7days
 from .orm import get_all_postings_7days, get_all_postings_Month, add_posting_7days, add_posting_month, delete_all_postings_7days, delete_all_postings_month
-from .orm import get_all_postings_Year, add_posting_year, delete_all_postings_year
+from .orm import get_all_postings_Year, add_posting_year, delete_all_postings_year, get_all_scrappermeta_by_timeframe
 from extensions import db
 
 import json
@@ -29,13 +29,27 @@ def example():
 def scrappermeta_open():
     """
 
-
     Returns:
         json or bad request: scrappermeta information from db
     """
     if request.method == 'GET':
 
         metainfo = get_all_scrappermeta(db.session)
+        metainfo_list = [scrapperDataSchema.dump(info) for info in metainfo]
+
+        return jsonify(metainfo_list)
+
+
+@blueprint.route("/scrapperdataWeek/", methods=['GET'])
+def scrappermetaWeek_open():
+    """
+
+    Returns:
+        json or bad request: scrappermeta information from db
+    """
+    if request.method == 'GET':
+
+        metainfo = get_all_scrappermeta_by_timeframe(db.session, days=7)
         metainfo_list = [scrapperDataSchema.dump(info) for info in metainfo]
 
         return jsonify(metainfo_list)

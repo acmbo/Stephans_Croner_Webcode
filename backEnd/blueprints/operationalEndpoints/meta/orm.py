@@ -1,7 +1,7 @@
 import os
 import datetime
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, and_
 from sqlalchemy.orm import sessionmaker
 from extensions import Base, ScrapperData, UsedKeywords, UsedKeywords_7days, Postings_montly, Postings_weekly, Postings_year
 
@@ -144,6 +144,16 @@ def get_all_scrappermeta(session):
     return scrappermeta
 
 
+def get_all_scrappermeta_by_timeframe(session, days: int):
+    """Get scrapperdata from a certain timeframe starting from now till the given days as integer subatracted from now"""
+    timepoint = datetime.datetime.today() - datetime.timedelta(days=days)
+
+    scrappermeta = session.query(ScrapperData).filter(
+        ScrapperData.entrydate >= timepoint)
+
+    return scrappermeta
+
+
 def get_all_keywords(session):
     # Montly
     kwdata = session.query(UsedKeywords).all()
@@ -254,3 +264,5 @@ if __name__ == '__main__':
 
     # Remove all Entrys
     deleteScrapperTable(session)
+
+    get_all_scrappermeta_by_timeframe(session, days=200)

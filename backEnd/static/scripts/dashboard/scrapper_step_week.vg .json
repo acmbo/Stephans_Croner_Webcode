@@ -1,0 +1,29 @@
+{   
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Google's stock price over time.",
+    "width": "container",
+    "height": 250,
+    "data":{"name":"table",
+        "url": "https://stephanscorner.de/meta/scrapperdataWeek/"},
+    "mark": {
+      "type": "area",
+      "line": true, 
+      "point": true,
+      "interpolate": "step-after"
+    },
+    "encoding": {
+      "x": {"field": "entrydate", 
+        "title": "Date",
+        "type": "ordinal",
+        "timeUnit":{
+          "unit":"yearmonthdate",
+          "step": 1
+             }},
+      "y": {"field": "amount_of_db_entries", 
+            "title":"Scrapped articles",
+            "type": "quantitative",
+            "scale": {"domain": [0, 50]},
+            "aggregate":"sum"
+          }
+    }
+}

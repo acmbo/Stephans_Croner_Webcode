@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
 {% endblock %}
 
-{% block title %} Homepage{% endblock title %}
+{% block title %} Scrapper Data {% endblock title %}
 
 
 {% block sitecontent %}
@@ -30,13 +30,18 @@
     <!--Title Section-->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-        <h1 class="h2">Scrapper</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
+        <h1 class="h2">Scrapper - {{ time_mode }}</h1>
 
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        <div class="dropdown mb-2 mb-md-0">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            This week
-        </button>
+            {{ time_mode }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSM" style="">
+                <li><h6 class="dropdown-header">Timeframe</h6></li>
+                <li><a class="dropdown-item" href="dashboardDW">Weekly</a></li>
+                <li><a class="dropdown-item" href="dashboardDWAll">Complete</a></li>
+            </ul>
         </div>
     </div>
     
@@ -130,11 +135,23 @@
 <!--Internal
 <script src="scripts/dashboard_charts.js"></script>
 -->
-<script>
-    const spec = "{{ url_for('static', filename='scripts/step.vg.json') }}";
-    vegaEmbed("#my_dataviz", spec)
-    // result.view provides access to the Vega View API
-    .then(result => console.log(result))
-    .catch(console.warn);
-</script>
+
+    {% if time_mode == "Weekly" %}
+        <script>
+            const spec = "{{ url_for('static', filename='scripts/dashboard/scrapper_step_week.vg.json') }}";
+            vegaEmbed("#my_dataviz", spec)
+            // result.view provides access to the Vega View API
+            .then(result => console.log(result))
+            .catch(console.warn);
+        </script>
+
+    {% else %}
+        <script>
+            const spec = "{{ url_for('static', filename='scripts/dashboard/scrapper_step.vg.json') }}";
+            vegaEmbed("#my_dataviz", spec)
+            // result.view provides access to the Vega View API
+            .then(result => console.log(result))
+            .catch(console.warn);
+        </script>
+    {% endif %}
 {% endblock dependenciesEnd %}
