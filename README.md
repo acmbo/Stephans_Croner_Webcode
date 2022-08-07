@@ -2,8 +2,8 @@
 
 This repo contains the source code of the website [Stephancorner.de](http://www.stephanscorner.de/), a personal portfolio website. It contains blog- and dashboard features. The repo is divided in two sections:
 
-* site/: which contains a plain html, css and javascript prototype 
-* backEnd/ : which contains the backEnd aaplication serving the website.
+* site/: which contains a plain html, css and javascript prototype for development the frontend
+* backEnd/ : which contains the backEnd application serving the website.
 
 ## Used techstack
 
