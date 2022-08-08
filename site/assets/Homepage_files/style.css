@@ -1,0 +1,95 @@
+/*#Hello here*/
+:root {
+  --colorpal-dark-grey: #222831;
+  --colorpal-dark: #17212e;
+  --colorpal-mid-dark: #354d64;
+  --colorpal-mid-light: #f05454;
+  --colorpal-ligt: #dddddd;
+  --font-color-nav: var(--colorpal-ligt);
+  --font-color-foot: var(--colorpal-ligt);
+  --fontfamily-nav: "Roboto", sans-serif;
+}
+
+
+.footer {
+  width: 100%;
+  padding: 0px;
+  background-color: var(--colorpal-dark-grey);
+  bottom: 0px;
+  min-height: 5vh;
+  color: var(--font-color-foot);
+}
+
+.footer_list {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  list-style: none;
+  list-style-type: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: var(--font-color-foot);
+}
+
+.footer li {
+  display: inline;
+}
+
+.footer #info {
+  padding-bottom: 20px;
+}
+
+.footer p {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600;
+  opacity: 60%;
+}
+
+.footer .footer_social_icon > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 5px;
+  color: inherit;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.footer .footer_social_icon > a:hover {
+  opacity: 0.9;
+}
+
+#sidebarMenu {
+  background-color:#d4d9e4; 
+
+}
+
+#sidebarMenu .nav-link{
+  padding: 1rem;
+}
+
+#sidebarMenu .nav-link{
+  padding: 1rem;
+}
+
+#sidebarMenu .nav-link:hover,
+#sidebarMenu .nav-link:focus {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+@media (max-width: 768px)  {
+
+  #sidebarMenu .nav-link{
+    font-size: 11;
+    padding: 0.5rem;
+  }
+}

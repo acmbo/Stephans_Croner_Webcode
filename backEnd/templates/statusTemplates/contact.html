@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<style>
+    footer {
+        position: absolute; 
+        bottom: 0px; 
+        width:100%
+    }
+</style>
+{% endblock %}
+
+{% block title %} Homepage{% endblock title %}
+
+{% block sitecontent %}
+<!-- Content of Contact Page-->
+
+<main>
+    <div class="container-fluid">
+        
+        <form>
+            <div class="container">
+                <div class="row gy-2 mt-3">
+                    <h2>Contact</h2>
+                    <p>Send me a message if you like to contact me or have a request.</p>
+                </div>
+                <div class="row gy-2 mt-3">
+                        
+                    <p>Message Send!</p>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock sitecontent %} 
+
+{% block dependenciesEnd %}{% endblock dependenciesEnd %}

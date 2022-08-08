@@ -14,13 +14,13 @@
     <div class="container-fluid">
         
         <form>
-            <div class="container overflow-hidden">
+            <div class="container">
                 <div class="row gy-2 mt-3">
                     <h2>Contact</h2>
                     <p>Send me a message if you like to contact me or have a request.</p>
                 </div>
                 <div class="row gy-2 mt-3">
-                        
+                    <form action="/action_page.php" method="get">
                     <div class="form-group">
                         <label for="TargetEmailSC">Recipient</label>
                         <input id="TargetEmailSC" class="form-control" type="text" placeholder="info@stephancorner.de" readonly>
@@ -40,12 +40,14 @@
                         <label for="exampleFormControlTextarea1">Message content</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-
+                    <button type="submit" formmethod="post" class="btn btn-primary mb-2 mt-3 mb-5" style="width:5rem">Submit using POST</button>
+                </form> 
                 </div>
-
-                <button type="submit" class="btn btn-primary mb-2 mt-3 mb-5">Submit</button>
             </div>
         </form>
+    </div>
+    <div style="width:100%; height: 1rem">
+
     </div>
 </main>
 

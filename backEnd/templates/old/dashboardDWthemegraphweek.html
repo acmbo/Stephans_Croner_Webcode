@@ -32,7 +32,7 @@
 </style>
 {% endblock %}
 
-{% block title %} Themegraph{% endblock title %}
+{% block title %} DW Themegraph{% endblock title %}
 
 
 {% block sitecontent %}
@@ -52,7 +52,10 @@
     <!--Title Section-->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-        <h1 class="h2">DW Theme Graphs - {{ time_mode }}</h1>
+        <div class="d-flex">
+            <img src={{ url_for('static', filename="assets/dwlogo-print.gif") }} alt="Logo of Deutsche Welle" style="width: 5rem;">
+            <h1 class="h2">Themegraph - {{ time_mode }}</h1>
+        </div> 
         <div class="btn-toolbar mb-2 mb-md-0 dropdown">
             <div class="dropdown">
                 <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,7 +93,7 @@
         
         <div style="margin: 1rem;"> 
             <div id="dataviz_spec_kwgraph" class="" >
-                <svg id="dataviz_spec_kwgraph_svg" width="800" height="500"></svg>
+                <svg id="dataviz_spec_kwgraph_svg" width="800" height="500" ></svg>
             </div>
         </div>
     </div>

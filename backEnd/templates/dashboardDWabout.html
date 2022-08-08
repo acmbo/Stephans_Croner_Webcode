@@ -1,0 +1,52 @@
+
+{% extends 'baseDashboard.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+{% endblock %}
+
+{% block title %} About the DW Project{% endblock title %}
+
+
+{% block sitecontent %}
+<!--Cotainter for Main Body-->
+
+<!-- Main Body with Informations-->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="chartjs-size-monitor">
+      <div class="chartjs-size-monitor-expand">
+          <div class=""></div>
+      </div>
+      <div class="chartjs-size-monitor-shrink">
+          <div class=""></div>
+      </div>
+  </div>
+  
+  <!--Title Section-->
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <div class="d-flex">
+        <img src={{ url_for('static', filename="assets/dwlogo-print.gif") }} alt="Logo of Deutsche Welle" style="width: 5rem;">
+        <h1 class="h2">About this projet</h1>
+      </div>  
+  </div>
+  
+  <div class="d-flex flex-column  justify-content-between">
+    <svg class="bd-placeholder-img bd-placeholder-img-lg img-fluid" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Responsive image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Responsive image</text></svg>
+    <p class="lead pt-5">History</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro iure esse maxime ex suscipit dolor tenetur natus sed officiis, reiciendis rerum itaque veniam ea unde fugit odio quidem saepe illum!</p>
+
+    <p class="lead pt-2">Implementation</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur nulla alias eos eaque id. Culpa, obcaecati ad in esse error officiis ipsa odio magnam, labore accusantium assumenda dicta ipsam nesciunt.</p>
+
+  </div>
+
+</main>
+
+{% endblock sitecontent %} 
+
+
+{% block dependenciesEnd %}
+<!--Internal-->
+
+{% endblock dependenciesEnd %}
