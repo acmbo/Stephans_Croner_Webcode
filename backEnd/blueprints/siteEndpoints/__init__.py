@@ -2,6 +2,7 @@
 """
 
 from flask import Blueprint, render_template, request
+
 from extensions import db
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_scrappermeta_by_timeframe
@@ -53,6 +54,7 @@ def contact_page():
         return render_template('contact.html')
     
     elif request.method == 'POST':
+        print(request.form)
         return render_template('statusTemplates/contact.html')
 
 

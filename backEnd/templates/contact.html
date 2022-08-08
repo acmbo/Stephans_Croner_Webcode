@@ -20,28 +20,28 @@
                     <p>Send me a message if you like to contact me or have a request.</p>
                 </div>
                 <div class="row gy-2 mt-3">
-                    <form action="/action_page.php" method="get">
-                    <div class="form-group">
-                        <label for="TargetEmailSC">Recipient</label>
-                        <input id="TargetEmailSC" class="form-control" type="text" placeholder="info@stephancorner.de" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="EmailInput">Contact email address</label>
-                        <input type="email" class="form-control" id="EmailInput" placeholder="Your Email">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="SubjectInput">Subject</label>
-                        <input type="email" class="form-control" id="SubjectInput" placeholder="Add Subject">
+                    <form action="contact" method="post">
+                        <div class="form-group">
+                            <label for="TargetEmailSC">Recipient</label>
+                            <input id="TargetEmailSC" class="form-control" type="text" placeholder="info@stephancorner.de" readonly>
                         </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Message content</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <button type="submit" formmethod="post" class="btn btn-primary mb-2 mt-3 mb-5" style="width:5rem">Submit using POST</button>
-                </form> 
+                        <div class="form-group">
+                            <label for="EmailInput">Contact email address</label>
+                            <input type="email" class="form-control" id="EmailInput" placeholder="Your Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="SubjectInput">Subject</label>
+                            <input type="text" class="form-control" id="SubjectInput" placeholder="Add Subject">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Message content</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button type="submit" formmethod="post" class="btn btn-primary mb-2 mt-3 mb-5" style="width:6rem">Submit</button>
+                    </form> 
                 </div>
             </div>
         </form>
