@@ -254,3 +254,57 @@ def graphedges_delete_endpoint_month():
     r = requests.delete(url)
     print(r)
     assert r.status_code == 204
+
+
+
+# Testendpoint
+
+def test_get_endpoint_():
+    url = "http://127.0.0.1:5000/themegraph/testjson/"
+    url = "http://stephanscorner.de/themegraph/testjson"
+    r = requests.get(url)
+    print(r)
+    print(r.json())
+    """
+    data = r.json()
+    import datetime
+    new_data=[]
+    
+    for i in range(len(data["autor"])):
+        tempdict = {'autor':data["autor"][str(i)],
+                    'date': datetime.datetime.strptime(data["date"][str(i)],"%d.%M.%Y").isoformat(),
+                    'h4article':data["h4article"][str(i)],
+                    'meistgelesen':data["meistgelesen"][str(i)],
+                    'themen':data["themen"][str(i)],
+                    'themenseiten': data["themenseiten"][str(i)],
+                    'count':1}
+        new_data.append(tempdict)
+    """
+    assert r.status_code == 200
+    
+
+def test_post_endpoint():
+    url = "http://127.0.0.1:5000/themegraph/testjson/"
+
+    # Check get statement
+    postdata = [
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+        {"source": "Test1", "target": "Test2", "value": 1, "urls": ""},
+    ]
+
+    r = requests.post(url, json=postdata)
+    print(r)
+    assert r.status_code == 204
+
+
+def test_delete_endpoint():
+    url = "http://127.0.0.1:5000/themegraph/testjson/"
+    r = requests.delete(url)
+    print(r)
+    assert r.status_code == 204

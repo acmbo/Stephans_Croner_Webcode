@@ -67,6 +67,12 @@
                 <div class="position-sticky pt-2">
                     <ul class="nav flex-column">
                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="dashboardDWabout.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                            About
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="dashboardDW.html">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                             Scrapper
@@ -75,7 +81,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="dashboardDWpostings.html">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                            DW Postings
+                            Article Analysis
                             </a>
                         </li>
                         
@@ -115,7 +121,10 @@
                 <!--Title Section-->
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-                    <h1 class="h2">DW Postings</h1>
+                    <div class="d-flex">
+                        <img src="assets/dwlogo-print.gif" alt="Logo of Deutsche Welle" style="width: 5rem;">
+                        <h1 class="h2">Article Analysis</h1>
+                      </div> 
                     <div class="btn-toolbar mb-2 mb-md-0 dropdown">
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButtonSM" data-bs-toggle="dropdown" aria-expanded="false">
@@ -179,7 +188,7 @@
 
                 <!-- Databox and Plot KeywordsBarplot -->
                 <div class="row">
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-header"><strong>Keywords used</strong></div>
 
@@ -192,7 +201,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
@@ -207,7 +216,7 @@
 
                     <!-- Databox and bar postings-->
 
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-header"><strong>Posting frequency</strong></div>
 
@@ -221,7 +230,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
@@ -235,7 +244,7 @@
 
                 <!-- Databox and Plot Postingdays-->
                 <div class="row">
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
                         <div class="card">
                         <div class="card-header"><strong>Posting frequency across the year</strong></div>
 
@@ -247,7 +256,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3">
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
                         <div class="card">
                             <div class="card-body" >
                                 <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
@@ -262,7 +271,7 @@
 
                 <!-- Databox and Plot Postingdays-->
      
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3">
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
                         <div class="card">
                         <div class="card-header"><strong>Daily postings across the year</strong></div>
 
@@ -274,7 +283,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xxl-3 pt-3 pb-3">
+                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
@@ -286,7 +295,29 @@
                     </div>
                 </div>
 
+                <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="dataviz_test" class="d-flex justify-content-center overflow-hidden"></div>
+                        </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
 
+                <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="dataviz_test2" class="d-flex justify-content-center overflow-hidden"></div>
+                        </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
+
+                <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="dataviz_test3" class="d-flex justify-content-center overflow-hidden"></div>
+                        </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
 
             </main>
           </div>
@@ -339,6 +370,25 @@
 
     <!--Internal-->
     <script>
+
+        const spec_postingtest3 = "scripts/postings_themes_test.json";
+        vegaEmbed("#dataviz_test3", spec_postingtest3)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+        const spec_postingtest2 = "scripts/postings_themes_Heatmap.json";
+        vegaEmbed("#dataviz_test2", spec_postingtest2)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+        const spec_postingtest = "scripts/postings_themes_Barchart.json";
+        vegaEmbed("#dataviz_test", spec_postingtest)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
+
         const spec_postingweekdays = "scripts/postingsWeek_histo.json";
         vegaEmbed("#dataviz_postingweekdayYear", spec_postingweekdays)
         // result.view provides access to the Vega View API

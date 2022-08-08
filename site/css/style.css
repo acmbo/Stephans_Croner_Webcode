@@ -11,12 +11,7 @@
 }
 
 .footer {
-  width: 100%;
-  height: auto;
-  padding: 0px;
   background-color: var(--colorpal-dark-grey);
-  bottom: 0px;
-  min-height: 5vh;
   color: var(--font-color-foot);
 }
 

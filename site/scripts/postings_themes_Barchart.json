@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 200,
+  "data": {
+      "url": "https://stephanscorner.de/themegraph/testjson/"
+  },
+  "title": "Used themes in articles",
+  "config": {
+      "view": {
+          "strokeWidth": 0,
+          "step": 13
+      },
+      "axis": {
+          "domain": false
+      }
+  },
+  "mark": "bar",
+  "encoding": {
+      "x": {
+          "field": "count",
+          "type": "quantitative",
+          "aggregate":"sum",
+          "title":"Articles"
+      },
+      "y": {
+        "field": "themen",
+        "type": "nominal",
+        "title":"Themes"
+      }
+  }
+}

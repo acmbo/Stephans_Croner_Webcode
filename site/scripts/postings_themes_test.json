@@ -1,0 +1,83 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A beeswarm chart example that uses a force-directed layout to group items by category.",
+  "width": 500,
+  "height": 200,
+  "padding": {"left": 5, "right": 5, "top": 0, "bottom": 10},
+  "autosize": "fit",
+
+  "signals": [
+    { "name": "cx", "update": "width / 3" },
+    { "name": "cy", "update": "height / 3" }
+  ],
+
+  "data": [
+    {
+      "name": "people",
+      "url": "https://stephanscorner.de/themegraph/testjson/"
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {
+        "data": "people",
+        "field": "themen",
+        "sort": false
+      },
+      "range": "width"
+
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "people", "field": "themen"},
+      "range": {"scheme": "category20c"}
+    }
+  ],
+
+  "axes": [
+    { "orient": "bottom", "scale": "xscale", "labelAngle":-45, "labelAlign":"right"}
+  ],
+
+  "marks": [
+    {
+      "name": "nodes",
+      "type": "symbol",
+      "from": {"data": "people"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "themen"},
+          "xfocus": {"scale": "xscale", "field": "themen", "band": 0.5},
+          "yfocus": {"signal": "cy"}
+        },
+        "update": {
+          "size": {"value":40},
+          "stroke": {"value": "white"},
+          "strokeWidth": {"value": 1},
+          "zindex": {"value": 0}
+        },
+        "hover": {
+          "stroke": {"value": "purple"},
+          "strokeWidth": {"value": 3},
+          "zindex": {"value": 1}
+        }
+      },
+      "transform": [
+        {
+          "type": "force",
+          "iterations": 300,
+          "static": {"signal": "true"},
+          "forces": [
+            {"force": "collide", "iterations": 1, "radius": 3},
+            {"force": "x", "x": "xfocus", "strength": 0.4},
+            {"force": "y", "y": "yfocus", "strength": 0.1}
+          ]
+        }
+      ]
+    }
+  ]
+}
