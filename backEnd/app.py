@@ -32,6 +32,7 @@ CORS(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DBPath}"
 app.config['SECRET_KEY'] = 'SCorner'  
+app.config['UPLOAD_FOLDER'] = '\\static\\assets\\blog'
 # Blueprint registration
 
 app.register_blueprint(geopy_endpoints)

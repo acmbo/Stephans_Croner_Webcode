@@ -3,20 +3,26 @@
 
 from flask import Blueprint, render_template, request, url_for, redirect
 from flask_wtf import FlaskForm
-from wtforms import (StringField, TextAreaField, SubmitField)
+from wtforms import StringField, TextAreaField, SubmitField, FileField
 from wtforms.validators import InputRequired, Length, DataRequired
+from werkzeug.utils import secure_filename
 
 from extensions import db
 from ..blogendpoints.models import BlogpostSchema
 
 import datetime
-import requests
-
+import os
 
 blogpostSchema = BlogpostSchema()
 
 
 PW = "alghtpoak"
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+UPLOAD_FOLDER = '\\static\\assets\\blog'
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 class AddBlogpost(FlaskForm):
@@ -33,6 +39,8 @@ class AddBlogpost(FlaskForm):
     password = StringField("Password")
     
     submit = SubmitField('Submit')
+    
+    file = FileField()
 
 
 
@@ -67,6 +75,12 @@ def create_post():
         Tags = request.form.get("Tags")
         autor = request.form.get("autor")
         thumbnail = request.form.get("thumbnail")
+        date = datetime.datetime.now()
+        filename = secure_filename(form.file.data.filename)
+        
+        if form.file and allowed_file(filename):
+            filename = secure_filename(filename)
+            form.file.data.save(os.path.join(UPLOAD_FOLDER , filename))
         
         if request.form.get("password") == PW:
             
