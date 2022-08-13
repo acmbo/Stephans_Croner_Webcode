@@ -43,6 +43,7 @@ def add_blogpost(session,
              Tags: str,
              autor: str,
              thumbnailpath: str,
+             picdescription: str,
              shortdescription:str):
 
     arguments = locals()
@@ -58,6 +59,7 @@ def add_blogpost(session,
         Tags=Tags,
         autor=autor,
         thumbnailpath=thumbnailpath,
+        picdescription = picdescription,
         shortdescription=shortdescription)
 
     session.add(post)
@@ -74,9 +76,15 @@ def get_all_posts(session):
 
 
 
-def get_post_by_id(session, id):
+def get_post_by_id(session, _id):
+    print("ORM ID ", _id)
+    posts = session.query(Blogpost).filter_by(id=_id)
+    return posts
 
-    posts = session.query(Blogpost).filter(Blogpost.id == id)
+
+def get_post_by_title(session, title):
+    print("ORM Title ", title)
+    posts = session.query(Blogpost).filter_by(title=title)
     return posts
 
 

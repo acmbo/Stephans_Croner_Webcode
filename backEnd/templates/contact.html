@@ -4,14 +4,6 @@
 {% block dependencies %} 
 <link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
 
-<style>
-    footer {
-        position: absolute;
-        width:100%;
-        bottom:0;
-    }
-</style>
-
 {% endblock %}
 
 {% block title %} Contact | Stephan's Corner {% endblock title %}
@@ -56,7 +48,7 @@
                         
                     </div>
 
-                    <div class="pt-3 pb-3 pull-right">
+                    <div class="pt-3 pb-7 mb-7 pull-right">
                         {{ form.submit(class="btn btn-primary") }}
                     </div>
             

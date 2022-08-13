@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 
 from extensions import db
 from ..blogendpoints.models import BlogpostSchema
-from .orm import add_blogpost, get_all_posts, delete_post_by_Id
+from .orm import add_blogpost, get_all_posts, delete_post_by_Id, get_post_by_id, get_post_by_title
 
 
 import os
@@ -44,7 +44,9 @@ class AddBlogpost(FlaskForm):
     
     submit = SubmitField('Submit')
     
-    file = FileField()
+    file = FileField()  # Picturefile
+    
+    picdescription = StringField('Picture description')
 
 
 
@@ -79,6 +81,7 @@ def create_post():
         contenthtml = request.form.get("contenthtml")
         Tags = request.form.get("Tags")
         autor = request.form.get("autor")
+        picdescription = request.form.get("picdescription")
         file = form.file.data
             
         if request.form.get("password") == PW:
@@ -96,6 +99,7 @@ def create_post():
                         Tags=Tags,
                         autor=autor,
                         thumbnailpath=filepath,
+                        picdescription = picdescription,
                         shortdescription=shortdescription)
                 else:
                     return "Bad Filename", 404
@@ -124,9 +128,18 @@ def all_posts():
     post_list = [blogpostSchema.dump(info) for info in posts]
     return jsonify(post_list)
 
-#@blueprint.route("/post/<string:title>", methods=["GET"])
-@blueprint.route("/post/abc", methods=["GET"])
-def success():
-    title = request.args['title'] 
-    content  = request.args['content'] 
-    return render_template("blog/posttemplate.html", title=title, content=content)
+@blueprint.route("/post/<string:title>", methods=["GET"])
+def post(title):
+#@blueprint.route("/post/<int:id>", methods=["GET"])
+#def post(id):
+    #print("ID: ", id)
+    #_post = get_post_by_id(db.session, id)
+    print("Title ", title)
+    _post = get_post_by_title(db.session, title)
+    print("Post: ", _post)
+    post_schema = [blogpostSchema.dump(p) for p in _post][0]
+    print("POST", post_schema)
+    post_schema['thumbnailpath'] = post_schema['thumbnailpath'].split("/",2)
+    
+    
+    return render_template("blog/posttemplate.html", post=post_schema)

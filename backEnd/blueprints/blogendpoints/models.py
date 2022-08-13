@@ -16,6 +16,7 @@ class BlogpostSchema(ma.SQLAlchemySchema):
     Tags = ma.auto_field()
     autor = ma.auto_field()
     thumbnailpath = ma.auto_field()
+    picdescription = ma.auto_field() 
     shortdescription = ma.auto_field()
 
 

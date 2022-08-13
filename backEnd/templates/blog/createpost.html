@@ -92,6 +92,20 @@
                 </div>
 
 
+                <div class="form-group pt-3 pb-3">
+                    <label for="">Upload Picture as Thumbnail</label>
+                    <div>
+                        {{ form.file }}
+                    </div>
+
+                </div>
+
+                <div class="form-group pt-2">
+                    {{ form.picdescription.label }}
+                    {{ form.picdescription(class="form-control", size=40)}}
+                </div>
+
+
                 <div class="form-group pt-2">
                     {{ form.password.label }} {{ form.password(class="form-control", type="password", size=40) }}
 
@@ -104,7 +118,7 @@
                     {% endif %}
                 </div>
 
-                {{ form.file }}
+
 
                 <div id="submitbutton" class="pt-3 pb-3 pull-right">
                     {{ form.submit(class="btn btn-primary") }}
