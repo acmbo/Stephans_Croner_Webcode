@@ -2,17 +2,41 @@
 """
 
 from flask import Blueprint, render_template, request
-
+from flask_wtf import FlaskForm
+from wtforms import (StringField, TextAreaField, SubmitField)
+from wtforms.validators import InputRequired, Length, DataRequired
 from extensions import db
+
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_scrappermeta_by_timeframe
+
 from functools import lru_cache
+
 import datetime
 import requests
 
 blueprint = Blueprint('Homepage', __name__)
 
+
 scrapperDataSchema = ScrapperDataSchema()
+
+
+
+class Contact(FlaskForm):
+    """Contactfrom for FLAKS WTF_
+    """
+    emailfrom = StringField('Email', validators=[InputRequired(),
+                                             Length(min=1, max=200)])
+
+    subject = StringField('Subject', validators=[InputRequired(),
+                                             Length(min=1, max=200)])
+    
+    content = TextAreaField('Content Html', validators=[DataRequired()])
+    
+    submit = SubmitField('Submit')
+
+
+
 
 @lru_cache(maxsize=2)
 def get_last_update(day):
@@ -48,20 +72,30 @@ def index():
     return render_template('index.html')
 
 
+
 @blueprint.route('/contact', methods=["GET", "POST"])
 def contact_page():
-    if request.method == 'GET':
-        return render_template('contact.html')
-    
-    elif request.method == 'POST':
-        print(request.form)
+
+    form = Contact()
+    print(request.method)
+    if form.validate_on_submit():
+
+        print("here!")
+        emailfrom = request.form.get("emailfrom")
+        subject  = request.form.get("subject")
+        content = request.form.get("content")
+        print(emailfrom)
+        
         return render_template('statusTemplates/contact.html')
+
+    return render_template('contact.html', form=form)
 
 
 
 @blueprint.route('/about')
 def about_page():
     return render_template('about.html')
+
 
 
 @blueprint.route('/dashboardDW')
