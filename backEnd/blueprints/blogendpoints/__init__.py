@@ -15,6 +15,7 @@ from .orm import add_blogpost, get_all_posts, delete_post_by_Id, get_post_by_id,
 
 
 import os
+from datetime import datetime
 
 blogpostSchema = BlogpostSchema()
 
@@ -128,18 +129,20 @@ def all_posts():
     post_list = [blogpostSchema.dump(info) for info in posts]
     return jsonify(post_list)
 
+
+
 @blueprint.route("/post/<string:title>", methods=["GET"])
 def post(title):
 #@blueprint.route("/post/<int:id>", methods=["GET"])
 #def post(id):
     #print("ID: ", id)
     #_post = get_post_by_id(db.session, id)
-    print("Title ", title)
+
     _post = get_post_by_title(db.session, title)
-    print("Post: ", _post)
+
     post_schema = [blogpostSchema.dump(p) for p in _post][0]
-    print("POST", post_schema)
+
     post_schema['thumbnailpath'] = post_schema['thumbnailpath'].split("/",2)
-    
+    post_schema["date"] = datetime.fromisoformat(post_schema['date']).strftime("%d. %B %Y")
     
     return render_template("blog/posttemplate.html", post=post_schema)
