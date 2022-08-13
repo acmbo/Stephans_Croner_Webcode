@@ -1,0 +1,33 @@
+
+{% extends 'blog/blogbase.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+{% endblock %}
+
+{% block title %} Stephan's Corner {% endblock title %}
+
+{% block sitecontent %}
+<!-- Homepage with Content -->
+
+<main>
+
+    <div>
+        <a href="{{ url_for('metaapi.scrappermeta_open') }}">test</a>
+
+        <form method="POST" action="{{ url_for('blog.create_post') }}">
+            {{ form.csrf_token }}
+            {{ form.title.label }} {{ form.title(size=20) }}
+            {{ form.content.label }} {{ form.content(size=20) }}
+
+            {{ form.submit }}
+        </form>
+   
+    </div>
+
+</main>
+
+
+{% endblock sitecontent %} 
+
+{% block dependenciesEnd %}{% endblock dependenciesEnd %}

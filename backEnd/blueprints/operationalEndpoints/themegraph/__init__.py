@@ -1,4 +1,3 @@
-from time import time
 from flask import Blueprint, jsonify, request, Response
 from os.path import exists
 import json

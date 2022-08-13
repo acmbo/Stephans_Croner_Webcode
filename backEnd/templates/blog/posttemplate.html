@@ -1,0 +1,25 @@
+
+{% extends 'blog/blogbase.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+{% endblock %}
+
+{% block title %} Stephan's Corner {% endblock title %}
+
+{% block sitecontent %}
+<!-- Homepage with Content -->
+
+<main>
+
+    <div>
+        <h1>{{ title }}</h1>
+        <p>{{ content }}</p>
+    </div>
+
+</main>
+
+
+{% endblock sitecontent %} 
+
+{% block dependenciesEnd %}{% endblock dependenciesEnd %}

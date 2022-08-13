@@ -18,6 +18,8 @@ from blueprints.operationalEndpoints.geopy import blueprint as geopy_endpoints
 from blueprints.operationalEndpoints.meta import blueprint as meta_endpoints
 from blueprints.operationalEndpoints.themegraph import blueprint as themegraph_endpoints
 from blueprints.siteEndpoints import blueprint as homepage_endpoints
+from blueprints.blogendpoints import blueprint as blogendpoints
+
 
 import os
 
@@ -29,14 +31,14 @@ app = Flask(__name__,
 CORS(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DBPath}"
-
+app.config['SECRET_KEY'] = 'SCorner'  
 # Blueprint registration
 
 app.register_blueprint(geopy_endpoints)
 app.register_blueprint(homepage_endpoints)
 app.register_blueprint(meta_endpoints)
 app.register_blueprint(themegraph_endpoints)
-
+app.register_blueprint(blogendpoints)
 
 # Order matters: Initialize SQLAlchemy before Marshmallow
 

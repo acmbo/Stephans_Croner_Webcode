@@ -117,3 +117,15 @@ class ThemeGraphMonthly(Base):
     target = Column(String, nullable=False)
     value = Column(Float, default=1.0)
     urls = Column(String)
+
+
+class Blogpost(Base):
+    __tablename__ = 'blogposts'
+    
+    id = Column(Integer, primary_key=True)
+    title = Column(String, nullable=False)
+    contenthtml = Column(String, nullable=False)
+    date = Column(DateTime, nullable=False)
+    Tags = Column(String)
+    autor = Column(String)
+    thumbnailpath = Column(String)
