@@ -129,3 +129,4 @@ class Blogpost(Base):
     Tags = Column(String)
     autor = Column(String)
     thumbnailpath = Column(String)
+    shortdescription = Column(String)

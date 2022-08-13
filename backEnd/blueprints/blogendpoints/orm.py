@@ -16,10 +16,10 @@ def createMetaDb(Base):
     Base.metadata.create_all(engine)
 
 
-#def droptable(Entity=UsedKeywords):
-#    DBPath = os.path.join(os.getcwd(), "db.sqlite")
-#    engine = create_engine(f'sqlite:///{DBPath}', echo=True)
-#    Entity.__table__.drop(engine)
+def droptable(Entity=Blogpost):
+    DBPath = os.path.join(os.getcwd(), "db.sqlite")
+    engine = create_engine(f'sqlite:///{DBPath}', echo=True)
+    Entity.__table__.drop(engine)
 
 
 def getEngine(Base):
@@ -42,19 +42,23 @@ def add_blogpost(session,
              contenthtml: str,
              Tags: str,
              autor: str,
-             thumbnailpath: str):
+             thumbnailpath: str,
+             shortdescription:str):
 
     arguments = locals()
 
     date = datetime.datetime.now()
 
+    print("DB: ", thumbnailpath)
+    
     post = Blogpost(
         title=title,
         contenthtml=contenthtml,
         date=date,
         Tags=Tags,
         autor=autor,
-        thumbnailpath=thumbnailpath)
+        thumbnailpath=thumbnailpath,
+        shortdescription=shortdescription)
 
     session.add(post)
     session.commit()
@@ -95,6 +99,8 @@ def delete_post_by_Id(session, id):
 
 
 if __name__ == '__main__':
+    
+    droptable(Entity=Blogpost)
     # create Database
     createMetaDb(Base)
 

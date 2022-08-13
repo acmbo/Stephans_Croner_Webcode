@@ -1,16 +1,19 @@
 """ Website Homepage templates
 """
 
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, jsonify
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, FileField
+from flask_wtf.file import FileField
+#from flask_uploads import Uploadset
+from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length, DataRequired
 from werkzeug.utils import secure_filename
 
 from extensions import db
 from ..blogendpoints.models import BlogpostSchema
+from .orm import add_blogpost, get_all_posts, delete_post_by_Id
 
-import datetime
+
 import os
 
 blogpostSchema = BlogpostSchema()
@@ -18,7 +21,7 @@ blogpostSchema = BlogpostSchema()
 
 PW = "alghtpoak"
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-UPLOAD_FOLDER = '\\static\\assets\\blog'
+UPLOAD_FOLDER = './static/assets/blog'
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -28,13 +31,14 @@ def allowed_file(filename):
 class AddBlogpost(FlaskForm):
     title = StringField('Title', validators=[InputRequired(),
                                              Length(min=1, max=200)])
+    shortdescription = StringField('Shortdescription', validators=[InputRequired(),
+                                             Length(min=1, max=500)])
+    
     contenthtml = TextAreaField('Content Html', validators=[DataRequired()])
     
     Tags = StringField('Tags')
     
     autor = StringField('Author')
-    
-    thumbnail = StringField('thumbnail')
     
     password = StringField("Password")
     
@@ -63,7 +67,7 @@ class AddBlogpost(FlaskForm):
 blueprint = Blueprint('blog', __name__, url_prefix='/blog')
 
 
-@blueprint.route("/post/", methods=["GET", "POST"])
+@blueprint.route("/createpost/", methods=["GET", "POST"])
 def create_post():
     
     form = AddBlogpost()
@@ -71,28 +75,54 @@ def create_post():
     if form.validate_on_submit():
 
         title = request.form.get("title")
+        shortdescription = request.form.get("shortdescription")
         contenthtml = request.form.get("contenthtml")
         Tags = request.form.get("Tags")
         autor = request.form.get("autor")
-        thumbnail = request.form.get("thumbnail")
-        date = datetime.datetime.now()
-        filename = secure_filename(form.file.data.filename)
-        
-        if form.file and allowed_file(filename):
-            filename = secure_filename(filename)
-            form.file.data.save(os.path.join(UPLOAD_FOLDER , filename))
-        
+        file = form.file.data
+            
         if request.form.get("password") == PW:
             
+            if file:
+                filename = secure_filename(file.filename)
+            
+                if allowed_file(filename):
+                    filepath = os.path.join(UPLOAD_FOLDER , filename)
+                    file.save(os.path.join(UPLOAD_FOLDER , filename))
+                    
+                    add_blogpost(db.session,
+                        title=title,
+                        contenthtml=contenthtml,
+                        Tags=Tags,
+                        autor=autor,
+                        thumbnailpath=filepath,
+                        shortdescription=shortdescription)
+                else:
+                    return "Bad Filename", 404
+                
+            else:
+                add_blogpost(
+                    title=title,
+                    contenthtml=contenthtml,
+                    Tags=Tags,
+                    autor=autor,
+                    shortdescription=shortdescription)
+                
             return redirect(url_for("blog.success", title=title, content=contenthtml))
         
         else:
             return "Wrong password", 404
     
     
-    return render_template("blog/add.html", form=form)
+    return render_template("blog/createpost.html", form=form)
 
 
+
+@blueprint.route("/allposts/", methods=["GET"])
+def all_posts():
+    posts = get_all_posts(db.session)
+    post_list = [blogpostSchema.dump(info) for info in posts]
+    return jsonify(post_list)
 
 #@blueprint.route("/post/<string:title>", methods=["GET"])
 @blueprint.route("/post/abc", methods=["GET"])

@@ -17,7 +17,7 @@
 
         <div class="col-md-6 offset-md-3 align-self-center">
 
-            <form method="POST" action="{{ url_for('blog.create_post') }}">
+            <form method="POST" action="{{ url_for('blog.create_post') }}" enctype="multipart/form-data">
                 {{ form.csrf_token }}
 
                 <div class="form-group pt-2">
@@ -47,10 +47,26 @@
                     {% endif %}
                 </div>
 
+               
 
                 <div class="form-group pt-2">
 
-                    {{ form.contenthtml.label }} {{ form.contenthtml(id="test", class="form-control",rows="3") }}
+                    {{ form.shortdescription.label }} 
+                    {{ form.shortdescription(class="form-control", rows="2") }}
+
+                    {% if form.Tags.errors %}
+                    <ul class="errors">
+                        {% for error in form.Tags.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group pt-2">
+
+                    {{ form.contenthtml.label }} {{ form.contenthtml(id="test", class="form-control",rows="4") }}
 
                     {% if form.contenthtml.errors %}
                     <ul class="errors">
@@ -87,7 +103,7 @@
                     </ul>
                     {% endif %}
                 </div>
-                
+
                 {{ form.file }}
 
                 <div id="submitbutton" class="pt-3 pb-3 pull-right">
@@ -103,7 +119,7 @@
 
         <div class="col-md-6 offset-md-3 align-self-center">
             <ul>
-                <li> <a href="{{ url_for('metaapi.scrappermeta_open') }}">All Articles</a></li>
+                <li> <a href="{{ url_for('blog.all_posts') }}">All Articles</a></li>
             </ul>
            
         </div>

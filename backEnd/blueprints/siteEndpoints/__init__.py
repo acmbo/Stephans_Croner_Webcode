@@ -80,7 +80,6 @@ def contact_page():
     print(request.method)
     if form.validate_on_submit():
 
-        print("here!")
         emailfrom = request.form.get("emailfrom")
         subject  = request.form.get("subject")
         content = request.form.get("content")
