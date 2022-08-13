@@ -10,21 +10,22 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
 {% endblock %}
 
-{% block title %} DW article analysis{% endblock title %}
+{% block title %} Stephan's Corner | DW article analysis{% endblock title %}
 
 
 {% block sitecontent %}
 <!--Cotainter for Main Body-->
 
-<div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-  <!-- Main Body with Informations-->
-  <div class="chartjs-size-monitor">
-      <div class="chartjs-size-monitor-expand">
-          <div class=""></div>
-      </div>
-      <div class="chartjs-size-monitor-shrink">
-          <div class=""></div>
-      </div>
+
+  <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <!-- Main Body with Informations-->
+    <div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand">
+            <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink">
+            <div class=""></div>
+        </div>
   </div>
 
   <!--Title Section-->
@@ -72,34 +73,32 @@
       </div>
   </div>
 
-  <!-- Databox and Plot Wordcloud -->
+    <!-- Databox and Plot Wordcloud -->
   <div class="row">
-      <div class="col-md-6 pt-3">
-          <div class="card">
-              <div class="card-header"><strong>Wordcloud</strong></div>
+    <div class="col-md-6 pt-3">
+        <div class="card">
+            <div class="card-header"><strong>Wordcloud</strong></div>
 
-              <div class="card-body">
-                  <p class="card-text">Articles in <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> have <strong>keywords</strong> assigned by the author of the article. These keywords can be analyzed by their frequency of use. The size of a word in the plot indicates the frequency the word is used as a keyword.</p>
+            <div class="card-body">
+                <p class="card-text">Articles in <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> have <strong>keywords</strong> assigned by the author of the article. These keywords can be analyzed by their frequency of use. The size of a word in the plot indicates the frequency the word is used as a keyword.</p>
 
-              </div>
+            </div>
 
-              <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-          </div>
+            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+        </div>
+    </div>
+
+    <div class="col-md-6 pt-3 pb-3">
+        <div class="card">
+            <div class="card-body">
+                <div id="dataviz_wordcloud" class="d-flex justify-content-center overflow-hidden"></div>
+            </div>
+            <div class="card-footer text-muted">Plot most used keywords</div>
       </div>
-
-      <div class="col-md-6 pt-3 pb-3">
-          <div class="card">
-              <div class="card-body">
-                  <div id="dataviz_wordcloud" class="d-flex justify-content-center overflow-hidden"></div>
-              </div>
-              <div class="card-footer text-muted">Plot most used keywords</div>
-      </div>
-      
-      <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-      </div>
+    </div>
   </div>
 
-  <!-- Databox and Plot KeywordsBarplot -->
+    <!-- Databox and Plot KeywordsBarplot -->
   <div class="row">
     <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
         <div class="card">
@@ -119,95 +118,90 @@
             <div class="card-body">
                 <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
             </div>
-            <div class="card-footer text-muted">Plot most used keywords</div>
+            <div class="card-footer text-muted">Plot of most used keywords</div>
         </div>
-    <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
     </div>
 
 
 
-  <!-- Databox and bar postings-->
+    <!-- Databox and bar postings-->
 
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-      <div class="card">
-          <div class="card-header"><strong>Posting frequency</strong></div>
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+        <div class="card">
+            <div class="card-header"><strong>Posting frequency</strong></div>
 
-          <div class="card-body">
+            <div class="card-body">
 
-              <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
+                <p class="card-text">New articles are written daily. The scrappers save the date, which they found the article on the website. The dates show, on which weekday <a href="https://www.dw.com/de/themen/s-9077">DW.com</a> is more active in a week.</p>
 
-          </div>
+            </div>
 
-          <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-      </div>
+            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+        <div class="card">
+            <div class="card-body">
+                <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
+            </div>
+            <div class="card-footer text-muted">Articles per day in the <div class="text-lowercase" style="display: inline;">{{ lastupdate }}</div></div>
+        </div>
+    </div>
   </div>
 
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-      <div class="card">
-          <div class="card-body">
-              <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
-          </div>
-          <div class="card-footer text-muted">2 days ago</div>
+  <!-- Start Row with col-xxl 3 -->
+  <div class="row">
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+        <div class="card">
+          <div class="card-header"><strong>Posting frequency across the year</strong></div>
+
+            <div class="card-body">
+              <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
+            </div>
+
+            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+        <div class="card">
+            <div class="card-body">
+                <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
+            </div>
+          <div class="card-footer text-muted">Post frequency of articles <strong>in a week</strong> across the past year</div>
+        </div>
+    </div>
+
+  <!-- End Row with col-xxl 3 -->
+
+  <!-- Start row with col lg-6-->
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+        <div class="card">
+          <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+            <div class="card-body">
+              <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+            </div>
+
+            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >    
+        <div class="card">
+            <div class="card-body">
+                <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+            </div>
+            <div class="card-footer text-muted">Articles uploads across the complete <strong>last year</strong></div>
+        </div>  
+    </div>
+
   </div>
-  
-  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-  </div>
+  <!-- End row with col lg-6-->
 </div>
 
-<!-- Databox and Plot Postingdays-->
-<div class="row">
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-      <div class="card">
-        <div class="card-header"><strong>Posting frequency across the year</strong></div>
-
-          <div class="card-body">
-            <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
-          </div>
-
-          <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-      </div>
-  </div>
-
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-      <div class="card">
-          <div class="card-body">
-              <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
-          </div>
-      <div class="card-footer text-muted">2 days ago</div>
-  </div>
-
-  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-  </div>
-
-
-
-<!-- Databox and Plot Postingdays-->
-
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-      <div class="card">
-        <div class="card-header"><strong>Daily postings across the year</strong></div>
-
-          <div class="card-body">
-            <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
-          </div>
-
-          <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-      </div>
-  </div>
-
-  <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >    
-      <div class="card">
-          <div class="card-body">
-              <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
-          </div>
-      <div class="card-footer text-muted">2 days ago</div>
-  </div>
-
-  <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-  </div>
-</div>
-
-</div>
 
 {% endblock sitecontent %} 
 

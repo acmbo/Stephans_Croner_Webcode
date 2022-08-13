@@ -6,7 +6,7 @@
 
 {% endblock %}
 
-{% block title %} About the DW Project{% endblock title %}
+{% block title %} Stephan's Corner | About the DW Project{% endblock title %}
 
 
 {% block sitecontent %}
@@ -36,18 +36,21 @@
   </div>
   <div class="bd-content about">
     <p class="lead pt-5">History</p>
-    <p class="text-justify"> This project is inspired by the lecture <a href="https://www.dkriesel.com/blog/2016/1229_video_und_folien_meines_33c3-vortrags_spiegelmining">Spiegel Mining</a> by D. Kriesel. In the lecture he presented his insights of his personal project about gathering data from the german newsoutlet <a href="https://www.spiegel.de/">Spiegel Online</a>. He gather data across a complete year of the webiste and analyzed the data. He found patterns in within the topics of the articels in the news site and also analyzed post frequency and authorship of the articels</p>
-    <p class="text-justify"> Inspired by this project i devided to implement my own version of a data analysis of a german news site. Instead of Spiegel i choose the german outlet <a href="https://www.dw.com/de/themen/s-9077">Deutsche Welle</a>. The newssite is the one of the public state owned international broadcasters created in 1953 and is funded by the German federal tax budget. Despite beeing a funded by the German federal goverment, the Deutsche Welle Act warants a independent reporting free of interference of the German goverment. <a href="https://en.wikipedia.org/wiki/Deutsche_Welle">[1]</a></p>
-    <p class="text-justify"> Because of the newssite claims to be independet, the site seems to be a good target for data analysis like in the Spiegelmining lecture. To create a more immersive experience, i planned to create a web application to show results of the anaylsis in real time. </p>
+    <p class="text-justify"> This project is inspired by the lecture <a href="https://www.dkriesel.com/blog/2016/1229_video_und_folien_meines_33c3-vortrags_spiegelmining">Spiegel Mining</a> by D. Kriesel. In the lecture he presented his insights of his personal project about gathering data from the german newsoutlet <a href="https://www.spiegel.de/">Spiegel Online</a>. He gather data across a complete year of the webiste and analyzed the data. He found patterns within the topics of the articles in the news site and also analyzed post frequency and authorship of the articles.</p>
+    <p class="text-justify"> Inspired by this project i decided to implement my own version of a data analysis of a german news site. Instead of Spiegel i choose the german news outlet <a href="https://www.dw.com/de/themen/s-9077">Deutsche Welle</a>. The newssite is the one of the public state owned international broadcasters created in 1953 and is funded by the German federal tax budget. Despite beeing funded by the German federal goverment, the Deutsche Welle Act warants a independent reporting free of interference of the German goverment. <a href="https://en.wikipedia.org/wiki/Deutsche_Welle">[1]</a></p>
+    <p class="text-justify"> Because of these claims to be independet, the site seems to be a good target for data analysis like in the Spiegelmining lecture. To create a more immersive experience, i planned to create a web application to show results of the anaylsis in real time. </p>
+    
     <p class="lead pt-2">Implementation</p>
-    <p class="text-justify">In order to gather the data i needed two seperate applications: a webscrapper and a webapplication vor visualizing the analysis. I therefore coded two seperates projects:</p>
+    <p class="text-justify">In order to gather the data i needed two seperate applications: a webscrapper and a webapplication for visualizing the analysis. I therefore coded two seperates projects:</p>
     <ul>
         <li><a href="https://github.com/acmbo/datascrapper">the webscrapper</a></li>
         <li><a href="https://github.com/acmbo/Stephans_Croner_Webcode">this website</a></li>
     </ul>
-    <p class="text-justify">Both systems are coded seperatly, but are dependend from another. The webscrapper is written in python and saves its data within a redis database. Redis was choosen because it has properties of a NoSQL database and it can be used on the ARM 32 bit operating system. The scrapper runs on a raspberry pi. In order to keep it performant enough i decided to keep the standard Debian OS and not migrate to another 64bit OS. Experiments with 64 bit OS's haven't been sucessfull with my version of the raspberry pi.</p>
+    <p class="text-justify">Both systems are coded seperatly, but are dependend from another. The webscrapper is written in python and saves its data within a redis database. The scrapper runs on a raspberry pi. In order to keep it performant enough i decided to keep the standard Debian OS (32bit OS) and not migrate to a 64bit OS. Experiments with 64 bit OS's haven't been sucessfull with my version of the raspberry pi. Thats why i choose Redis. Because of it's properties it can be used on the ARM 32 bit operating system and also function as a NoSQL database. </p>
     <p class="text-justify">The website itself is coded on a vm on a cloudprovider. It uses a <a href="https://flask.palletsprojects.com/en/2.2.x/">Flask</a> backend and <a href="https://getbootstrap.com/">Bootstraps 5</a> , <a href="https://d3js.org/">D3.js</a> and <a href="https://vega.github.io/vega-lite/">Vega Lite</a> for data visualizations within the browser.</p>
-    <img src={{ url_for('static', filename="assets/arc.png" ) }} class="rounded mx-auto d-block" alt="Architecture of this project" style="width: 70%; padding: 1rem">
+    
+    <img src={{ url_for('static', filename="assets/arc.png" ) }} class="rounded mx-auto d-block" alt="Architecture of this project" style="width: 500px; padding: 1rem">
+    
     <p class="text-center font-weight-light">Figure: Project architecture from scrapper to frontend to backend</p>
     <p class="text-justify"> The website provides an overview of the activities of the webscrapper. This is important to make clear, from which timeperiod the data is gathered from. As next step i provide a explorative analysis of the gathered data. I divided the analysis into a weekly and a monthly section. Both garantue a short and a longterm option to explore the data. Further analysis of the data would be computationaly expensive and will be therefore not be part of the live analysis. Instead it will be done in on the blog of the website.</p>
     
