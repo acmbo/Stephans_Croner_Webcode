@@ -9,6 +9,8 @@ from extensions import db
 
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_scrappermeta_by_timeframe
+from ..blogendpoints.orm import get_all_posts
+from ..blogendpoints.models import BlogpostSchema
 
 from functools import lru_cache
 
@@ -19,7 +21,7 @@ blueprint = Blueprint('Homepage', __name__)
 
 
 scrapperDataSchema = ScrapperDataSchema()
-
+blogpostSchema = BlogpostSchema()
 
 
 class Contact(FlaskForm):
@@ -69,7 +71,11 @@ def get_last_update(day):
 @blueprint.route('/')
 @blueprint.route('/index')
 def index():
-    return render_template('index.html')
+    posts = [blogpostSchema.dump(p) for p in get_all_posts(db.session)][:10]
+    for i in range(len(posts)):
+        posts[i]['thumbnailpath'] = posts[i]['thumbnailpath'].split("/",2)
+    
+    return render_template('index.html', posts = posts)
 
 
 
