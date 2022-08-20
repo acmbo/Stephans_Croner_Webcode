@@ -108,7 +108,8 @@ def delete_post_by_Id(session, id):
 
 if __name__ == '__main__':
     
-    droptable(Entity=Blogpost)
+    #droptable(Entity=Blogpost)
+    
     # create Database
     createMetaDb(Base)
 
