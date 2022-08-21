@@ -205,6 +205,83 @@ def themeGraphWeekly_closed():
         return "", 204
 
 
+
+@blueprint.route("/usedthemesWeekly/", methods=['GET'])
+def usedthemesWeekly_open():
+    """
+    Returns:
+        json or bad request: scrappermeta information from db
+    """
+    try:
+        with open('data/usedthemesWeekly.json', 'r') as f:
+            data = json.load(f)
+    except:
+        data = {}
+
+    return jsonify(data)
+
+
+@blueprint.route("/usedthemesWeekly/", methods=['POST', 'DELETE'])
+def usedthemesWeekly_closed():
+
+    if request.method == 'POST':
+
+        data = request.json
+
+        data = json.dumps(data)
+
+        with open('data/usedthemesWeekly.json', 'w+') as f:
+            f.write(data)
+        return "", 204
+
+    if request.method == 'DELETE':
+        data = {}
+        data = json.dumps(data)
+        with open('data/usedthemesWeekly.json', 'w+') as f:
+            f.write(data)
+        return "", 204
+
+
+@blueprint.route("/usedthemesMonthly/", methods=['GET'])
+def usedthemesMonthly_open():
+    """
+    Returns:
+        json or bad request: scrappermeta information from db
+    """
+    try:
+        with open('data/usedthemesMonthly.json', 'r') as f:
+            data = json.load(f)
+    except:
+        data = {}
+
+    return jsonify(data)
+
+
+
+@blueprint.route("/usedthemesMonthly/", methods=['POST', 'DELETE'])
+def usedthemesMonthly_closed():
+
+    if request.method == 'POST':
+
+        data = request.json
+
+        data = json.dumps(data)
+
+        with open('data/usedthemesMonthly.json', 'w+') as f:
+            f.write(data)
+        return "", 204
+
+    if request.method == 'DELETE':
+        data = {}
+        data = json.dumps(data)
+        with open('data/usedthemesMonthly.json', 'w+') as f:
+            f.write(data)
+        return "", 204
+
+
+
+
+
 @blueprint.route("/testjson/", methods=['GET'])
 def testendpoint_open():
     """

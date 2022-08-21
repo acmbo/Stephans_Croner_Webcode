@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height":{"step": 15},
+  "height": 250,
   "data": {
       "url": "https://stephanscorner.de/themegraph/testjson/"
   },
@@ -14,25 +14,18 @@
           "domain": false
       }
   },
-  "mark": "rect",
+  "mark": "bar",
   "encoding": {
-    "x": {
-      "field": "date",
-      "type": "ordinal",
-      "timeUnit":"day",
-      "title":"Day",
-      "sort":["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-      },
-      "color": {
-        "field": "count",
-        "type": "quantitative",
-        "aggregate": "sum"
+      "x": {
+          "field": "count",
+          "type": "quantitative",
+          "aggregate":"sum",
+          "title":"Articles"
       },
       "y": {
-
         "field": "themen",
         "type": "nominal",
-        "title": "Themes"
+        "title":"Themes"
       }
   }
 }

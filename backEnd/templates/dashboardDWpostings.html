@@ -145,61 +145,108 @@
             <div class="card-body">
                 <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
             </div>
-            <div class="card-footer text-muted">Articles per day in the <div class="text-lowercase" style="display: inline;">{{ time_mode }}</div></div>
+            <div class="card-footer text-muted">Articles per day in the <strong><div class="text-lowercase" style="display: inline;">{{ time_mode }}</div></strong></div>
         </div>
     </div>
-  </div>
+
+
+
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+      <div class="card">
+        <div class="card-header"><strong>Themes used in articles</strong></div>
+        <div class="card-body">
+          <p class="card-text"> Each article uses themes to categorize its content. Across the <div class="text-lowercase" style="display: inline;">{{ time_mode }}</div>, certain themes were used frequently and we can take a look which one.</p>
+        </div>
+        <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+        <div class="card">
+          <div class="card-body">
+              <div id="dataviz_themes" class="d-flex justify-content-center overflow-hidden"></div>
+          </div>
+          <div class="card-footer text-muted">Themes used in articles</div>
+        </div>
+    </div>
+
+  </div><!--End of Row-->
+
 
   <!-- Start Row with col-xxl 3 -->
   <div class="row">
-    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-        <div class="card">
-          <div class="card-header"><strong>Posting frequency across the year</strong></div>
+    <div class="row justify-content-center">
+        
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >
+          <div class="card">
+          <div class="card-header"><strong>Themes used in articles by time</strong></div>
 
-            <div class="card-body">
-              <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
-            </div>
+              <div class="card-body">
+              <p class="card-text">Each article uses themes to categorize its content. We can visualize the used themes in the current timeframe and analyze, which theme is used frequently.</p>
+              </div>
 
-            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-        </div>
-    </div>
+              <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_themesheat" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+              <div class="card-footer text-muted">Themes used in articles across <strong><div class="text-lowercase" style="display: inline;">{{ time_mode }}</div></strong></div>
+          </div>
+      </div>
 
-    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-        <div class="card">
-            <div class="card-body">
-                <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
-            </div>
-          <div class="card-footer text-muted">Post frequency of articles <strong>in a week</strong> across the past year</div>
-        </div>
-    </div>
 
-  <!-- End Row with col-xxl 3 -->
 
-  <!-- Start row with col lg-6-->
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >
+          <div class="card">
+            <div class="card-header"><strong>Posting frequency across the year</strong></div>
 
-    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
-        <div class="card">
-          <div class="card-header"><strong>Daily postings across the year</strong></div>
+              <div class="card-body">
+                <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
+              </div>
 
-            <div class="card-body">
-              <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
-            </div>
+              <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+          </div>
+      </div>
 
-            <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
-        </div>
-    </div>
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+            <div class="card-footer text-muted">Post frequency of articles <strong>in a week</strong> across the past year</div>
+          </div>
+      </div>
 
-    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >    
-        <div class="card">
-            <div class="card-body">
-                <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
-            </div>
-            <div class="card-footer text-muted">Articles uploads across the complete <strong>last year</strong></div>
-        </div>  
-    </div>
 
+
+
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >
+          <div class="card">
+            <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+              <div class="card-body">
+                <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+              </div>
+
+              <div class="card-footer text-muted">Updated: {{ lastupdate }}</div>
+          </div>
+      </div>
+
+      <div class="col-lg-6 col-xxl-5 pt-3 pb-3" >    
+          <div class="card">
+              <div class="card-body">
+                  <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+              </div>
+              <div class="card-footer text-muted">Articles uploads across the complete <strong>last year</strong></div>
+          </div>  
+      </div>
   </div>
-  <!-- End row with col lg-6-->
+
+
 </div>
 
 
@@ -212,6 +259,20 @@
 <script>
 
 {% if time_mode == "Last Week" %}
+
+    const spec_dataviz_themesheat = "{{ url_for('static', filename='scripts/dashboard/postings_themes_Heatmap_week.json') }}";
+    vegaEmbed("#dataviz_themesheat",  spec_dataviz_themesheat)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+
+    const spec_postingthemes = "{{ url_for('static', filename='scripts/dashboard/postings_themes_Barchart_week.json') }}";
+    vegaEmbed("#dataviz_themes", spec_postingthemes)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
 
     const spec_postingweekdays = "{{ url_for('static', filename='scripts/dashboard/postingsWeek_histo.json') }}";
     vegaEmbed("#dataviz_postingweekdayYear", spec_postingweekdays)
@@ -325,6 +386,17 @@
 {% else %}
 
 
+    const spec_dataviz_themesheat = "{{ url_for('static', filename='scripts/dashboard/postings_themes_Heatmap.json') }}";
+    vegaEmbed("#dataviz_themesheat",  spec_dataviz_themesheat)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
+
+    const spec_postingthemes = "{{ url_for('static', filename='scripts/dashboard/postings_themes_Barchart.json') }}";
+    vegaEmbed("#dataviz_themes", spec_postingthemes)
+    // result.view provides access to the Vega View API
+    .then(result => console.log(result))
+    .catch(console.warn);
  
     const spec_postingweekdays = "{{ url_for('static', filename='scripts/dashboard/postingsWeek_histo.json') }}";
     vegaEmbed("#dataviz_postingweekdayYear", spec_postingweekdays)

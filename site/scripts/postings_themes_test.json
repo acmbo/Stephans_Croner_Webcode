@@ -4,8 +4,9 @@
   "description": "A beeswarm chart example that uses a force-directed layout to group items by category.",
   "width": 500,
   "height": 200,
+
   "padding": {"left": 5, "right": 5, "top": 0, "bottom": 10},
-  "autosize": "fit",
+
 
   "signals": [
     { "name": "cx", "update": "width / 3" },
