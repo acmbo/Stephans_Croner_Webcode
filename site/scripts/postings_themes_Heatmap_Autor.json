@@ -3,7 +3,7 @@
   "width": "container",
   "height":{"step": 10},
   "data": {
-      "url": "https://stephanscorner.de/themegraph/testjson/"
+      "url": "https://stephanscorner.de/themegraph/usedthemesMonthly/"
   },
   "title": "Used themes in articles",
   "mark": "rect",
@@ -20,7 +20,7 @@
       },
 
       "y": {
-        "field": "h4article",
+        "field": "autor",
         "type": "nominal",
         "title": "Themes"
       }

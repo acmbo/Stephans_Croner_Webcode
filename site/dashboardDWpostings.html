@@ -342,7 +342,7 @@
                     </div>
 
 
-                <!--
+                
                 <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
                     <div class="card">
                         <div class="card-body">
@@ -362,7 +362,7 @@
                         <div class="card-footer text-muted">Updated 2 days ago</div>
                     </div>
                 </div>
-                -->
+                -
 
                 </div><!-- End of Row-->
             </main>
@@ -416,6 +416,12 @@
 
     <!--Internal-->
     <script>
+
+        const spec_dataviz_test3 = "scripts/postings_themes_Heatmap_Autor.json";
+        vegaEmbed("#dataviz_test3",  spec_dataviz_test3)
+        // result.view provides access to the Vega View API
+        .then(result => console.log(result))
+        .catch(console.warn);
 
 
         const spec_dataviz_themesinweek = "scripts/postings_themes_Heatmap.json";
