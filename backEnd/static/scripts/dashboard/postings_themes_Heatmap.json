@@ -3,7 +3,7 @@
   "width": "container",
   "height":{"step": 13},
   "data": {
-      "url": "https://stephanscorner.de/themegraph/testjson/"
+      "url": "https://stephanscorner.de/themegraph/usedthemesMonthly/"
   },
   "config": {
       "view": {
