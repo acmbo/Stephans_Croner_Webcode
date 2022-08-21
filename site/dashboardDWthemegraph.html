@@ -45,7 +45,13 @@
             display: inline;
           }
 
-        
+
+        #legendcont{
+            height: 400px;
+            position: absolute;
+            fill: white;
+            border-radius: 5px;
+          }
 
     </style>
 
@@ -202,6 +208,7 @@
                         </div>
 
                   </div>
+                  
               </main>
           </div>
       </div>
@@ -254,7 +261,7 @@
 
         var forcestrength = -12;
         var radius = d3.scaleSqrt()
-            .range([0, 6]);
+            .range([0, 7]);
 
         var svg = d3.select("#dataviz_spec_kwgraph_svg"),
             //width = +svg.attr("width"),
@@ -280,7 +287,7 @@
             .attr("class", "everything")
             .attr("transform", "scale(0.4)");
 
-        d3.json("https://gist.githubusercontent.com/acmbo/b49be7beef592e8b6088225375db54c2/raw/255d88a91965b1415d950132aeb093f597260f01/graph", function(error, graph) {
+        d3.json("https://stephanscorner.de/themegraph/themeGraphWeekly/", function(error, graph) {
             if (error) throw error;
 
             var link = g.append("g")
@@ -338,6 +345,48 @@
                 return "translate(" + d.x + "," + d.y + ")";
                 })
             }
+
+            // initialize legend
+
+
+
+            const legendRectSize = 10;
+            const legendSpacing = 6;
+            
+            /*
+            var legendContainer = svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("rx", 3)
+            .attr("ry", 3)
+            .attr("width", legendRectSize*15)
+            //.attr("style", "outline: thin solid grey;") 
+            .attr("id", "legendcont")
+            */
+            const legend = svg.selectAll('.legend')
+                .data(graph.groups)
+                .enter()
+                .append('g')
+                .attr('class', 'legend')
+                .attr('id', function(d) { return color(d.theme)})
+                .attr('transform', (d, i) => `translate(10, ${10 + (i * (legendRectSize + legendSpacing))})`);
+
+            legend.append('circle')
+            .attr('r', legendRectSize / 2)
+            .attr('fill', d => color(d.theme))
+            .attr('stroke', d => color(d.theme))
+            .attr('cx', legendRectSize / 2)
+            .attr('cy', legendRectSize / 2);
+
+            legend.append('text')
+            .attr('x', legendRectSize + legendSpacing)
+            .attr('y', legendRectSize - (legendSpacing * .5))
+            .text(d => d.theme);
+            
+
+
+
+
         });
 
         //Zoom functions 

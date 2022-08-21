@@ -2,8 +2,6 @@ from flask import Blueprint, jsonify, request, Response
 from os.path import exists
 import json
 
-from itsdangerous import exc
-
 from .models import ThemeGraphDailySchema, ThemeGraphWeeklySchema, ThemeGraphMonthlySchema
 from extensions import db, ThemeGraphDaily, ThemeGraphMonthly, ThemeGraphWeekly
 from .orm import get_all_edges, add_edge, deleteedges

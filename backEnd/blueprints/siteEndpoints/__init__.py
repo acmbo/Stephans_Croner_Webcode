@@ -61,7 +61,10 @@ def get_last_update(day):
         timedelta = datetime.datetime.now() - \
             datetime.datetime.fromisoformat(submissionInfo['entrydate'])
 
-        return str(timedelta.days) + " days ago"
+        days = timedelta.days
+        if days < 0:
+            days = 0
+        return str(days) + " days ago"
     else:
         
         return "No Data"

@@ -302,6 +302,40 @@
             return "translate(" + d.x + "," + d.y + ")";
             })
         }
+
+        // initialize legend
+        const legendRectSize = 10;
+        const legendSpacing = 6;
+        
+        /*
+        var legendContainer = svg.append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("rx", 3)
+        .attr("ry", 3)
+        .attr("width", legendRectSize*15)
+        //.attr("style", "outline: thin solid grey;") 
+        .attr("id", "legendcont")
+        */
+        const legend = svg.selectAll('.legend')
+            .data(graph.groups)
+            .enter()
+            .append('g')
+            .attr('class', 'legend')
+            .attr('id', function(d) { return color(d.theme)})
+            .attr('transform', (d, i) => `translate(10, ${10 + (i * (legendRectSize + legendSpacing))})`);
+
+        legend.append('circle')
+        .attr('r', legendRectSize / 2)
+        .attr('fill', d => color(d.theme))
+        .attr('stroke', d => color(d.theme))
+        .attr('cx', legendRectSize / 2)
+        .attr('cy', legendRectSize / 2);
+
+        legend.append('text')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - (legendSpacing * .5))
+        .text(d => d.theme);
         });
 
         //Zoom functions 
