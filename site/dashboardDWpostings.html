@@ -23,10 +23,11 @@
     <title>Mainpage</title>
 </head>
 
-<body>
+<body class="bg-dark bg-gradient">
+    <div class="sitecontainer mx-auto bg-light">
 
     <!--Top Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark"  aria-label="Fourth navbar example">
+    <nav class="navbar navbar-expand-md navbar-dark"  aria-label="Fourth navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Stephan's Corner</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,8 +188,8 @@
                 </div>
 
                 <!-- Databox and Plot KeywordsBarplot -->
-                <div class="row">
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+               <div class="row"> 
+                    <div class="col-lg-6 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-header"><strong>Keywords used</strong></div>
 
@@ -201,7 +202,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_bar" class="d-flex justify-content-center overflow-hidden"></div>
@@ -212,11 +213,11 @@
                     <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
                     </div>
 
-
-
+                </div>
+                <div class="row">
                     <!-- Databox and bar postings-->
 
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-header"><strong>Posting frequency</strong></div>
 
@@ -230,7 +231,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3" >
+                    <div class="col-lg-6 pt-3 pb-3" >
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_postingdays" class="d-flex justify-content-center overflow-hidden"></div>
@@ -240,9 +241,9 @@
                     
                     <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
                     </div>
-
-
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 pt-3 pb-3">
                         <div class="card">
                         <div class="card-header"><strong>Themes used in articles</strong></div>
     
@@ -253,7 +254,7 @@
                             <div class="card-footer text-muted">Updated 2 days ago</div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
+                    <div class="col-lg-6 pt-3 pb-3">
                         <div class="card">
                             <div class="card-body">
                                 <div id="dataviz_themes" class="d-flex justify-content-center overflow-hidden"></div>
@@ -266,10 +267,7 @@
 
                 <!-- Databox and Plot Postingdays-->
                 <div class="row">
-                    <div class="row justify-content-center">
-
-
-                        <div class="col-lg-5 pt-3 pb-3">
+                        <div class="col-lg-6 pt-3 pb-3">
                             <div class="card">
                             <div class="card-header"><strong>Themes used in articles by time</strong></div>
         
@@ -280,7 +278,7 @@
                                 <div class="card-footer text-muted">Updated 2 days ago</div>
                             </div>
                         </div>
-                        <div class="col-lg-5 pt-3 pb-3">
+                        <div class="col-lg-6 pt-3 pb-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div id="dataviz_themesinweek" class="d-flex justify-content-center overflow-hidden"></div>
@@ -288,82 +286,81 @@
                                 <div class="card-footer text-muted">Themes used in articles across last week</div>
                             </div>
                         </div>
+                </div>
+                <div class="row">
 
 
+                    <div class="col-lg-6 pt-3 pb-3" >
+                        <div class="card">
+                        <div class="card-header"><strong>Posting frequency across the year</strong></div>
 
-                        <div class="col-lg-5 pt-3 pb-3" >
-                            <div class="card">
-                            <div class="card-header"><strong>Posting frequency across the year</strong></div>
-
-                                <div class="card-body">
-                                <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
-                                </div>
-
-                                <div class="card-footer text-muted">Updated 2 days ago</div>
+                            <div class="card-body">
+                            <p class="card-text"> In a next step, we can compare the posting days with their corresponding month. This plot makes the frequency of posting accross months vissible.</p>
                             </div>
-                        </div>
 
-                        <div class="col-lg-5 pt-3 pb-3">
-                            <div class="card">
-                                <div class="card-body" >
-                                    <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
-                                </div>
-                            <div class="card-footer text-muted">2 days ago</div>
-                        </div>
-
-                        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
-                        </div>
-
-
-
-                        <!-- Databox and Plot Postingdays-->
-        
-                        <div class="col-lg-5  pt-3 pb-3">
-                            <div class="card">
-                            <div class="card-header"><strong>Daily postings across the year</strong></div>
-
-                                <div class="card-body">
-                                <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
-                                </div>
-
-                                <div class="card-footer text-muted">Updated 2 days ago</div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-5  pt-3 pb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
-                                </div>
-                            <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
+                            <div class="card-footer text-muted">Updated 2 days ago</div>
                         </div>
                     </div>
 
-
-                
-                <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="dataviz_test3" class="d-flex justify-content-center overflow-hidden"></div>
-                        </div>
+                    <div class="col-lg-6 pt-3 pb-3">
+                        <div class="card">
+                            <div class="card-body" >
+                                <div id="dataviz_postingweekdayYear" class="d-flex justify-content-center overflow-hidden"></div>
+                            </div>
                         <div class="card-footer text-muted">2 days ago</div>
                     </div>
+
+                    <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
                 </div>
-                <div class="col-lg-6 col-xxl-3 pt-3 pb-3">
-                    <div class="card">
-                    <div class="card-header"><strong>Daily postings across the year</strong></div>
+                <div class="row">
 
-                        <div class="card-body">
-                        <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+
+                    <!-- Databox and Plot Postingdays-->
+    
+                    <div class="col-lg-6  pt-3 pb-3">
+                        <div class="card">
+                        <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+                            <div class="card-body">
+                            <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+                            </div>
+
+                            <div class="card-footer text-muted">Updated 2 days ago</div>
                         </div>
+                    </div>
 
-                        <div class="card-footer text-muted">Updated 2 days ago</div>
+                    <div class="col-lg-6  pt-3 pb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="dataviz_postingdaysYear" class="d-flex justify-content-center overflow-hidden"></div>
+                            </div>
+                        <div class="card-footer text-muted">2 days ago</div>
+                        </div>
+                    <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="344" height="145" style="display: block; width: 344px; height: 145px;"></canvas>-->
                     </div>
                 </div>
-                -
 
+                <div class="row">
+                    
+                    <div class="col-lg-6 pt-3 pb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="dataviz_test3" class="d-flex justify-content-center overflow-hidden"></div>
+                            </div>
+                            <div class="card-footer text-muted">2 days ago</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pt-3 pb-3">
+                        <div class="card">
+                        <div class="card-header"><strong>Daily postings across the year</strong></div>
+
+                            <div class="card-body">
+                            <p class="card-text"> At last we can visualize the distribution of postings across the days across the whole year.</p>
+                            </div>
+
+                            <div class="card-footer text-muted">Updated 2 days ago</div>
+                        </div>
+                    </div>
                 </div><!-- End of Row-->
             </main>
           </div>
@@ -546,7 +543,7 @@
         .catch(console.warn);
         
     </script>
-
+    </div>
   </body>
 
 </html>

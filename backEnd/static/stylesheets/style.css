@@ -10,15 +10,27 @@
   --fontfamily-nav: "Roboto", sans-serif;
 }
 
+body {
+  background-color: var(--colorpal-dark-grey);
+}
+
+.sitecontainer {
+  max-width: 72rem;
+}
+
+.navbar {
+  background-color: var(--colorpal-dark);
+}
 
 .footer {
   width: 100%;
   padding: 0px;
-  background-color: var(--colorpal-dark-grey);
+  background-color: var(--colorpal-dark);
   bottom: 0px;
   min-height: 5vh;
   color: var(--font-color-foot);
 }
+
 
 .footer_list {
   padding-top: 20px;

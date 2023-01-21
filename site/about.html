@@ -13,10 +13,32 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Mainpage</title>
+    <style>
+      .sitecontainer {
+        background:
+            linear-gradient(90deg, rgba(2,0,36,0.3) 0%, rgba(102,122,175,0.3) 25%, rgba(177,217,254,0.3) 64%, rgba(103,202,222,0.3) 100%),
+            radial-gradient(circle at top, rgba(187, 238, 205, 0.4), rgba(103,202,222,0.3) 33%, rgba(2,0,36, 0.8) 100%);
+        background-blend-mode: screen;
+        height:100%!important
+    }
+
+    .CVEntry {
+      background-color: rgba(250,250,250,0.3);
+      border-radius: 18px;
+    }
+
+    hr {
+      height:2px;border-width:0;color:rgb(255, 255, 255);background-color:rgb(255, 255, 255);width:80%;text-align:center;margin: auto;
+    }
+
+    </style>
+
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+<body class="bg-dark bg-gradient">
+  <div class="sitecontainer mx-auto">
+
+    <nav class="navbar navbar-expand-md navbar-dark" aria-label="Fourth navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Stephan's Corner</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +69,7 @@
       
     <!-- About page content-->
     <main>
-    <div class="bd-cheatsheet container-fluid bg-body">
+    <div class="bd-cheatsheet container-fluid bg-transparent">
         <section id="content">
 
           <article class="my-3" id="typography">
@@ -60,96 +82,100 @@
 
             <h4 class="text-center" style="margin-top: 3rem;">Work experience</h4>
             <!-- First Entry -->
-            <div class="container">
+            <div class="container pb-3">
 
-              <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
+              <hr>
               
-              <div class="row" style="margin-top: 1rem; ">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                  <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/strabaglogo.png" alt="strabag logo" width="200" height="200"> 
-                </div>
-               
-                <div class="col-9">
-                  <div id ="strabag-entry" style="margin-top: 2rem; margin-bottom: 3rem;"> 
-                    <h5>STRABAG - BIM 5D - FM and Sustainability - Projectengineer - Full time</h5>
-                    <em>Since Apr. 202</em>1
-                    <p>
-                      <ul>
-                        <li>Creation and optimization of processes and ways of working for sustainability and BIM 5D.</li>
-                        <li>Digitization of the facility management intake process</li>
-                        <li>Data analysis of building models and energy simulation</li>
-                        <li>Programming of plugins for Revit- Creation and optimization of processes and working methods for sustainability and BIM 5D</li>
-                        <li>Data analysis of building models and energy simulation- Programming plugins for Revit</li>
-                      </ul>
-      
-                      <strong>Knowledge</strong>: Python - Docker products - - SQL - Revit - AutoCAD - data analysis - databases - machine learning - VirtualBox - JavaScript
-                    </p>
+              <div class="CVEntry">
+                <div class="row" style="margin-top: 1rem; ">
+                  <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/strabaglogo.png" alt="strabag logo" width="200" height="200"> 
+                  </div>
+                  
+                  <div class="col-9">
+                    <div id ="strabag-entry" style="margin-top: 2rem; margin-bottom: 3rem;"> 
+                      <h5>STRABAG - BIM 5D - FM and Sustainability - Projectengineer - Full time</h5>
+                      <em>Since Apr. 202</em>1
+                      <p>
+                        <ul>
+                          <li>Creation and optimization of processes and ways of working for sustainability and BIM 5D.</li>
+                          <li>Digitization of the facility management intake process</li>
+                          <li>Data analysis of building models and energy simulation</li>
+                          <li>Programming of plugins for Revit- Creation and optimization of processes and working methods for sustainability and BIM 5D</li>
+                          <li>Data analysis of building models and energy simulation- Programming plugins for Revit</li>
+                        </ul>
+        
+                        <strong>Knowledge</strong>: Python - C# - Revit - Data analysis - Databases - Machine Learning
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="container">
-
-              <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
+            <div class="container pb-3">
               
-              <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                  <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/eonlogo.png" alt="strabag logo" width="200" height="200"> 
+              <hr>
+              <div class="CVEntry">
+                <div class="row" style="margin-top: 1rem;">
+                  <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/eonlogo.png" alt="strabag logo" width="200" height="200"> 
+                  </div>
+                 
+                  <div class="col-9">
+                    <div id ="eon-entry" style="margin-top: 1rem; margin-bottom: 3rem;"> 
+                      <h5>Chair of Building and Indoor Climate Technology, E.ON ERC, RWTH Aachen University - Aachen, Germany - Student Assistant
+                      </h5>
+                      <em>Dec. 2017 - Dec. 2020 </em>
+                      <p>
+                        <ul>
+                          <li>Development and execution of data analysis in the field of Natural Language Processing</li>
+                          <li>Optimization of energy concepts by building simulation</li>
+                          <li>Supervision of courses- Development and implementation of data analyses in the field of Natural Language Processing, - Optimization of energy concepts by building simulation - Supervision of courses</li>
+                        </ul>
+        
+                        <strong>Knowledge</strong>:  Natural Language Processing (NLP) - Python - AutoCAD - Databases - Machine Learning
+                      </p>
+                    </div>
+                  </div>
                 </div>
-               
-                <div class="col-9">
-                  <div id ="eon-entry" style="margin-top: 1rem;"> 
-                    <h5>Chair of Building and Indoor Climate Technology, E.ON ERC, RWTH Aachen University - Aachen, Germany - Student Assistant
-                    </h5>
-                    <em>Dec. 2017 - Dec. 2020 </em>
-                    <p>
-                      <ul>
-                        <li>Development and execution of data analysis in the field of Natural Language Processing</li>
-                        <li>Optimization of energy concepts by building simulation</li>
-                        <li>Supervision of courses- Development and implementation of data analyses in the field of Natural Language Processing, - Optimization of energy concepts by building simulation - Supervision of courses</li>
-                      </ul>
-      
-                      <strong>Knowledge</strong>:  Natural Language Processing (NLP) - Python - AutoCAD - Databases - Machine Learning.
-                    </p>
+              </div>
+            </div>
+
+            <div class="container pb-3">
+
+              <hr>
+              <div class="CVEntry">
+                
+                <div class="row pb-3" style="margin-top: 1rem;">
+                  <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/4c3e4059-0430-46f9-9d85-9d830f52fb98_1_61c2da8393a42.gif" alt="strabag logo" width="200" height="200"> 
+                  </div>
+                
+                  <div class="col-9">
+                    <div id ="porr-entry" style="margin-top: 1rem; margin-bottom: 3rem;"> 
+                      <h5>PORR Germany, Frankfurt am Main, Germany - Intern
+                      </h5>
+                      <em>July 2017-Dec. 2017  </em>
+                      <p>
+                        <ul>
+                          <li> Construction site internship in construction management</li>
+                          <li>Site management, controlling, dimensional calculation, invoicing</li>
+                        </ul>
+        
+                        <strong>Knowledge</strong>:  Construction, Calculation, Management
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
 
-            <div class="container">
-
-              <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-              
-              <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                  <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="assets/4c3e4059-0430-46f9-9d85-9d830f52fb98_1_61c2da8393a42.gif" alt="strabag logo" width="200" height="200"> 
-                </div>
-               
-                <div class="col-9">
-                  <div id ="porr-entry" style="margin-top: 1rem;"> 
-                    <h5>PORR Germany, Frankfurt am Main, Germany - Intern
-                    </h5>
-                    <em>July 2017-Dec. 2017  </em>
-                    <p>
-                      <ul>
-                        <li> Construction site internship in construction management</li>
-                        <li>Site management, controlling, dimensional calculation, invoicing</li>
-                      </ul>
-      
-                      <strong>Knowledge</strong>:  Construction, Calculation, Management
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
 
             <div class="container">
 
-              <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
+              <hr>
               
               <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
                 <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
@@ -276,7 +302,8 @@
     <!--Bootstrap dependencies-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+  </div>
 </body>
+
 
 </html>

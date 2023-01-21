@@ -10,6 +10,14 @@
   --fontfamily-nav: "Roboto", sans-serif;
 }
 
+body {
+  background-color: var(--colorpal-dark-grey);
+}
+
+.sitecontainer {
+  max-width: 72rem;
+}
+
 .footer {
   background-color: var(--colorpal-dark-grey);
   color: var(--font-color-foot);
@@ -17,6 +25,10 @@
 
 .main {
   height: calc(100vh - 100px);
+}
+
+.navbar {
+  background-color: var(--colorpal-dark);
 }
 
 .footer_list {

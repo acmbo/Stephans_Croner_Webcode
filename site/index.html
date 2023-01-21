@@ -12,116 +12,185 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/lib/w3schools30.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3schools30.css">
+
     <title>Mainpage</title>
+
+    <style>
+        .btn-primary {
+            color: #fff;
+            background-color: #1f3144;
+            border-color: #1f3144;
+          }
+    
+        .btn-primary:hover {
+            background-color: #508EB7;
+            border-color: #508EB7;
+        }
+
+        .bg-light{
+            background-color: rgba(0,0,0,0)!important
+        }
+    
+        .sitecontainer {
+            background:
+                linear-gradient(90deg, rgba(2,0,36,0.3) 0%, rgba(102,122,175,0.3) 25%, rgba(177,217,254,0.3) 64%, rgba(103,202,222,0.3) 100%),
+                radial-gradient(circle at top, rgba(187, 238, 205, 0.4), rgba(103,202,222,0.3) 33%, rgba(2,0,36, 0.8) 100%);
+            background-blend-mode: screen;
+            height:100%!important
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .album {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Stephan's Corner</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+<body class="bg-dark">
 
-            <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="about.html">About - CV</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="projects.html" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="dashboardDW.html">DW-Mining</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+    <div class="sitecontainer mx-auto bg-light">
+        <nav class="navbar navbar-expand-md navbar-dark" aria-label="Fourth navbar example">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Stephan's Corner</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="about.html">About - CV</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="projects.html" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                            <li><a class="dropdown-item" href="dashboardDW.html">DW-Mining</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+            
+        <div class="min-vh-100">
+            <main>
+                <section class="py-5 text-center container">
+                    <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light text-light">Welcome to Stephanscorner</h1>
+                        <p class="lead text-light">a next-generation datascraping research platform for the avarage person.</p>
+                        <p>
+                        <a href="about.html" class="btn btn-primary my-2" style="width: 150px;">About the Author</a>
+                        <a href="dashboardDW.html" class="btn btn-primary my-2" style="width: 150px;">DW-Mining</a>
+                        </p>
+                    </div>
+                    </div>
+                </section>
         
- 
-    <main>
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Welcome to Stephanscorner</h1>
-                <p class="lead text-muted">a next-generation datascraping research platform for the avarage person.</p>
-                <p>
-                <a href="about.html" class="btn btn-primary my-2" style="width: 150px;">About the Author</a>
-                <a href="dashboardDW.html" class="btn btn-primary my-2" style="width: 150px;">DW-Mining</a>
-                </p>
-            </div>
-            </div>
-        </section>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <section id="#FeaturesOfWebsite" class="p-3" style="background-color: rgba(198, 217, 236, 0.8);">
+                    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-around">
+                        <div class="feature col">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient" style="border-radius: 18px; background-color:rgba(102,122,175,0.5)">
+                                <img src="/site/assets/icons/programmer.png" alt="Girl in a jacket" width="70rem" height="70rem" style="border-radius: 18px;"> 
                             </div>
-                            <small class="text-muted">9 mins</small>
+
+                            <h2>Featured title</h2>
+                            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                            <a href="#" class="icon-link">
+                            Call to action
+                            </a>
                         </div>
+                        
+                        <div class="feature col">
+                            <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient" style="border-radius: 18px; background-color:rgba(102,122,175,0.5)">
+                                <img src="/site/assets/icons/execution.png" alt="Girl in a jacket" width="70rem" height="70rem" style="border-radius: 18px;"> 
+                            </div>
+                            <h2>Featured title</h2>
+                            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                            <a href="#" class="icon-link">
+                                Call to action
+                                <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+                            </a>
                         </div>
+                      </div>
+                </section>
+
+
+
+                <div class="album py-5 .bg-transparent">
+                    <div class="container">
+        
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        
+                                <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        
+                                <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        
+                                <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-                        <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-            </div>
-        </div>
-
-    </main>
-
-
+        
+            </main>
+        
+</div>
     <footer>
         <div id="footer" class="footer">
 
@@ -148,7 +217,9 @@
             </div>
         </div>
     </footer>
-
+        
+    </div>
+    
 
 
     <!--Bootstrap dependencies-->

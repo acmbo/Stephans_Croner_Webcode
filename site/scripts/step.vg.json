@@ -23,7 +23,7 @@
           "title":"Scrapped articles",
           "type": "quantitative",
           "aggregate":"sum",
-          "scale": {"domain": [0, 60]}
+          "scale": {"domainMin":0}
         }
   }
 }

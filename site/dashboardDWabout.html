@@ -25,10 +25,11 @@
     <title>Mainpage</title>
 </head>
 
-<body>
+<body class="bg-dark bg-gradient">
+    <div class="sitecontainer mx-auto bg-light">
 
     <!--Top Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark"  aria-label="Fourth navbar example">
+    <nav class="navbar navbar-expand-md navbar-dark"  aria-label="Fourth navbar example">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Stephan's Corner</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,7 +146,7 @@
                     </ul>
                     <p class="text-justify">Both systems are coded seperatly, but are dependend from another. The webscrapper is written in python and saves its data within a redis database. Redis was choosen because it has properties of a NoSQL database and it can be used on the ARM 32 bit operating system. The scrapper runs on a raspberry pi. In order to keep it performant enough i decided to keep the standard Debian OS and not migrate to another 64bit OS. Experiments with 64 bit OS's haven't been sucessfull with my version of the raspberry pi.</p>
                     <p class="text-justify">The website itself is coded on a vm on a cloudprovider. It uses a <a href="https://flask.palletsprojects.com/en/2.2.x/">Flask</a> backend and <a href="https://getbootstrap.com/">Bootstraps 5</a> , <a href="https://d3js.org/">D3.js</a> and <a href="https://vega.github.io/vega-lite/">Vega Lite</a> for data visualizations within the browser.</p>
-                    <img src="assets/arc.png" class="rounded mx-auto d-block" alt="Architecture of this project" style="width: 70%; padding: 1rem">
+                    <img src="assets/arc.png" class="rounded mx-auto d-block" alt="Architecture of this project" style="width: 60%; padding: 1rem">
                     <p class="text-center font-weight-light">Figure: Project architecture from scrapper to frontend to backend</p>
                     <p class="text-justify"> The website provides an overview of the activities of the webscrapper. This is important to make clear, from which timeperiod the data is gathered from. As next step i provide a explorative analysis of the gathered data. I divided the analysis into a weekly and a monthly section. Both garantue a short and a longterm option to explore the data. Further analysis of the data would be computationaly expensive and will be therefore not be part of the live analysis. Instead it will be done in on the blog of the website.</p>
                     
@@ -200,6 +201,7 @@
     <script src="scripts/dashboard_charts.js"></script>
     -->
     <script src="scripts/dashboard_charts_vega.js"></script>
+    </div>
   </body>
 
 </html>
