@@ -12,54 +12,53 @@
 <!-- Content of Contact Page-->
 
 <main>
-    <div class="container-fluid">
-        
-        <div class="container">
-            <div class="row gy-2 mt-3">
-                <h2>Contact</h2>
-                <p>Send me a message if you like to contact me or have a request.</p>
-            </div>
+    <div class="row min-vh-100">
+        <div class="container-fluid">
+            
+            <div class="container">
+                <div class="row gy-2 mt-3">
+                    <h2>Contact</h2>
+                    <p>Send me a message if you like to contact me or have a request.</p>
+                </div>
 
-            <div class="row gy-2 mt-3">
+                <div class="row gy-2 mt-3">
 
 
-                <form method="POST" action="{{ url_for('Homepage.contact_page') }}">
-                    {{ form.csrf_token }}
+                    <form method="POST" action="{{ url_for('Homepage.contact_page') }}">
+                        {{ form.csrf_token }}
 
-                    <div class="form-group">
-                        <label>Recipient</label>
-                        <input class="form-control" type="text" placeholder="info@stephancorner.de" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Contact email address</label>
-                        {{ form.emailfrom(class="form-control", placeholder="Your Email", size=40) }}
-        
-                    </div>
-
-                    <div class="form-group">
-                        <label>Subject</label>
-                        {{ form.subject(class="form-control", size=40) }}
+                        <div class="form-group">
+                            <label>Recipient</label>
+                            <input class="form-control" type="text" placeholder="info@stephancorner.de" readonly>
                         </div>
 
-                    <div class="form-group">
-                        <label>Message content</label>
-                        {{ form.content(id="test", class="form-control",rows="3") }}
-                        
-                    </div>
-
-                    <div class="pt-3 pb-7 mb-7 pull-right">
-                        {{ form.submit(class="btn btn-primary") }}
-                    </div>
+                        <div class="form-group">
+                            <label>Contact email address</label>
+                            {{ form.emailfrom(class="form-control", placeholder="Your Email", size=40) }}
             
-                </form> 
+                        </div>
 
+                        <div class="form-group">
+                            <label>Subject</label>
+                            {{ form.subject(class="form-control", size=40) }}
+                            </div>
+
+                        <div class="form-group">
+                            <label>Message content</label>
+                            {{ form.content(id="test", class="form-control",rows="3") }}
+                            
+                        </div>
+
+                        <div class="pt-3 pb-7 mb-7 pull-right">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                
+                    </form> 
+
+                </div>
             </div>
+
         </div>
-
-    </div>
-    <div style="width:100%; height: 1rem">
-
     </div>
 </main>
 
