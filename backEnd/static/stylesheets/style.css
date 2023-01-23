@@ -16,6 +16,11 @@ body {
 
 .sitecontainer {
   max-width: 72rem;
+  background:
+      linear-gradient(90deg, rgba(2,0,36,0.3) 0%, rgba(102,122,175,0.3) 25%, rgba(177,217,254,0.3) 64%, rgba(103,202,222,0.3) 100%),
+      radial-gradient(circle at top, rgba(168,201,183,0.45), rgba(103,202,222,0.3) 33%, rgba(2,0,36, 0.3) 100%);
+  background-blend-mode: screen;
+  height:100%!important
 }
 
 .navbar {

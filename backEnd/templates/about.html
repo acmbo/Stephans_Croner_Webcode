@@ -3,6 +3,31 @@
 
 {% block dependencies %} 
 <link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+<style>
+
+
+  hr {
+    height:2px;
+    border-width:0;
+    color:rgb(255, 255, 255);
+    background-color:rgb(255, 255, 255);
+    width:80%;
+    text-align:center;
+    margin: auto;
+  }
+
+  .row {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .CVEntry {
+    background-color: rgba(250,250,250,0.5);
+    border-radius: 18px;
+  }
+
+  </style>
 {% endblock %}
 
 {% block title %} About Stephan's Corner{% endblock title %}
@@ -10,198 +35,211 @@
 {% block sitecontent %}
 <!-- About page content-->
 <main>
-    <div class="bd-cheatsheet container-fluid bg-body">
-    <section id="content">
+    <div class="container-fluid">
+        <section id="content">
 
-    <article class="my-3" id="typography">
-            <div id="TitleCV" >
-                <h2 class="text-center" style="margin-top: 3rem;">Curriculum Vitae</h2>
-                <p></p>
-                <h4 class="text-center"> Stephan Wegewitz </h4>
-                <p class="text-center" style="margin-bottom: 3rem;"> Engineer | Programmer </p>
-            </div>
+            <article class="my-3" id="typography">
+                    <div id="TitleCV" class="text-light fw-light">
+                        <h2 class="text-center fw-light" style="margin-top: 3rem;">Curriculum Vitae</h2>
+                        <p></p>
+                        <h4 class="text-center fw-light"> Stephan Wegewitz </h4>
+                        <p class="text-center" style="margin-bottom: 3rem;"> Engineer | Programmer </p>
+                    </div>
 
-            <h4 class="text-center" style="margin-top: 3rem;">Work experience</h4>
-            <!-- First Entry -->
-            <div class="container">
+                    <h4 class="text-center text-light fw-light" style="margin-top: 3rem;">Work experience</h4>
+                    <!-- First Entry -->
+                    <div class="container">
 
-                <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-                
-                <div class="row" style="margin-top: 1rem; ">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename='assets/strabaglogo.png') }}" alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                    <div id ="strabag-entry" style="margin-top: 2rem; margin-bottom: 3rem;"> 
-                    <h5>STRABAG - BIM 5D - FM and Sustainability - Projectengineer - Full time</h5>
-                    <em>Since Apr. 202</em>1
-                    <p>
-                        <ul>
-                        <li>Creation and optimization of processes and ways of working for sustainability and BIM 5D.</li>
-                        <li>Digitization of the facility management intake process</li>
-                        <li>Data analysis of building models and energy simulation</li>
-                        <li>Programming of plugins for Revit- Creation and optimization of processes and working methods for sustainability and BIM 5D</li>
-                        <li>Data analysis of building models and energy simulation- Programming plugins for Revit</li>
-                        </ul>
-        
-                        <strong>Knowledge</strong>: Python - Docker products - - SQL - Revit - AutoCAD - data analysis - databases - machine learning - VirtualBox - JavaScript
-                    </p>
+                        <hr style="height:2px;">
+                        
+                        <div class="CVEntry">
+                            <div class="row" style="margin-top: 2rem;">
+                                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename='assets/strabaglogo.png') }}" alt="strabag logo" width="200" height="200"> 
+                                </div>
+                                
+                                <div class="col-9">
+                                    <div id ="strabag-entry" style="margin-top: 2rem;"> 
+                                        <h5>STRABAG - BIM 5D - FM and Sustainability - Projectengineer - Full time</h5>
+                                        <em>Since Apr. 202</em>1
+                                        <p>
+                                            <ul>
+                                            <li>Creation and optimization of processes and ways of working for sustainability and BIM 5D.</li>
+                                            <li>Digitization of the facility management intake process</li>
+                                            <li>Data analysis of building models and energy simulation</li>
+                                            <li>Programming of plugins for Revit- Creation and optimization of processes and working methods for sustainability and BIM 5D</li>
+                                            <li>Data analysis of building models and energy simulation- Programming plugins for Revit</li>
+                                            </ul>
+                            
+                                            <strong>Knowledge</strong>: Python - C# - Revit - Dynamo 
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container pt-3">
+
+                        <hr style="height:2px;">
+
+                        <div class="CVEntry">
+                            <div class="row">
+                                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/eonlogo.png") }}" alt="strabag logo" width="200" height="200"> 
+                                </div>
+                                
+                                <div class="col-9">
+                                    <div id ="eon-entry" style="margin-top: 1rem;"> 
+                                        <h5>Chair of Building and Indoor Climate Technology, E.ON ERC, RWTH Aachen University - Aachen, Germany - Student Assistant
+                                        </h5>
+                                        <em>Dec. 2017 - Dec. 2020 </em>
+                                        <p>
+                                            <ul>
+                                            <li>Development and execution of data analysis in the field of Natural Language Processing</li>
+                                            <li>Optimization of energy concepts by building simulation</li>
+                                            <li>Supervision of courses- Development and implementation of data analyses in the field of Natural Language Processing, - Optimization of energy concepts by building simulation - Supervision of courses</li>
+                                            </ul>
+                            
+                                            <strong>Knowledge</strong>:  Natural Language Processing (NLP) - Python - AutoCAD - Machine Learning
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container">
+
+                        <hr style="height:2px;">
+
+                        <div class="CVEntry">
+                                
+                            <div class="row">
+                                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/4c3e4059-0430-46f9-9d85-9d830f52fb98_1_61c2da8393a42.gif") }}"  alt="strabag logo" width="200" height="200"> 
+                                </div>
+                                
+                                <div class="col-9">
+                                    <div id ="porr-entry" style="margin-top: 1rem; margin-bottom: 5rem;"> 
+                                        <h5>PORR Germany, Frankfurt am Main, Germany - Intern
+                                        </h5>
+                                        <em>July 2017-Dec. 2017  </em>
+                                        <p>
+                                            <ul>
+                                            <li> Construction site internship in construction management</li>
+                                            <li>Site management, controlling, dimensional calculation, invoicing</li>
+                                            </ul>
+                            
+                                            <strong>Knowledge</strong>:  Construction, Calculation, Management
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="container">
+
+                        <hr style="height:2px;">
+                        
+                        <div class="CVEntry">
+                            <div class="row">
+                                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/Goldbeck.png") }}"  alt="strabag logo" width="200" height="200"> 
+                                </div>
+                                
+                                <div class="col-9">
+                                    <div id ="goldbeck-entry" style="margin-top: 1rem;margin-bottom: 5rem;"> 
+                                        <h5>GOLDBECK - Internship , Mannheim, Baden-Württemberg, Germany - Intern
+                                        </h5>
+                                        <em>Jan. 2017-Apr. 2017  </em>
+                                        <p>
+                                            <ul>
+                                            <li> Assistance in the DGNB certification</li>
+                                            <li> Simulation of thermal bridges- Collaboration in DGNB certification - Simulation of thermal bridges.</li>
+                                            </ul>
+                            
+                                            <strong>Knowledge</strong>:  AutoCAD, Revit, FlixoEnergy
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </article>
+
+
+
+                <h4 class="text-center fw-light text-light" style="margin-top: 5rem;">Education</h4>
+
+                <div class="container">
+
+                    <hr style="height:2px;">
+
+                    <div class="CVEntry">
+                        <div class="row">
+                            <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/rwth.png") }}" alt="strabag logo" width="200" height="200"> 
+                            </div>
+                            
+                            <div class="col-9">
+                                <div id ="rwthunima-entry" style="margin-top: 1rem;"> 
+                                    <h5> Master of Science - Energy and Environment in Construction - RWTH Aachen University, Germany
+                                    </h5>
+                                    <em>2017–2020 </em>
+                                    <p>
+                                    <ul>
+                                        <li> Building Construction, Planning of MEP</li>
+                                        <li> Building simulation</li>
+                                        <li> BIM </li>
+                                        <li> Lifecycle assessment</li>
+                                        <li> Environment and risk analysis </li>
+                                        <li> Mathematical optimization</li>
+                                    </ul>
+
+                                    <strong>Masterthesis</strong>: <a href="https://www.ebc.eonerc.rwth-aachen.de/go/id/lvkcu">Multi-objective optimization of modernization schedules for existing buildings using genetic algorithm.</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-            </div>
 
-            <div class="container">
+                <div class="container">
 
-                <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-                
-                <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/eonlogo.png") }}" alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                    <div id ="eon-entry" style="margin-top: 1rem;"> 
-                    <h5>Chair of Building and Indoor Climate Technology, E.ON ERC, RWTH Aachen University - Aachen, Germany - Student Assistant
-                    </h5>
-                    <em>Dec. 2017 - Dec. 2020 </em>
-                    <p>
-                        <ul>
-                        <li>Development and execution of data analysis in the field of Natural Language Processing</li>
-                        <li>Optimization of energy concepts by building simulation</li>
-                        <li>Supervision of courses- Development and implementation of data analyses in the field of Natural Language Processing, - Optimization of energy concepts by building simulation - Supervision of courses</li>
-                        </ul>
-        
-                        <strong>Knowledge</strong>:  Natural Language Processing (NLP) - Python - AutoCAD - Databases - Machine Learning.
-                    </p>
+                    <hr style="height:2px;">
+                    
+                        <div class="CVEntry">
+                        <div class="row">
+                            <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
+                                <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/rwth.png") }}" alt="strabag logo" width="200" height="200"> 
+                            </div>
+                            
+                            <div class="col-9">
+                            <div id ="rwthuniba-entry" style="margin-top: 1rem;"> 
+                                <h5> Bachelor of Science - Environmental engineering - RWTH Aachen University, Germany
+                                </h5>
+                                <em>2011 - 2016 </em>
+                                <p>
+                                <ul>
+                                    <li> Building Construction</li>
+                                    <li> Process engineering </li>
+                                    <li> Environmental sciences </li>
+                                </ul>
+                                </p>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
-            </div>
-
-
-            <div class="container">
-
-                <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-                
-                <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/4c3e4059-0430-46f9-9d85-9d830f52fb98_1_61c2da8393a42.gif") }}"  alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                    <div id ="porr-entry" style="margin-top: 1rem;"> 
-                    <h5>PORR Germany, Frankfurt am Main, Germany - Intern
-                    </h5>
-                    <em>July 2017-Dec. 2017  </em>
-                    <p>
-                        <ul>
-                        <li> Construction site internship in construction management</li>
-                        <li>Site management, controlling, dimensional calculation, invoicing</li>
-                        </ul>
-        
-                        <strong>Knowledge</strong>:  Construction, Calculation, Management
-                    </p>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-
-            <div class="container">
-
-                <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-                
-                <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                    <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/Goldbeck.png") }}"  alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                    <div id ="goldbeck-entry" style="margin-top: 1rem;"> 
-                    <h5>GOLDBECK - Internship , Mannheim, Baden-Württemberg, Germany - Intern
-                    </h5>
-                    <em>Jan. 2017-Apr. 2017  </em>
-                    <p>
-                        <ul>
-                        <li> Assistance in the DGNB certification</li>
-                        <li> Simulation of thermal bridges- Collaboration in DGNB certification - Simulation of thermal bridges.</li>
-                        </ul>
-        
-                        <strong>Knowledge</strong>:  AutoCAD, Revit, FlixoEnergy
-                    </p>
-                    </div>
-                </div>
-                </div>
-            </div>
 
             </article>
-
-
-
-        <h4 class="text-center" style="margin-top: 3rem;">Education</h4>
-
-        <div class="container">
-
-            <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-            
-            <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/rwth.png") }}" alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                <div id ="rwthunima-entry" style="margin-top: 1rem;"> 
-                    <h5> Master of Science - Energy and Environment in Construction - RWTH Aachen University, Germany
-                    </h5>
-                    <em>2017–2020 </em>
-                    <p>
-                    <ul>
-                        <li> Building Construction, Planning of MEP</li>
-                        <li> Building simulation</li>
-                        <li> BIM </li>
-                        <li> Lifecycle assessment</li>
-                        <li> Environment and risk analysis </li>
-                        <li> Mathematical optimization</li>
-                    </ul>
-
-                    <strong>Masterthesis</strong>: <a href="https://www.ebc.eonerc.rwth-aachen.de/go/id/lvkcu">Multi-objective optimization of modernization schedules for existing buildings using genetic algorithm.</a>
-                    </p>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-
-            <hr style="height:2px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0);width:80%;text-align:center;margin: auto;">
-            
-            <div class="row" style="margin-top: 2rem; margin-bottom: 3rem;">
-                <div class="col-sm" style="display: flex; align-items: center; justify-content: center;">
-                <img class="bd-placeholder-img img-thumbnail" style="margin-top: 1rem;"  src="{{ url_for('static', filename="assets/rwth.png") }}" alt="strabag logo" width="200" height="200"> 
-                </div>
-                
-                <div class="col-9">
-                <div id ="rwthuniba-entry" style="margin-top: 1rem;"> 
-                    <h5> Bachelor of Science - Environmental engineering - RWTH Aachen University, Germany
-                    </h5>
-                    <em>2011 - 2016 </em>
-                    <p>
-                    <ul>
-                        <li> Building Construction</li>
-                        <li> Process engineering </li>
-                        <li> Environmental sciences </li>
-                    </ul>
-                    </p>
-                </div>
-                </div>
-            </div>
-        </div>
-
-    </article>
-    </section>
+        </section>
     </div>
 </main>
 

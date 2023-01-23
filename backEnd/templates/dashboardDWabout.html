@@ -3,7 +3,18 @@
 
 {% block dependencies %} 
 <link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<style>
+  #ArchitectureImg { width: 500px; padding: 1rem;}
 
+  @media only screen and (max-width: 768px) {
+    body {
+      background-color: lightblue;
+    }
+    #ArchitectureImg {
+      width: 70%;
+    }
+  }
+</style>
 {% endblock %}
 
 {% block title %} Stephan's Corner | About the DW Project{% endblock title %}
@@ -49,7 +60,7 @@
     <p class="text-justify">Both systems are coded seperatly, but are dependend from another. The webscrapper is written in python and saves its data within a redis database. The scrapper runs on a raspberry pi. In order to keep it performant enough i decided to keep the standard Debian OS (32bit OS) and not migrate to a 64bit OS. Experiments with 64 bit OS's haven't been sucessfull with my version of the raspberry pi. Thats why i choose Redis. Because of it's properties it can be used on the ARM 32 bit operating system and also function as a NoSQL database. </p>
     <p class="text-justify">The website itself is coded on a vm on a cloudprovider. It uses a <a href="https://flask.palletsprojects.com/en/2.2.x/">Flask</a> backend and <a href="https://getbootstrap.com/">Bootstraps 5</a> , <a href="https://d3js.org/">D3.js</a> and <a href="https://vega.github.io/vega-lite/">Vega Lite</a> for data visualizations within the browser.</p>
     
-    <img src={{ url_for('static', filename="assets/arc.png" ) }} class="rounded mx-auto d-block" alt="Architecture of this project" style="width: 500px; padding: 1rem">
+    <img id="ArchitectureImg" src={{ url_for('static', filename="assets/arc.png" ) }} class="rounded mx-auto d-block" alt="Architecture of this project">
     
     <p class="text-center font-weight-light">Figure: Project architecture from scrapper to frontend to backend</p>
     <p class="text-justify"> The website provides an overview of the activities of the webscrapper. This is important to make clear, from which timeperiod the data is gathered from. As next step i provide a explorative analysis of the gathered data. I divided the analysis into a weekly and a monthly section. Both garantue a short and a longterm option to explore the data. Further analysis of the data would be computationaly expensive and will be therefore not be part of the live analysis. Instead it will be done in on the blog of the website.</p>
