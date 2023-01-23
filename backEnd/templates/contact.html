@@ -3,7 +3,23 @@
 
 {% block dependencies %} 
 <link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+<style>
+    .container {
+        background-color:rgba(255,255,255,0.4);
+        border-radius:15px; 
+    }
 
+    .btn-primary {
+        color: #fff;
+        background-color: #1f3144;
+        border-color: #1f3144;
+      }
+
+    .btn-primary:hover {
+        background-color: #508EB7;
+        border-color: #508EB7;
+    }
+</style>
 {% endblock %}
 
 {% block title %} Contact | Stephan's Corner {% endblock title %}
@@ -13,10 +29,10 @@
 
 <main>
     <div class="row min-vh-100">
-        <div class="container-fluid">
+        <div class="container-fluid p-4">
             
             <div class="container">
-                <div class="row gy-2 mt-3">
+                <div class="row gy-2">
                     <h2>Contact</h2>
                     <p>Send me a message if you like to contact me or have a request.</p>
                 </div>
@@ -49,7 +65,7 @@
                             
                         </div>
 
-                        <div class="pt-3 pb-7 mb-7 pull-right">
+                        <div class="pt-3 pb-7 mb-7 pull-right pb-3">
                             {{ form.submit(class="btn btn-primary") }}
                         </div>
                 
