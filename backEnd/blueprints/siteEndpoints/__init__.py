@@ -3,11 +3,11 @@
 
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, abort
 from flask_wtf import FlaskForm
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, verify_jwt_in_request
+from flask_login import LoginManager, login_user, UserMixin, logout_user, login_required, current_user
 
 from wtforms import (StringField, TextAreaField, SubmitField)
 from wtforms.validators import InputRequired, Length, DataRequired
-from extensions import db
+from extensions import db, login_manager
 
 from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSchema
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_scrappermeta_by_timeframe
@@ -24,6 +24,16 @@ blueprint = Blueprint('Homepage', __name__)
 
 scrapperDataSchema = ScrapperDataSchema()
 blogpostSchema = BlogpostSchema()
+
+
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User(user_id)
+
 
 
 class Contact(FlaskForm):
@@ -75,16 +85,11 @@ def get_last_update(day):
 
 @blueprint.route('/')
 @blueprint.route('/index')
-@jwt_required(optional=True, locations=["headers"])
 def index():
     authenticated = False
-    current_identity = get_jwt_identity()
-    
-    print(f"\nCurrent ID: {current_identity} \n")
-    
-    if current_identity:
+    if current_user.is_authenticated:
         authenticated = True
-        print("\nAUTHENTIFCATED \n")
+        
     posts = [blogpostSchema.dump(p) for p in get_all_posts(db.session)][:10]
     for i in range(len(posts)):
         posts[i]['thumbnailpath'] = posts[i]['thumbnailpath'].split("/",2)
@@ -234,17 +239,16 @@ def dashboardDWthemegraphWeek_page():
 def login():
 
     if request.method == 'POST':
-        username = request.json.get('username', None)
-        password = request.json.get('password', None)
-        
-        print(f" usr: {username} pw: {password}")
-        if username != 'test' or password != 'test':
-            error = " Bad username or password "
-            return jsonify({'error': error}), 400
+        user = request.form['username']
+        password = request.form['password']
+
+        # Replace this with your own authentication logic
+        if user == 'test' and password == 'test':
+            _user = User(user)
+            login_user(_user)
+            return redirect(url_for('Homepage.index'))
         else:
-            print("ACCESS GRANTED")
-            access_token = create_access_token(identity=username)
-            return redirect(url_for('Homepage.index', access_token=access_token))
+            return "Invalid login credentials"
     else:
         return render_template('login.html')
 

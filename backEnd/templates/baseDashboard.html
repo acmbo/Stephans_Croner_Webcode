@@ -37,7 +37,7 @@
                 <div class="collapse navbar-collapse" id="navbarsExample04">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{url_for('Homepage.index') }}">Home</a>
+                        <a class="nav-link" aria-current="page" href="{{url_for('Homepage.index') }}">Home</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{url_for('Homepage.about_page') }}">About - CV</a>
@@ -63,9 +63,20 @@
                                 </li>
                             </ul>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-md-0">
+                        {% if authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('Homepage.contact_page') }}">Contact</a>
+                            <a class="nav-link" href="{{url_for('Userpage.blub') }}">Protected Page</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('Userpage.logout') }}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item ml-auto">
+                            <a class="nav-link" href="{{url_for('Homepage.login') }}">Login</a>
+                        </li>
+                        {% endif %}
 
                     </ul>
                 </div>

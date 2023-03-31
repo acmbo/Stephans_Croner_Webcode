@@ -21,6 +21,7 @@
         border-color: #508EB7;
     }
 </style>
+
 {% endblock %}
 
 {% block title %} Stephan's Corner | Login {% endblock title %}
@@ -37,7 +38,7 @@
 
                         <h2 class="text-left pb-3">Login</h2>
 
-                        <form method="POST" action="{{ url_for('Homepage.login') }}" enctype="application/json">
+                        <form method="POST" action="{{ url_for('Homepage.login') }}" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="username pt-2">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
@@ -46,15 +47,14 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-
+                        
                             <div id="alerter" class="alert alert-danger p-0 mt-2" role="alert" style="border: 0px; text-align: center"></div>
-
+                        
                             <div class="pull-right pt-3 pb-3">
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
-                            
                         </form>
-
+                        
                 </div>
             </div>
         </div>
@@ -66,39 +66,5 @@
 
 {% block dependenciesEnd %}
 
-<script>
-    document.querySelector('form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-        
-        // Get the form data
-        var formData = {
-            'username': document.getElementById('username').value,
-            'password': document.getElementById('password').value
-        };
-        
-        // Send the form data as JSON
-        fetch('{{ url_for('Homepage.login') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (response.ok) {
-              window.location.href = '/index';
-              const data = await response.json();
-              //window.localStorage.setItem("jwt-token", data.token);
-              //Cookies.set('jwt_token', response.data.token);
-              //console.log("success");
-              console.log("Stored Token :" + data );
-            } else {
-              response.json().then(data => {
-                document.querySelector('#alerter').textContent = data.error;
-              });
-            }
-          })
-        .catch(error => console.error(error))
-    });
-</script>
+
 {% endblock dependenciesEnd %}

@@ -7,10 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy import Column, Integer, Float, DateTime, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 
 db = SQLAlchemy()
 ma = Marshmallow()
-
+login_manager = LoginManager()
 
 Base = declarative_base()
 
