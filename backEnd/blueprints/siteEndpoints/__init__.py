@@ -1,8 +1,10 @@
 """ Website Homepage templates
 """
 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for, abort
 from flask_wtf import FlaskForm
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, verify_jwt_in_request
+
 from wtforms import (StringField, TextAreaField, SubmitField)
 from wtforms.validators import InputRequired, Length, DataRequired
 from extensions import db
@@ -73,12 +75,22 @@ def get_last_update(day):
 
 @blueprint.route('/')
 @blueprint.route('/index')
+@jwt_required(optional=True, locations=["headers"])
 def index():
+    authenticated = False
+    current_identity = get_jwt_identity()
+    
+    print(f"\nCurrent ID: {current_identity} \n")
+    
+    if current_identity:
+        authenticated = True
+        print("\nAUTHENTIFCATED \n")
     posts = [blogpostSchema.dump(p) for p in get_all_posts(db.session)][:10]
     for i in range(len(posts)):
         posts[i]['thumbnailpath'] = posts[i]['thumbnailpath'].split("/",2)
     
-    return render_template('index.html', posts = posts)
+    return render_template('index.html', posts = posts, authenticated=authenticated)
+
 
 
 
@@ -214,3 +226,26 @@ def dashboardDWthemegraphWeek_page():
     lastupdate = str(get_last_update(datetime.datetime.now().day))        
     time_mode = "Last Week"
     return render_template('dashboardDWthemegraph.html', time_mode=time_mode, lastupdate=lastupdate)
+
+
+
+
+@blueprint.route('/login', methods=['GET','POST'])
+def login():
+
+    if request.method == 'POST':
+        username = request.json.get('username', None)
+        password = request.json.get('password', None)
+        
+        print(f" usr: {username} pw: {password}")
+        if username != 'test' or password != 'test':
+            error = " Bad username or password "
+            return jsonify({'error': error}), 400
+        else:
+            print("ACCESS GRANTED")
+            access_token = create_access_token(identity=username)
+            return redirect(url_for('Homepage.index', access_token=access_token))
+    else:
+        return render_template('login.html')
+
+

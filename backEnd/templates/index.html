@@ -56,7 +56,11 @@
 <main>
     <!-- MainContainer for size-->
     <div class="min-vh-100">
-
+        {% if authenticated %}
+        <a href="{{url_for('Userpage.blub') }}">Protected Page</a>
+        {% else %}
+        <a href="{{url_for('Homepage.login') }}">Login</a>
+        {% endif %}
         <div id="headimgcont"></div>
         <section id="masthead" class="py-5 pl-0 pr-0 text-center container bg-transparent">
             <div class="row py-lg-5" >

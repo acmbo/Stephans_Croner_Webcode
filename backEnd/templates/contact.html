@@ -4,11 +4,6 @@
 {% block dependencies %} 
 <link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
 <style>
-    .container {
-        background-color:rgba(255,255,255,0.4);
-        border-radius:15px; 
-    }
-
     .btn-primary {
         color: #fff;
         background-color: #1f3144;
@@ -29,9 +24,9 @@
 
 <main>
     <div class="row min-vh-100">
-        <div class="container-fluid p-4">
+        <div class="container col-md-8 mt-3">
             
-            <div class="container">
+            <div class="container" style="background-color:rgba(255,255,255,0.4); border-radius:15px; ">
                 <div class="row gy-2">
                     <h2>Contact</h2>
                     <p>Send me a message if you like to contact me or have a request.</p>
@@ -68,7 +63,7 @@
                         <div class="pt-3 pb-7 mb-7 pull-right pb-3">
                             {{ form.submit(class="btn btn-primary") }}
                         </div>
-                
+ 
                     </form> 
 
                 </div>
