@@ -1,0 +1,161 @@
+
+{% extends 'base.html' %}
+
+{% block dependencies %} 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+<style>
+    .section {
+        z-index: 0;
+    }
+
+    button a {
+        text-decoration:none;
+        color: gray;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #1f3144;
+        border-color: #1f3144;
+      }
+
+    .btn-primary:hover {
+        background-color: #508EB7;
+        border-color: #508EB7;
+    }
+
+    .bg-light{
+        background-color: rgba(0,0,0,0)!important
+    }
+
+    .sitecontainer {
+        background:
+            linear-gradient(90deg, rgba(2,0,36,0.3) 0%, rgba(102,122,175,0.3) 25%, rgba(177,217,254,0.3) 64%, rgba(103,202,222,0.3) 100%),
+            radial-gradient(circle at top, rgba(168,201,183,0.45), rgba(103,202,222,0.3) 33%, rgba(2,0,36, 0.3) 100%);
+        background-blend-mode: screen;
+        height:100%!important
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    input[type="text"] {
+        background-color: #142d4c; /* Set the background color to light gray */
+        color: white;
+    }
+
+    input[type="text"]:focus {
+        background-color: #142d4c; /* Set the text color to white when the input is focused */
+        color: white;
+    }
+
+    #messages {
+        height: 90vh;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        background: #142d4c;
+        border-radius: 7px;
+        border: 3px solid #9fd3c7;
+      }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .message.sent {
+        background-color: #385170;
+        align-self: flex-start;
+        display: block; /* Add this line */
+        color: #9fd3c7;
+    }
+
+    .message.received {
+        display: inline-block;
+        background-color: #385170;
+        align-self: flex-end;
+        display: block; /* Add this line */
+        color: #ffb5b5;
+    }
+</style>
+{% endblock %}
+
+{% block title %} Stephan's Corner | Chat with GPT {% endblock title %}
+
+{% block sitecontent %}
+<!-- Homepage with Content -->
+
+<main>
+    <!-- MainContainer for size-->
+    <div class="min-vh-100">
+        <div class="container mt-1">
+            <div class="row">
+                <title>Chat App</title>
+            </div>
+
+            <div class="row">
+                <div id="chat-container">
+                    <div id="messages">
+                </div>
+            </div>
+
+            <div class="row">
+                <form id="send-message-form">
+                    <div class="input-group">
+                        <input type="text" name="message" class="form-control">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End  MainContainer for size-->
+</main>
+
+
+{% endblock sitecontent %} 
+
+{% block dependenciesEnd %}
+
+<script>
+
+    $(function() {
+        // Submit the form with AJAX
+        $('#send-message-form').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '{{url_for('Userpage.chatTalk') }}',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+            message: $('input[name="message"]').val()
+            }),
+            success: function(response) {
+            
+            // Display the sent message and response in the chat div
+            $('#messages').append('<div class="message sent">' + $('input[name="message"]').val() + '</div>');
+            $('input[name="message"]').val('');
+
+            $('#messages').append('<div class="message received">' + response.message + '</div>');
+            // Clear the input field
+            $('#messages').scrollTop($('#chat-messages')[0].scrollHeight);
+            },
+            error: function(response) {
+            console.error(response);
+            }
+        });
+        });
+    });
+
+      
+  </script>
+
+{% endblock dependenciesEnd %}

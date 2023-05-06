@@ -1,0 +1,459 @@
+
+{% extends 'base.html' %}
+
+{% block dependencies %} 
+<link rel= "stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+<style>
+    .section {
+        z-index: 0;
+    }
+
+    button a {
+        text-decoration:none;
+        color: gray;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #1f3144;
+        border-color: #1f3144;
+      }
+
+    .btn-primary:hover {
+        background-color: #508EB7;
+        border-color: #508EB7;
+    }
+
+    .bg-light{
+        background-color: rgba(0,0,0,0)!important
+    }
+
+    .sitecontainer {
+        background:
+            linear-gradient(90deg, rgba(2,0,36,0.3) 0%, rgba(102,122,175,0.3) 25%, rgba(177,217,254,0.3) 64%, rgba(103,202,222,0.3) 100%),
+            radial-gradient(circle at top, rgba(168,201,183,0.45), rgba(103,202,222,0.3) 33%, rgba(2,0,36, 0.3) 100%);
+        background-blend-mode: screen;
+        height:100%!important
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .album {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    #canvas {
+        background-color: rgba(255, 255, 255, 0.5);
+        display: block;
+        border: 1px solid black;
+    }
+</style>
+{% endblock %}
+
+{% block title %} Stephan's Corner | Draw {% endblock title %}
+
+{% block sitecontent %}
+<!-- Homepage with Content -->
+
+<main>
+    <!-- MainContainer for size-->
+    <div class="min-vh-100">
+        <div class="container mt-5">
+            <div class="row">
+              <div id="canvasCont" class="col-12" style="min-height: 500px">
+                <canvas id="canvas"></canvas>
+              </div>
+            </div>
+            <div class="mt-3">
+                <div class="col">
+                    <button id="rectangle-mode" class="btn btn-primary">Rectangle Mode</button>
+                  </div>
+                  <div class="col">
+                    <button id="polyline-mode" class="btn btn-primary">Polyline Mode</button>
+                  </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col">
+                <button id="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!--End  MainContainer for size-->
+</main>
+
+
+{% endblock sitecontent %} 
+
+{% block dependenciesEnd %}
+<script>
+ // Get the canvas element and its context
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+// Array to store polyline points
+var points = [];
+var xpolyline = [];
+var ypolyline = [];
+var polygoneDistanceThreshold = 30;
+var pointsize = 2;
+var defaultStrokeStyle = "rgba(20, 20, 20, 1.0)";
+
+function markpoint(x, y, size) {
+    // Mark the point
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, 2 * Math.PI);
+    ctx.fill();
+}    
+
+function drawCircle(x, y, size) {
+    ctx.strokeStyle = "rgba(150, 40, 0, 0.8)";
+
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, 2 * Math.PI);
+    ctx.stroke(); 
+
+    // Set the fill color and fill the circle
+    ctx.fillStyle = "rgba(180, 40, 0, 0.3)";
+    ctx.fill();
+    ctx.strokeStyle = defaultStrokeStyle;
+}
+
+// Add an event listener for when the mouse button is pressed down
+canvas.addEventListener("mousedown", function(event) {
+    if (event.button !== 0) {
+        return;
+    }
+    // Get the current mouse position
+    var x = event.pageX - canvas.offsetLeft;
+    var y = event.pageY - canvas.offsetTop;
+
+    // Add the point to the array
+    xpolyline.push(x);
+    ypolyline.push(y);
+
+
+    // If no point on canvas, just mark point
+    if (xpolyline.length == 1) {
+        markpoint(x, y, pointsize)
+        drawCircle(x, y, polygoneDistanceThreshold)
+        }
+
+    // If this is the second point or more, draw a line between the points
+    if (xpolyline.length == 2) {
+        var lastXPoint = xpolyline[xpolyline.length - 2];
+        var lastYPoint = ypolyline[ypolyline.length - 2];
+        
+        markpoint(x, y, pointsize)
+
+        ctx.beginPath();
+        ctx.moveTo(lastXPoint, lastYPoint);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+    } else if (xpolyline.length > 2) {
+
+        var firstXPoint = xpolyline[0];
+        var firstYPoint = ypolyline[0];
+        var lastXPoint = xpolyline[xpolyline.length - 2];
+        var lastYPoint = ypolyline[ypolyline.length - 2];
+        var distance = Math.sqrt(Math.pow(x - firstXPoint, 2) + Math.pow(y - firstYPoint, 2));
+
+        if (distance < polygoneDistanceThreshold) {
+            // Close the polyline if point is nearby. will close in both directsoin (to last point and to first)
+            ctx.moveTo(lastXPoint, lastYPoint);
+            ctx.lineTo(firstXPoint, firstYPoint);
+            ctx.stroke();
+
+            // Clear the points arrays
+            xpolyline = [];
+            ypolyline = [];
+
+        } else {
+            markpoint(x, y, pointsize)
+
+            ctx.beginPath();
+            ctx.moveTo(lastXPoint, lastYPoint);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+    }
+});
+
+// Add an event listener for when the mouse button is released
+canvas.addEventListener("mouseup", function(event) {
+  // Clear the points array
+
+});
+    /*
+    const canvasContainer = document.getElementById('canvasCont');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 0.9 * canvasContainer.clientWidth;
+    canvas.height = 0.9 * canvasContainer.clientHeight;
+
+    let isDrawing = false;
+    let startX, startY, endX, endY;
+    let rectangles = [];
+    let polylines = [];
+    let isRectangleMode = true;
+    let isPolylineMode = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function resizeCanvas() {
+        canvas.width = canvasContainer.clientWidth;
+        canvas.height = canvasContainer.clientHeight;
+        ctx.scale(canvas.width, canvas.height);
+        return false;
+    }
+
+
+
+    window.addEventListener('resize', resizeCanvas, false);
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', drawMousePosition);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', endDraw);
+
+
+
+    document.getElementById('rectangle-mode').addEventListener('click', () => {
+        isRectangleMode = true;
+        isPolylineMode = false;
+    });
+
+    document.getElementById('polyline-mode').addEventListener('click', () => {
+        isRectangleMode = false;
+        isPolylineMode = true;
+    });
+
+
+    function drawMousePosition(event) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+        const brushRadius = 10;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawRectangles();
+
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, brushRadius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    // Startet when mousedown
+    function startDraw(event) {
+        isDrawing = true;
+        startX = event.offsetX;
+        startY = event.offsetY;
+        endX = event.offsetX;
+        endY = event.offsetY;
+
+        lastX = event.offsetX;
+        lastY = event.offsetY;
+
+        if (isRectangleMode) {
+            rectangles.push({ x: startX, y: startY });
+        } else if (isPolylineMode) {
+            lastX = event.offsetX;
+            lastY = event.offsetY;
+        }
+    }
+
+
+    // when mouse moves across canvas
+    function draw(event) {
+        if (!isDrawing) return;
+
+        endX = event.offsetX;
+        endY = event.offsetY;
+
+        const currentRectangle = rectangles[rectangles.length - 1];
+
+        if (isRectangleMode) {
+            currentRectangle.width = endX - startX;
+            currentRectangle.height = endY - startY;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (const rectangle of rectangles) {
+                ctx.strokeRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+            }
+        } else if (isPolylineMode) {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPolyline();
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            lastX = endX;
+            lastY = endY;
+        }
+    }
+
+    function endDraw() {
+        isDrawing = false;
+    }
+
+    function drawRectangles() {
+        for (const rectangle of rectangles) {
+            const { x, y, width, height } = rectangle;
+            ctx.strokeRect(x, y, width, height);
+        }
+    }
+    function drawPolyline() {
+        if (polylinePoints.length < 2) return;
+    
+        ctx.beginPath();
+        ctx.moveTo(polylinePoints[0].x, polylinePoints[0].y);
+        for (let i = 1; i < polylinePoints.length; i++) {
+            ctx.lineTo(polylinePoints[i].x, polylinePoints[i].y);
+        }
+        ctx.stroke();
+    }
+    
+    function startDrawPolyline(event) {
+        isDrawing = true;
+        polylinePoints.push({ x: event.offsetX, y: event.offsetY });
+    }
+    
+    function drawPolylinePoint(event) {
+        if (!isDrawing) return;
+        const lastPoint = polylinePoints[polylinePoints.length - 1];
+        if (event.offsetX !== lastPoint.x || event.offsetY !== lastPoint.y) {
+            polylinePoints.push({ x: event.offsetX, y: event.offsetY });
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawRectangles();
+            drawPolyline();
+        }
+    }
+    
+    function endDrawPolyline(event) {
+        if (!isDrawing) return;
+        isDrawing = false;
+        if (polylinePoints.length > 1) {
+            polylines.push(polylinePoints);
+        }
+        polylinePoints = [];
+    }
+    */
+</script>
+ <!--
+<script>
+    const canvasContainer = document.getElementById('canvasCont');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = 0.9 * canvasContainer.clientWidth;//window.innerWidth;
+    canvas.height =  0.9 *  canvasContainer.clientHeight;// window.innerHeight;
+
+    let isDrawing = false;
+    let startX, startY, endX, endY;
+    let rectangles = [];
+
+    console.log(window.innerWidth)
+    console.log(window.innerHeight)
+
+
+    function resizeCanvas() {
+        canvas.width =canvas.clientWidth; //window.innerWidth;
+        canvas.height =canvas.clientHeight; //window.innerHeight;
+        ctx.scale(canvas.width, canvas.height);
+        return false;
+      }
+
+      
+    window.addEventListener('resize', resizeCanvas, false);
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', drawMousePosition);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', endDraw);
+    function drawMousePosition(event) {
+        // Get cursor coordinates on the canvas
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+        const brushRadius = 10;
+
+        // Clear canvas and redraw existing rectangles
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRectangles();
+      
+        // Draw small circle at cursor position
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, brushRadius, 0, 2 * Math.PI);
+        ctx.fill();
+
+      }
+
+    function startDraw(event) {
+        isDrawing = true;
+        startX = event.offsetX;
+        startY = event.offsetY;
+        endX = event.offsetX;
+        endY = event.offsetY;
+        rectangles.push({ x: startX, y: startY, width: 0, height: 0 });
+    }
+    /*
+    function drawRectangle(event) {
+        if (!isDrawing) return;
+
+        endX = event.offsetX;
+        endY = event.offsetY;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRectangles();
+    }
+    */
+    function draw(event) {
+        if (!isDrawing) return;
+      
+        endX = event.offsetX;
+        endY = event.offsetY;
+      
+        const currentRectangle = rectangles[rectangles.length - 1];
+        currentRectangle.width = endX - startX;
+        currentRectangle.height = endY - startY;
+      
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (const rectangle of rectangles) {
+            ctx.strokeRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        }
+    }
+
+    function endDraw() {
+        isDrawing = false;
+    }
+
+    function drawRectangles() {
+        rectangles.forEach(rectangle => {
+            const { x, y, width, height } = rectangle;
+            ctx.strokeRect(x, y, width, height);
+        });
+    }
+    
+
+    const submitButton = document.getElementById('submit');
+    submitButton.addEventListener('click', submitCanvas);
+
+    function submitCanvas() {
+    const data = JSON.stringify({ rectangles });
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/submit-canvas', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+    }
+</script>
+-->
+{% endblock dependenciesEnd %}

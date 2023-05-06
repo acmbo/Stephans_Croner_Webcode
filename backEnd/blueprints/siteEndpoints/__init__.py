@@ -35,6 +35,12 @@ def load_user(user_id):
     return User(user_id)
 
 
+def checkAuth():
+    authenticated = False
+    if current_user.is_authenticated:
+        authenticated = True
+    return authenticated
+
 
 class Contact(FlaskForm):
     """Contactfrom for FLAKS WTF_
@@ -86,9 +92,7 @@ def get_last_update(day):
 @blueprint.route('/')
 @blueprint.route('/index')
 def index():
-    authenticated = False
-    if current_user.is_authenticated:
-        authenticated = True
+    authenticated = checkAuth()
         
     posts = [blogpostSchema.dump(p) for p in get_all_posts(db.session)][:10]
     for i in range(len(posts)):
@@ -101,6 +105,7 @@ def index():
 
 @blueprint.route('/contact', methods=["GET", "POST"])
 def contact_page():
+    authenticated = checkAuth()
 
     form = Contact()
     print(request.method)
@@ -113,18 +118,21 @@ def contact_page():
         
         return render_template('statusTemplates/contact.html')
 
-    return render_template('contact.html', form=form)
+    return render_template('contact.html', form=form, authenticated=authenticated)
 
 
 
 @blueprint.route('/about')
 def about_page():
-    return render_template('about.html')
+    authenticated = checkAuth()
+    return render_template('about.html', authenticated=authenticated)
 
 
 
 @blueprint.route('/dashboardDW')
 def dashboardDW_page():
+    authenticated = checkAuth()
+    
     metainfo = get_all_scrappermeta_by_timeframe(db.session, days=7)
     # Add Data for Table and Submission section    metainfo = get_all_scrappermeta_by_timeframe(db.session, days=7)
     metainfo_list = [scrapperDataSchema.dump(info) for info in metainfo]
@@ -152,14 +160,15 @@ def dashboardDW_page():
 
     time_mode = "Weekly"
 
-    return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate, time_mode=time_mode)
+    return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate, time_mode=time_mode, authenticated=authenticated)
 
 
 
 
 @blueprint.route('/dashboardDWabout')
 def dashboardDWabout_page():
-    return render_template('dashboardDWabout.html')
+    authenticated = checkAuth()
+    return render_template('dashboardDWabout.html', authenticated=authenticated)
 
 
 
@@ -184,8 +193,8 @@ def dashboardDWAll_page():
     lastupdate = timedelta.days
 
     time_mode = "All"
-
-    return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate, time_mode=time_mode)
+    authenticated = checkAuth()
+    return render_template('dashboardDW.html', table_data=metainfo_list, submissionInfo=submissionInfo, lastupdate=lastupdate, time_mode=time_mode, authenticated=authenticated)
 
 
 # Monthly Postings
@@ -200,16 +209,16 @@ def dashboardDWpostings_page():
     wordclouddata = data["Keywords"]
 
     time_mode = "Last Month"
-
-    return render_template('dashboardDWpostings.html', wordclouddata=wordclouddata, time_mode=time_mode, lastupdate=lastupdate)
+    authenticated = checkAuth()
+    return render_template('dashboardDWpostings.html', wordclouddata=wordclouddata, time_mode=time_mode, lastupdate=lastupdate, authenticated=authenticated)
 
 
 @blueprint.route('/dashboardDWthemegraphmonth')
 def dashboardDWthemegraph_page():
     lastupdate = str(get_last_update(datetime.datetime.now().day))
-        
+    authenticated = checkAuth()        
     time_mode = "Last Month"
-    return render_template('dashboardDWthemegraph.html', time_mode=time_mode, lastupdate=lastupdate)
+    return render_template('dashboardDWthemegraph.html', time_mode=time_mode, lastupdate=lastupdate, authenticated=authenticated)
 
 
 # Weekly Postings
@@ -223,14 +232,16 @@ def dashboardDWpostingsWeek_page():
     data = r.json()
     wordclouddata = data["Keywords"]
     time_mode = "Last Week"
-    return render_template('dashboardDWpostings.html', wordclouddata=wordclouddata, time_mode=time_mode, lastupdate=lastupdate)
+    authenticated = checkAuth()
+    return render_template('dashboardDWpostings.html', wordclouddata=wordclouddata, time_mode=time_mode, lastupdate=lastupdate, authenticated=authenticated)
 
 
 @blueprint.route('/dashboardDWthemegraphweek')
 def dashboardDWthemegraphWeek_page():
     lastupdate = str(get_last_update(datetime.datetime.now().day))        
     time_mode = "Last Week"
-    return render_template('dashboardDWthemegraph.html', time_mode=time_mode, lastupdate=lastupdate)
+    authenticated = checkAuth()
+    return render_template('dashboardDWthemegraph.html', time_mode=time_mode, lastupdate=lastupdate, authenticated=authenticated)
 
 
 
@@ -251,5 +262,7 @@ def login():
             return "Invalid login credentials"
     else:
         return render_template('login.html')
+
+
 
 
