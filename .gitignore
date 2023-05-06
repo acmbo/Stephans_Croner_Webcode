@@ -163,3 +163,4 @@ db.sqlite
 backEnd/data/*
 !backEnd/data/help.txt
 backEnd/static/assets/blog/*
+credentials.py
