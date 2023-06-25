@@ -1,9 +1,10 @@
 """ Website Homepage templates
 """
 
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for, abort
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for, Response
 from flask_wtf import FlaskForm
-from flask_login import LoginManager, login_user, UserMixin, logout_user, login_required, current_user
+from flask_login import login_user, UserMixin, current_user
+import json
 
 from wtforms import (StringField, TextAreaField, SubmitField)
 from wtforms.validators import InputRequired, Length, DataRequired
@@ -13,6 +14,7 @@ from ..operationalEndpoints.meta.models import ScrapperDataSchema, UsedKeywordSc
 from ..operationalEndpoints.meta.orm import get_all_scrappermeta, add_meta, deleteScrapperbyId, get_all_scrappermeta_by_timeframe
 from ..blogendpoints.orm import get_all_posts
 from ..blogendpoints.models import BlogpostSchema
+from .textrank import TextRank4Keyword
 
 from functools import lru_cache
 
@@ -264,5 +266,38 @@ def login():
         return render_template('login.html')
 
 
+
+
+@blueprint.route('/textrank', methods=['POST'])
+def textrank():
+
+
+    if request.method == 'POST':
+        
+        check = True
+
+        if check == True:
+            data = request.json
+
+            data = json.dumps(data)
+            data = json.loads(data)
+            
+            ##targettext = request.form.get('targetText')
+            content =[]
+            ana = TextRank4Keyword()
+            
+            for entry in data:
+                print(entry)
+                print(type(entry))
+                targettext = entry["targetText"] 
+                ana.analyze(targettext)
+                
+                kw = ana.get_keywords(number=8)
+                content.append({"Keywords": kw})
+
+            return jsonify(content)
+    else:
+        return Response("Bad Post",
+                        status=400,)
 
 

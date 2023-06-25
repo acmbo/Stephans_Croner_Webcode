@@ -308,3 +308,18 @@ def test_delete_endpoint():
     r = requests.delete(url)
     print(r)
     assert r.status_code == 204
+    
+    
+def test_textrank_endpoint():
+    url = "http://127.0.0.1:5000/textrank"
+
+    
+    # Check get statement
+    postdata = [
+        {'targetText': 'Sänger und Band dementieren die Vorwürfe. Mittlerweile hat sich auch die Generalstaatsanwaltschaft eingeschaltet und ermittelt. Bundesfamilienministerin Lisa Paus glaubt nicht, dass es sich bei den Vorwürfen gegen Rammstein-Sänger Till Lindemann um einen Einzelfall handelt. "Ohne Vorverurteilung im konkreten Fall: So wie ich die Diskussion wahrnehme, haben wir ein strukturelles Problem in der Konzertszene, über das nun endlich gesprochen wird", sagte sie der Boulevardzeitung "Bild am Sonntag". Paus sieht es als Aufgabe der Veranstalter an, "gerade junge Fans zu schützen". Antisemitismus-Beauftragter der Bundesregierung fordert Konzertabsage Auch der Antisemitismus-Beauftragte der Bundesregierung, Felix Klein, äußerte sich zur geforderten Absage: Er halte es "für fragwürdig, ob die geplanten Rammstein-Konzerte in Berlin im vom Land betriebenen Olympiastadion so stattfinden sollten", sagte Felix Klein den Zeitungen der Funke Mediengruppe am vergangenen Montag.'}
+    ]
+
+    r = requests.post(url, json=postdata)
+    print(r)
+    print(json.loads(r.content))
+    assert r.status_code == 204
