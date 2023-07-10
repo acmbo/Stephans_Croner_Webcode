@@ -102,7 +102,10 @@ class TextRank4Keyword():
         
         # Set stop words
         self.set_stopwords(stopwords)
-        
+
+        for w in STOP_WORDS:
+            text = text.replace(w,"")
+                    
         # Pare text by spaCy
         doc = nlp(text)
         
